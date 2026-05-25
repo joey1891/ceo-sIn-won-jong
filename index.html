@@ -269,7 +269,12 @@
                         </tr>
                     </thead>
                     <tbody id="brochureTableBody" class="divide-y divide-gray-200">
-                        <!-- Rows will be injected by JS -->
+                        <tr>
+                            <td colspan="3" class="px-6 py-8 text-center text-gray-500">
+                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
+                                Loading resources...
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -319,7 +324,12 @@
                         </tr>
                     </thead>
                     <tbody id="reportTableBody" class="divide-y divide-gray-200">
-                        <!-- Rows will be injected by JS -->
+                        <tr>
+                            <td colspan="4" class="px-6 py-8 text-center text-gray-500">
+                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
+                                Loading reports...
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -929,42 +939,14 @@
             track.style.transform = `translateX(${currentTranslate}%)`;
         }
 
-        if (supabaseClient) loadNewsFromSupabase();
 
         // ==========================================
-        // 회사소개서 및 글로벌 출장 보고서 테이블 렌더링
+        // 회사소개서 및 글로벌 출장 보고서 Supabase 렌더링
         // ==========================================
-        
-        // 다중 파일(회사소개서 등) 더미 데이터 (임시 비밀번호: 123)
-        const dummyBrochures = [
-            { 
-                id: 1, category: "Corporate", title: "MEDIFAB Global Intro 2024", date: "2024-05-20", password: "123",
-                files: [
-                    { lang: "KO", url: "#", label: "Korean" },
-                    { lang: "EN", url: "#", label: "English" },
-                    { lang: "ZH", url: "#", label: "Chinese" }
-                ]
-            },
-            { 
-                id: 2, category: "Product", title: "RESNOVAE Product Lineup", date: "2024-04-10", password: "123",
-                files: [
-                    { lang: "KO", url: "#", label: "Korean" },
-                    { lang: "EN", url: "#", label: "English" }
-                ]
-            }
-        ];
 
-        // 글로벌 보고서 (단일 파일) 더미 데이터 (임시 비밀번호: 123)
-        const dummyReports = [
-            { id: 1, country: "Vietnam / Southeast Asia", title: "2024 Vietnam Pharmaceutical Market Analysis & Entry Strategy", date: "2024-05-12", fileUrl: "#", password: "123" },
-            { id: 2, country: "Japan", title: "Japan Medical Device Regulatory Updates Q2", date: "2024-04-28", fileUrl: "#", password: "123" },
-            { id: 3, country: "China", title: "Cosmetics Distribution Network Assessment in Shanghai", date: "2024-03-15", fileUrl: "#", password: "123" }
-        ];
-
-        let currentPwdTarget = null; // 공통으로 사용할 비밀번호 타겟 객체
-        
         const brochureTableBody = document.getElementById('brochureTableBody');
         const reportTableBody = document.getElementById('reportTableBody');
+        let currentPwdTarget = null; // 공통으로 사용할 비밀번호 타겟 객체
         
         const passwordModal = document.getElementById('passwordModal');
         const pwdModalContent = document.getElementById('pwdModalContent');
@@ -973,48 +955,96 @@
         const pwdSuccessMsg = document.getElementById('pwdSuccessMsg');
         const btnSubmitPwd = document.getElementById('btnSubmitPwd');
 
-        function renderBrochuresTable() {
+        // Supabase에서 회사 소개서 데이터 가져오기
+        async function loadResourcesFromSupabase() {
+            if (!supabaseClient || !brochureTableBody) return;
+            try {
+                const { data, error } = await supabaseClient
+                    .from('resources')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                if (error) throw error;
+                renderBrochuresTable(data);
+            } catch (err) {
+                console.error('Error fetching resources:', err);
+                brochureTableBody.innerHTML = '<tr><td colspan="3" class="px-6 py-8 text-center text-red-500 text-sm">Failed to load resources.</td></tr>';
+            }
+        }
+
+        function renderBrochuresTable(data) {
             if (!brochureTableBody) return;
             brochureTableBody.innerHTML = '';
             
-            dummyBrochures.forEach(item => {
+            if (!data || data.length === 0) {
+                brochureTableBody.innerHTML = '<tr><td colspan="3" class="px-6 py-8 text-center text-gray-500 text-sm">No resources available.</td></tr>';
+                return;
+            }
+
+            data.forEach(item => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50 transition-colors";
                 
+                const filesArr = item.files || [];
                 let filesHtml = '<div class="flex flex-wrap gap-2">';
-                item.files.forEach(file => {
-                    filesHtml += `<button onclick="promptPassword('${item.title} (${file.label})', '${item.password}', '${file.url}')" class="inline-flex items-center gap-1 bg-[#F8FAFC] hover:bg-accent hover:text-white border border-gray-300 px-2.5 py-1.5 rounded text-[11px] font-bold text-secondary transition-colors"><i class="ph ph-file-pdf"></i> ${file.lang}</button>`;
+                filesArr.forEach(file => {
+                    // file 객체는 { lang: 'KO', url: '...' } 형태를 띰
+                    filesHtml += `<button onclick="promptPassword('${item.title} (${file.lang})', '${item.password}', '${file.url}')" class="inline-flex items-center gap-1 bg-[#F8FAFC] hover:bg-accent hover:text-white border border-gray-300 px-2.5 py-1.5 rounded text-[11px] font-bold text-secondary transition-colors"><i class="ph ph-file-pdf"></i> ${file.lang}</button>`;
                 });
                 filesHtml += '</div>';
 
                 tr.innerHTML = `
                     <td class="px-6 py-4 border-b border-gray-100 font-semibold text-primary">${item.title}</td>
                     <td class="px-6 py-4 border-b border-gray-100">${filesHtml}</td>
-                    <td class="px-6 py-4 border-b border-gray-100 text-gray-500 text-center whitespace-nowrap">${item.date}</td>
+                    <td class="px-6 py-4 border-b border-gray-100 text-gray-500 text-center whitespace-nowrap">${item.date || '-'}</td>
                 `;
                 brochureTableBody.appendChild(tr);
             });
+            changeLanguage(document.getElementById('languageSelect').value);
         }
 
-        function renderReportsTable() {
+        // Supabase에서 글로벌 출장 보고서 데이터 가져오기
+        async function loadReportsFromSupabase() {
+            if (!supabaseClient || !reportTableBody) return;
+            try {
+                const { data, error } = await supabaseClient
+                    .from('market_reports')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+                renderReportsTable(data);
+            } catch (err) {
+                console.error('Error fetching reports:', err);
+                reportTableBody.innerHTML = '<tr><td colspan="4" class="px-6 py-8 text-center text-red-500 text-sm">Failed to load reports.</td></tr>';
+            }
+        }
+
+        function renderReportsTable(data) {
             if (!reportTableBody) return;
             reportTableBody.innerHTML = '';
             
-            dummyReports.forEach(report => {
+            if (!data || data.length === 0) {
+                reportTableBody.innerHTML = '<tr><td colspan="4" class="px-6 py-8 text-center text-gray-500 text-sm">No reports available.</td></tr>';
+                return;
+            }
+
+            data.forEach(report => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50 transition-colors";
                 tr.innerHTML = `
                     <td class="px-6 py-4 border-b border-gray-100 font-semibold text-primary whitespace-nowrap">${report.country}</td>
                     <td class="px-6 py-4 border-b border-gray-100 text-gray-600">${report.title}</td>
-                    <td class="px-6 py-4 border-b border-gray-100 text-gray-500 text-center whitespace-nowrap">${report.date}</td>
+                    <td class="px-6 py-4 border-b border-gray-100 text-gray-500 text-center whitespace-nowrap">${report.date || '-'}</td>
                     <td class="px-6 py-4 border-b border-gray-100 text-center">
-                        <button onclick="promptPassword('${report.title}', '${report.password}', '${report.fileUrl}')" class="inline-flex items-center justify-center bg-white border border-gray-300 text-primary px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider hover:bg-primary hover:text-white transition-colors rounded shadow-sm w-full sm:w-auto" data-i18n="btnViewDownload">
+                        <button onclick="promptPassword('${report.title}', '${report.password}', '${report.file_url}')" class="inline-flex items-center justify-center bg-white border border-gray-300 text-primary px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider hover:bg-primary hover:text-white transition-colors rounded shadow-sm w-full sm:w-auto" data-i18n="btnViewDownload">
                             <i class="ph ph-lock-key mr-1.5"></i> View / Download
                         </button>
                     </td>
                 `;
                 reportTableBody.appendChild(tr);
             });
+            changeLanguage(document.getElementById('languageSelect').value);
         }
 
         // 통합 패스워드 모달 호출 함수
@@ -1056,12 +1086,14 @@
                 pwdSuccessMsg.classList.remove('hidden');
                 btnSubmitPwd.disabled = true;
                 
-                // 1초 후 모달 닫고 파일 다운로드(시뮬레이션) 동작
+                // 1초 후 모달 닫고 실제 파일 열기 동작
                 setTimeout(() => {
                     closePasswordModal();
-                    // 실제 서비스 연동 시 아래 코드를 주석 해제하여 사용
-                    // window.open(currentPwdTarget.url, '_blank'); 
-                    alert('File download simulation: ' + currentPwdTarget.title);
+                    if(currentPwdTarget.url) {
+                        window.open(currentPwdTarget.url, '_blank'); 
+                    } else {
+                        alert('URL is empty for this file.');
+                    }
                 }, 1000);
                 
             } else {
@@ -1081,12 +1113,14 @@
             }
         });
 
-        // 초기 테이블 렌더링 호출
-        renderBrochuresTable();
-        renderReportsTable();
-        
-        // 동적 렌더링 후 현재 선택된 언어로 번역 텍스트 갱신
-        changeLanguage(document.getElementById('languageSelect').value);
+        // ==========================================
+        // 페이지 로드 시 Supabase에서 데이터 호출
+        // ==========================================
+        if (supabaseClient) {
+            loadNewsFromSupabase();
+            loadResourcesFromSupabase();
+            loadReportsFromSupabase();
+        }
 
         // ==========================================
         // Contact Form 및 기타 모달 로직

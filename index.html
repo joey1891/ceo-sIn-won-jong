@@ -50,6 +50,12 @@
             outline: 2px solid #002147;
             outline-offset: 1px;
         }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="bg-[#F8FAFC] text-primary font-serif antialiased selection:bg-accent selection:text-white">
@@ -112,6 +118,18 @@
 
     <section class="py-24 bg-white relative border-t border-b border-gray-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <!-- Executive Profile -->
+            <div class="mb-24">
+                <div class="text-center mb-10">
+                    <h2 data-i18n="profileTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Executive Profile</h2>
+                    <div class="w-12 h-0.5 bg-primary mx-auto"></div>
+                </div>
+                <div class="font-sans text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose space-y-6 text-left max-w-3xl mx-auto break-keep">
+                    <p data-i18n="profileP1">A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.</p>
+                    <p data-i18n="profileP2">Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.</p>
+                </div>
+            </div>
+
             <div class="text-center mb-16">
                 <h2 data-i18n="aboutTitle" class="text-3xl font-bold mb-4 tracking-tight">Career Highlights</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto"></div>
@@ -164,7 +182,6 @@
 
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-white border border-gray-200 rounded">
                     <div class="w-20 h-20 flex-shrink-0 bg-white border border-gray-300 overflow-hidden flex items-center justify-center p-2">
-                        <!-- 변경된 GC 로고 -->
                         <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/GC.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9HQy5qcGciLCJpYXQiOjE3Nzk2OTUxMjksImV4cCI6MjA5NTA1NTEyOX0.gQwOXIj6NGKZG7cgqm9v8EJL8zPrkiPyYAk5ZP9Ftq0" alt="GC Logo" class="w-full h-full object-contain">
                     </div>
                     <div class="flex-1 text-center sm:text-left">
@@ -173,6 +190,75 @@
                         <p data-i18n="exp5_role" class="text-base text-gray-600 italic"></p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Press Section -->
+    <section id="news" class="py-24 bg-slate-50 relative border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-16">
+                <h2 data-i18n="newsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">News & Press</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <a href="#" target="_blank" rel="noopener noreferrer" class="group bg-white border border-gray-200 rounded overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col h-full">
+                    <div class="aspect-video bg-gray-200 overflow-hidden relative">
+                        <!-- 실제 기사 이미지 URL로 변경하세요 -->
+                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=News+Photo+1" alt="News Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center justify-between mb-3 text-[10px] font-sans font-bold uppercase tracking-widest text-secondary">
+                            <span data-i18n="news1_publisher">Business Daily</span>
+                            <span data-i18n="news1_date">2024. 04</span>
+                        </div>
+                        <h3 data-i18n="news1_title" class="text-lg font-bold text-primary mb-3 leading-snug group-hover:text-accent transition-colors">Strategic Innovation and New Growth Engines at MEDIFAB</h3>
+                        <p data-i18n="news1_desc" class="text-sm font-sans text-gray-600 mb-6 flex-1 line-clamp-3">COO Sin Wonjong outlines the strategic roadmap for enterprise-wide digital transformation and global market penetration...</p>
+                        <span class="text-xs font-sans font-semibold text-accent uppercase tracking-wider flex items-center gap-1 mt-auto">
+                            <span data-i18n="readArticle">Read Article</span> <i class="ph ph-arrow-up-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Article 2 -->
+                <a href="#" target="_blank" rel="noopener noreferrer" class="group bg-white border border-gray-200 rounded overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col h-full">
+                    <div class="aspect-video bg-gray-200 overflow-hidden relative">
+                        <!-- 실제 기사 이미지 URL로 변경하세요 -->
+                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=News+Photo+2" alt="News Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center justify-between mb-3 text-[10px] font-sans font-bold uppercase tracking-widest text-secondary">
+                            <span data-i18n="news2_publisher">Bio Healthcare News</span>
+                            <span data-i18n="news2_date">2023. 11</span>
+                        </div>
+                        <h3 data-i18n="news2_title" class="text-lg font-bold text-primary mb-3 leading-snug group-hover:text-accent transition-colors">BioPlus Revenue Doubles Under CEO Sin Wonjong's Leadership</h3>
+                        <p data-i18n="news2_desc" class="text-sm font-sans text-gray-600 mb-6 flex-1 line-clamp-3">A remarkable year of exponential growth as BioPlus International solidifies its position in the global aesthetic medicine market...</p>
+                        <span class="text-xs font-sans font-semibold text-accent uppercase tracking-wider flex items-center gap-1 mt-auto">
+                            <span data-i18n="readArticle">Read Article</span> <i class="ph ph-arrow-up-right"></i>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Article 3 -->
+                <a href="#" target="_blank" rel="noopener noreferrer" class="group bg-white border border-gray-200 rounded overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col h-full">
+                    <div class="aspect-video bg-gray-200 overflow-hidden relative">
+                        <!-- 실제 기사 이미지 URL로 변경하세요 -->
+                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=News+Photo+3" alt="News Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <div class="flex items-center justify-between mb-3 text-[10px] font-sans font-bold uppercase tracking-widest text-secondary">
+                            <span data-i18n="news3_publisher">Economic Review</span>
+                            <span data-i18n="news3_date">2022. 08</span>
+                        </div>
+                        <h3 data-i18n="news3_title" class="text-lg font-bold text-primary mb-3 leading-snug group-hover:text-accent transition-colors">Expanding Pan-Asian Networks: The Next Big Leap</h3>
+                        <p data-i18n="news3_desc" class="text-sm font-sans text-gray-600 mb-6 flex-1 line-clamp-3">Connecting premier medical societies across South Korea with key players in China, Japan, and Vietnam for integrated business development...</p>
+                        <span class="text-xs font-sans font-semibold text-accent uppercase tracking-wider flex items-center gap-1 mt-auto">
+                            <span data-i18n="readArticle">Read Article</span> <i class="ph ph-arrow-up-right"></i>
+                        </span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -250,54 +336,54 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto fade-in font-sans">
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-chat-circle text-lg"></i>
                     </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
                         <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/KAKAO.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9LQUtBTy5wbmciLCJpYXQiOjE3Nzk2ODQyNDMsImV4cCI6MjA5NTA0NDI0M30.tTVdFpUMoRQK3mrOiD2brYQe8vrSh4F7kvujdrkG7yQ" alt="Kakao QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary">KakaoTalk</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">KakaoTalk</span>
                 </div>
 
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-chat-teardrop-dots text-lg"></i>
                     </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
                         <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/LINE.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9MSU5FLmpwZyIsImlhdCI6MTc3OTY4NDI2MSwiZXhwIjoyMDk1MDQ0MjYxfQ.xeu6k5I1_pC2g90CmviAEQ_Sa9iyCkibwoscC1s6Xx4" alt="Line QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary">LINE</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">LINE</span>
                 </div>
 
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-telegram-logo text-lg"></i>
                     </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
                         <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/TELEGRAM.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9URUxFR1JBTS5qcGciLCJpYXQiOjE3Nzk2ODQyODIsImV4cCI6MjA5NTA0NDI4Mn0.-ydpkGPaZ9M-nR6t96sSOIov9gwKw-KQR20A5XduX_Q" alt="Telegram QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary">Telegram</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">Telegram</span>
                 </div>
 
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-wechat-logo text-lg"></i>
                     </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
                         <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/WECHAT.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9XRUNIQVQucG5nIiwiaWF0IjoxNzc5Njg0Mjk1LCJleHAiOjIwOTUwNDQyOTV9.xIurKFlWE9F0aCtjqezQdwhhNp37NibP-P3VO4oGyfo" alt="WeChat QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary">WeChat</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">WeChat</span>
                 </div>
 
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-whatsapp-logo text-lg"></i>
                     </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
                         <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/WHATSAPP.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9XSEFUU0FQUC5qcGciLCJpYXQiOjE3Nzk2ODQzMzQsImV4cCI6MjA5NTA0NDMzNH0.tqdfZeJ-L6u_4oPvmmb2jcbwLXFDLn33IIHHTyd2too" alt="WhatsApp QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary">WhatsApp</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">WhatsApp</span>
                 </div>
             </div>
         </div>
@@ -336,6 +422,9 @@
 
         const translations = {
             en: {
+                profileTitle: "Executive Profile",
+                profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
+                profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "Chief Executive Officer",
                 name: "Sin Wonjong",
                 heroTitle: "Visionary Leader Driving Innovation.",
@@ -347,6 +436,11 @@
                 exp3_time: "Former", exp3_company: "GC Wellbeing", exp3_role: "Business Innovation Leader",
                 exp4_time: "Former", exp4_company: "CosmaxBTI", exp4_role: "Strategy Planning Team Leader",
                 exp5_time: "Former", exp5_company: "GC", exp5_role: "Strategy Planning Office",
+                newsTitle: "News & Press",
+                news1_publisher: "Business Daily", news1_date: "2024. 04", news1_title: "Strategic Innovation and New Growth Engines at MEDIFAB", news1_desc: "COO Sin Wonjong outlines the strategic roadmap for enterprise-wide digital transformation and global market penetration...",
+                news2_publisher: "Bio Healthcare News", news2_date: "2023. 11", news2_title: "BioPlus Revenue Doubles Under CEO Sin Wonjong's Leadership", news2_desc: "A remarkable year of exponential growth as BioPlus International solidifies its position in the global aesthetic medicine market...",
+                news3_publisher: "Economic Review", news3_date: "2022. 08", news3_title: "Expanding Pan-Asian Networks: The Next Big Leap", news3_desc: "Connecting premier medical societies across South Korea with key players in China, Japan, and Vietnam for integrated business development...",
+                readArticle: "Read Article",
                 contactTitle: "Official Communication Statement",
                 contactDesc: "Please submit your formal inquiries or network record verification below.",
                 formSubmit: "Submit Statement",
@@ -357,6 +451,9 @@
                 connectTitle: "External Registry & Channels", connectDesc: "Access verified corporate networks and digital messenger credentials.", linkedinSub: "Professional Network", linkedinBtn: "Verify via LinkedIn", qrTitle: "Social Messenger Gateways"
             },
             ko: {
+                profileTitle: "경력 요약 (Executive Profile)",
+                profileP1: "제약, 생명공학, 의료기기, 건강기능식품 및 화장품 산업 전반에 걸쳐 20년 이상 기업 전략, M&A, 비즈니스 개발을 이끌어온 비저너리 C-레벨 경영자입니다. 바이오플러스인터내셔널 CEO 재직 당시 단 1년 만에 기업 매출을 2배로 성장시키며 폭발적인 성장의 촉매제 역할을 했습니다.",
+                profileP2: "중장기 기업 전략 수립, 벤처 투자, 전사적 디지털 전환(DX)을 주도하는 전문가입니다. 한국의 주요 의학회, 병원, 약국과 중국, 홍콩, 일본, 베트남 전역의 제약, 건강기능식품, 의료기기, 화장품 분야 핵심 기업들을 연결하는 아시아 전역의 독보적인 유통 및 마케팅 네트워크를 보유하고 있습니다.",
                 role: "최고경영자 (CEO)",
                 name: "신원종",
                 heroTitle: "혁신을 이끄는 비저너리 리더.",
@@ -368,6 +465,11 @@
                 exp3_time: "전 (Former)", exp3_company: "GC Wellbeing", exp3_role: "Business Innovation Leader",
                 exp4_time: "전 (Former)", exp4_company: "CosmaxBTI", exp4_role: "전략기획팀장",
                 exp5_time: "전 (Former)", exp5_company: "GC", exp5_role: "전략기획실",
+                newsTitle: "언론 보도 및 기사",
+                news1_publisher: "비즈니스 데일리", news1_date: "2024. 04", news1_title: "메디팹 신임 COO 취임, 디지털 전환 및 글로벌 진출 선언", news1_desc: "신원종 COO는 전사적 디지털 전환(DX)과 혁신 파이프라인 구축을 통해 메디팹의 새로운 성장 동력을 확보하겠다고 밝혔다...",
+                news2_publisher: "바이오 헬스케어 뉴스", news2_date: "2023. 11", news2_title: "바이오플러스, 신원종 CEO 체제서 매출 2배 '퀀텀점프'", news2_desc: "바이오플러스인터내셔널이 신원종 대표 취임 후 1년 만에 놀라운 매출 성장세를 기록하며 글로벌 에스테틱 시장에서 입지를 굳혔다...",
+                news3_publisher: "이코노믹 리뷰", news3_date: "2022. 08", news3_title: "아시아 전역 아우르는 독보적 헬스케어 네트워크 구축", news3_desc: "한국의 주요 의학회 및 병원망을 중국, 일본, 베트남 등 아시아 뷰티·헬스케어 핵심 기업들과 연결하는 대규모 유통망이 완성되었다...",
+                readArticle: "기사 원문 읽기",
                 contactTitle: "공식 문의 신청 및 서명",
                 contactDesc: "공식 문의 또는 협력 제안 기록을 위해 아래 서식을 빠짐없이 작성해 주십시오.",
                 formSubmit: "조회 및 제출",
@@ -378,22 +480,22 @@
                 connectTitle: "외부 인증 레지스트리", connectDesc: "인증된 기업 네트워크 및 소셜 메신저 공식 게이트웨이에 접속합니다.", linkedinSub: "프로페셔널 네트워크", linkedinBtn: "LinkedIn을 통한 본인 인증", qrTitle: "소셜 메신저 커뮤니케이션 채널"
             },
             zh: {
-                role: "首席执行官 (CEO)", name: "申源鐘", heroTitle: "引领创新的远见卓识领导者.", heroDesc: "以坚定不移的原则拥抱变化，创造新价值，引领全球市场。", connectBtn: "保持联系", aboutTitle: "职业亮点", exp1_time: "现任", exp1_company: "MEDIFAB", exp1_role: "首席运营官 (COO)", exp2_time: "前任", exp2_company: "BioPlus International", exp2_role: "首席执行官 (CEO)", exp3_time: "前任", exp3_company: "GC Wellbeing", exp3_role: "业务创新负责人 (Business Innovation Leader)", exp4_time: "前任", exp4_company: "CosmaxBTI", exp4_role: "战略规划团队负责人", exp5_time: "前任", exp5_company: "GC", exp5_role: "战略规划室", contactTitle: "官方通讯声明", contactDesc: "请在下方提交您的正式查询 or 网络记录验证。", formSubmit: "提交声明", modalTitle: "提交已收到", modalDesc: "该声明已得到安全处理。我们的办公室将进行审查并作出相应回应。", modalClose: "关闭", labelName: "姓名 *", labelNationality: "国籍 *", labelCompany: "公司名称 *", labelPhone: "联系电话", labelEmail: "电子邮件 *", labelSns: "社交媒体标识符 / SNS ID (可选)", labelMessage: "查询陈述 / 留言 *", connectTitle: "外部注册与渠道", connectDesc: "访问经过验证的企业网络和数字商务信使凭证。", linkedinSub: "专业网络", linkedinBtn: "通过 LinkedIn 验证", qrTitle: "社交商务信使网关"
+                profileTitle: "Executive Profile", profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.", profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.", role: "首席执行官 (CEO)", name: "申源鐘", heroTitle: "引领创新的远见卓识领导者.", heroDesc: "以坚定不移的原则拥抱变化，创造新价值，引领全球市场。", connectBtn: "保持联系", aboutTitle: "职业亮点", exp1_time: "现任", exp1_company: "MEDIFAB", exp1_role: "首席运营官 (COO)", exp2_time: "前任", exp2_company: "BioPlus International", exp2_role: "首席执行官 (CEO)", exp3_time: "前任", exp3_company: "GC Wellbeing", exp3_role: "业务创新负责人 (Business Innovation Leader)", exp4_time: "前任", exp4_company: "CosmaxBTI", exp4_role: "战略规划团队负责人", exp5_time: "前任", exp5_company: "GC", exp5_role: "战略规划室", newsTitle: "News & Press", news1_publisher: "Business Daily", news1_date: "2024. 04", news1_title: "Strategic Innovation and New Growth Engines at MEDIFAB", news1_desc: "COO Sin Wonjong outlines the strategic roadmap for enterprise-wide digital transformation and global market penetration...", news2_publisher: "Bio Healthcare News", news2_date: "2023. 11", news2_title: "BioPlus Revenue Doubles Under CEO Sin Wonjong's Leadership", news2_desc: "A remarkable year of exponential growth as BioPlus International solidifies its position in the global aesthetic medicine market...", news3_publisher: "Economic Review", news3_date: "2022. 08", news3_title: "Expanding Pan-Asian Networks: The Next Big Leap", news3_desc: "Connecting premier medical societies across South Korea with key players in China, Japan, and Vietnam for integrated business development...", readArticle: "Read Article", contactTitle: "官方通讯声明", contactDesc: "请在下方提交您的正式查询 or 网络记录验证。", formSubmit: "提交声明", modalTitle: "提交已收到", modalDesc: "该声明已得到安全处理。我们的办公室将进行审查并作出相应回应。", modalClose: "关闭", labelName: "姓名 *", labelNationality: "国籍 *", labelCompany: "公司名称 *", labelPhone: "联系电话", labelEmail: "电子邮件 *", labelSns: "社交媒体标识符 / SNS ID (可选)", labelMessage: "查询陈述 / 留言 *", connectTitle: "外部注册与渠道", connectDesc: "访问经过验证的企业网络和数字商务信使凭证。", linkedinSub: "专业网络", linkedinBtn: "通过 LinkedIn 验证", qrTitle: "社交商务信使网关"
             },
             ja: {
-                role: "最高経営責任者 (CEO)", name: "申 源鐘 (シン・ウォンジョン)", heroTitle: "革新을 견인하는 비전 리더.", heroDesc: "揺るぎない原則で変化を受け入れ、新たな価値を創造し、グローバル市場をリードします。", connectBtn: "お問い合わせ", aboutTitle: "主な経歴", exp1_time: "現職", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "前職", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "前職", exp3_company: "GC Wellbeing", exp3_role: "ビジネスイノベーションリーダー", exp4_time: "前職", exp4_company: "CosmaxBTI", exp4_role: "戦略企画チーム長", exp5_time: "前職", exp5_company: "GC", exp5_role: "戦略企画室", contactTitle: "公式コミュニケーション声明", contactDesc: "以下に正式な問い合わせまたはネットワーク記録の確認を提出してください。", formSubmit: "声明を提出する", modalTitle: "提出完了", modalDesc: "声明は安全に処理されました。当事務局にて確認の上、対応させていただきます。", modalClose: "閉じる", labelName: "お名前 *", labelNationality: "国籍 *", labelCompany: "会社名 *", labelPhone: "電話番号", labelEmail: "メールアドレス *", labelSns: "SNS識別子 / SNS ID (任意)", labelMessage: "質問内容 / 声明 *", connectTitle: "外部登記＆チャネル", connectDesc: "確認済みの企業ネットワークおよびデジタルメッセンジャーの資格情報にアクセスします。", linkedinSub: "プロフェッショナルネットワーク", linkedinBtn: "LinkedInで確認する", qrTitle: "ソーシャルメッセンジャーゲートウェイ"
+                profileTitle: "Executive Profile", profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.", profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.", role: "最高経営責任者 (CEO)", name: "申 源鐘 (シン・ウォンジョン)", heroTitle: "革新을 견인하는 비전 리더.", heroDesc: "揺るぎない原則で変化を受け入れ、新たな価値を創造し、グローバル市場をリードします。", connectBtn: "お問い合わせ", aboutTitle: "主な経歴", exp1_time: "現職", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "前職", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "前職", exp3_company: "GC Wellbeing", exp3_role: "ビジネスイノベーションリーダー", exp4_time: "前職", exp4_company: "CosmaxBTI", exp4_role: "戦略企画チーム長", exp5_time: "前職", exp5_company: "GC", exp5_role: "戦略企画室", newsTitle: "News & Press", news1_publisher: "Business Daily", news1_date: "2024. 04", news1_title: "Strategic Innovation and New Growth Engines at MEDIFAB", news1_desc: "COO Sin Wonjong outlines the strategic roadmap for enterprise-wide digital transformation and global market penetration...", news2_publisher: "Bio Healthcare News", news2_date: "2023. 11", news2_title: "BioPlus Revenue Doubles Under CEO Sin Wonjong's Leadership", news2_desc: "A remarkable year of exponential growth as BioPlus International solidifies its position in the global aesthetic medicine market...", news3_publisher: "Economic Review", news3_date: "2022. 08", news3_title: "Expanding Pan-Asian Networks: The Next Big Leap", news3_desc: "Connecting premier medical societies across South Korea with key players in China, Japan, and Vietnam for integrated business development...", readArticle: "Read Article", contactTitle: "公式コミュニケーション声明", contactDesc: "以下に正式な問い合わせまたはネットワーク記録の確認を提出してください。", formSubmit: "声明を提出する", modalTitle: "提出完了", modalDesc: "声明は安全に処理されました。当事務局にて確認の上、対応させていただきます。", modalClose: "閉じる", labelName: "お名前 *", labelNationality: "国籍 *", labelCompany: "会社名 *", labelPhone: "電話番号", labelEmail: "メールアドレス *", labelSns: "SNS識別子 / SNS ID (任意)", labelMessage: "質問内容 / 声明 *", connectTitle: "外部登記＆チャネル", connectDesc: "確認済みの企業ネットワークおよびデジタルメッセンジャーの資格情報にアクセスします。", linkedinSub: "プロフェッショナルネットワーク", linkedinBtn: "LinkedInで確認する", qrTitle: "ソーシャルメッセンジャーゲートウェイ"
             },
             vi: {
-                role: "Giám đốc điều hành", name: "Sin Wonjong", heroTitle: "Nhà lãnh đạo tầm nhìn thúc đẩy đổi mới.", heroDesc: "Dẫn dắt thị trường toàn cầu bằng cách tạo ra giá trị mới và nắm bắt sự thay đổi với các nguyên tắc vững chắc.", connectBtn: "Liên hệ", aboutTitle: "Kinh nghiệm làm việc", exp1_time: "Hiện tại", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "Cựu", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Cựu", exp3_company: "GC Wellbeing", exp3_role: "Giám đốc Đổi mới Kinh doanh", exp4_time: "Cựu", exp4_company: "CosmaxBTI", exp4_role: "Trưởng nhóm Lập kế hoạch Chiến lược", exp5_time: "Cựu", exp5_company: "GC", exp5_role: "Văn phòng Lập kế hoạch Chiến lược", contactTitle: "Tuyên bố liên lạc chính thức", contactDesc: "Vui lòng gửi câu hỏi chính thức của bạn hoặc xác minh hồ sơ mạng bên dưới.", formSubmit: "Gửi tuyên bố", modalTitle: "Đã nhận được bản gửi", modalDesc: "Tuyên bố đã được xử lý an toàn. Văn phòng chúng tôi sẽ xem xét và phản hồi phù hợp.", modalClose: "Đóng", labelName: "Họ và tên *", labelNationality: "Quốc tịch *", labelCompany: "Tên công ty *", labelPhone: "Số điện thoại", labelEmail: "Địa chỉ Email *", labelSns: "Mã định danh mạng xã hội / SNS ID (Tùy chọn)", labelMessage: "Tuyên bố yêu cầu / Tin nhắn *", connectTitle: "Sổ đăng ký & Kênh bên ngoài", connectDesc: "Truy cập mạng doanh nghiệp đã xác minh và thông tin xác thực tin nhắn kỹ thuật số.", linkedinSub: "Mạng lưới chuyên nghiệp", linkedinBtn: "Xác minh qua LinkedIn", qrTitle: "Cổng nhắn tin xã hội"
+                profileTitle: "Executive Profile", profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.", profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.", role: "Giám đốc điều hành", name: "Sin Wonjong", heroTitle: "Nhà lãnh đạo tầm nhìn thúc đẩy đổi mới.", heroDesc: "Dẫn dắt thị trường toàn cầu bằng cách tạo ra giá trị mới và nắm bắt sự thay đổi với các nguyên tắc vững chắc.", connectBtn: "Liên hệ", aboutTitle: "Kinh nghiệm làm việc", exp1_time: "Hiện tại", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "Cựu", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Cựu", exp3_company: "GC Wellbeing", exp3_role: "Giám đốc Đổi mới Kinh doanh", exp4_time: "Cựu", exp4_company: "CosmaxBTI", exp4_role: "Trưởng nhóm Lập kế hoạch Chiến lược", exp5_time: "Cựu", exp5_company: "GC", exp5_role: "Văn phòng Lập kế hoạch Chiến lược", newsTitle: "News & Press", news1_publisher: "Business Daily", news1_date: "2024. 04", news1_title: "Strategic Innovation and New Growth Engines at MEDIFAB", news1_desc: "COO Sin Wonjong outlines the strategic roadmap for enterprise-wide digital transformation and global market penetration...", news2_publisher: "Bio Healthcare News", news2_date: "2023. 11", news2_title: "BioPlus Revenue Doubles Under CEO Sin Wonjong's Leadership", news2_desc: "A remarkable year of exponential growth as BioPlus International solidifies its position in the global aesthetic medicine market...", news3_publisher: "Economic Review", news3_date: "2022. 08", news3_title: "Expanding Pan-Asian Networks: The Next Big Leap", news3_desc: "Connecting premier medical societies across South Korea with key players in China, Japan, and Vietnam for integrated business development...", readArticle: "Read Article", contactTitle: "Tuyên bố liên lạc chính thức", contactDesc: "Vui lòng gửi câu hỏi chính thức của bạn hoặc xác minh hồ sơ mạng bên dưới.", formSubmit: "Gửi tuyên bố", modalTitle: "Đã nhận được bản gửi", modalDesc: "Tuyên bố đã được xử lý an toàn. Văn phòng chúng tôi sẽ xem xét và phản hồi phù hợp.", modalClose: "Đóng", labelName: "Họ và tên *", labelNationality: "Quốc tịch *", labelCompany: "Tên công ty *", labelPhone: "Số điện thoại", labelEmail: "Địa chỉ Email *", labelSns: "Mã định danh mạng xã hội / SNS ID (Tùy chọn)", labelMessage: "Tuyên bố yêu cầu / Tin nhắn *", connectTitle: "Sổ đăng ký & Kênh bên ngoài", connectDesc: "Truy cập mạng doanh nghiệp đã xác minh và thông tin xác thực tin nhắn kỹ thuật số.", linkedinSub: "Mạng lưới chuyên nghiệp", linkedinBtn: "Xác minh qua LinkedIn", qrTitle: "Cổng nhắn tin xã hội"
             },
             ru: {
-                role: "Генеральный директор", name: "Син Вонджон", heroTitle: "Дальновидный лидер, стимулирующий инновации.", heroDesc: "Лидерство на мировом рынке за счет создания новых ценностей и принятия изменений с непоколебимыми принципами.", connectBtn: "Связаться", aboutTitle: "Основные этапы карьеры", exp1_time: "В настоящее время", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "Бывший", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Бывший", exp3_company: "GC Wellbeing", exp3_role: "Руководитель бизнес-инноваций", exp4_time: "Бывший", exp4_company: "CosmaxBTI", exp4_role: "Руководитель группы стратегического планирования", exp5_time: "Бывший", exp5_company: "GC", exp5_role: "Отдел стратегического планирования", contactTitle: "Официальное коммуникационное заявление", contactDesc: "Пожалуйста, отправьте ваши официальные запросы или верификацию сетевой записи ниже.", formSubmit: "Подать заявление", modalTitle: "Заявление получено", modalDesc: "Заявление было безопасно обработано. Наш офис рассмотрит его и ответит должным образом.", modalClose: "Закрыть", labelName: "Имя *", labelNationality: "Национальность *", labelCompany: "Название компании *", labelPhone: "Номер телефона", labelEmail: "Электронная почта *", labelSns: "Идентификатор соцсети / SNS ID (Необязательно)", labelMessage: "Текст запроса / Заявление *", connectTitle: "Внешние реестры и каналы", connectDesc: "Доступ к проверенным корпоративным сетям и учетным данным цифровых мессенджеров.", linkedinSub: "Профессиональная сеть", linkedinBtn: "Подтвердить через LinkedIn", qrTitle: "Шлюзы социальных мессенджеров"
+                profileTitle: "Executive Profile", profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.", profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.", role: "Генеральный директор", name: "Син Вонджон", heroTitle: "Дальновидный лидер, стимулирующий инновации.", heroDesc: "Лидерство на мировом рынке за счет создания новых ценностей и принятия изменений с непоколебимыми принципами.", connectBtn: "Связаться", aboutTitle: "Основные этапы карьеры", exp1_time: "В настоящее время", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "Бывший", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Бывший", exp3_company: "GC Wellbeing", exp3_role: "Руководитель бизнес-инноваций", exp4_time: "Бывший", exp4_company: "CosmaxBTI", exp4_role: "Руководитель группы стратегического планирования", exp5_time: "Бывший", exp5_company: "GC", exp5_role: "Отдел стратегического планирования", newsTitle: "News & Press", news1_publisher: "Business Daily", news1_date: "2024. 04", news1_title: "Strategic Innovation and New Growth Engines at MEDIFAB", news1_desc: "COO Sin Wonjong outlines the strategic roadmap for enterprise-wide digital transformation and global market penetration...", news2_publisher: "Bio Healthcare News", news2_date: "2023. 11", news2_title: "BioPlus Revenue Doubles Under CEO Sin Wonjong's Leadership", news2_desc: "A remarkable year of exponential growth as BioPlus International solidifies its position in the global aesthetic medicine market...", news3_publisher: "Economic Review", news3_date: "2022. 08", news3_title: "Expanding Pan-Asian Networks: The Next Big Leap", news3_desc: "Connecting premier medical societies across South Korea with key players in China, Japan, and Vietnam for integrated business development...", readArticle: "Read Article", contactTitle: "Официальное коммуникационное заявление", contactDesc: "Пожалуйста, отправьте ваши официальные запросы или верификацию сетевой записи ниже.", formSubmit: "Подать заявление", modalTitle: "Заявление получено", modalDesc: "Заявление было безопасно обработано. Наш офис рассмотрит его и ответит должным образом.", modalClose: "Закрыть", labelName: "Имя *", labelNationality: "Национальность *", labelCompany: "Название компании *", labelPhone: "Номер телефона", labelEmail: "Электронная почта *", labelSns: "Идентификатор соцсети / SNS ID (Необязательно)", labelMessage: "Текст запроса / Заявление *", connectTitle: "Внешние реестры и каналы", connectDesc: "Доступ к проверенным корпоративным сетям и учетным данным цифровых мессенджеров.", linkedinSub: "Профессиональная сеть", linkedinBtn: "Подтвердить через LinkedIn", qrTitle: "Шлюзы социальных мессенджеров"
             },
             th: {
-                role: "ประธานเจ้าหน้าที่บริหาร", name: "ชิน วอนจง", heroTitle: "ผู้นำที่มีวิสัยทัศน์ขับเคลื่อนนวัตกรรม.", heroDesc: "เป็นผู้นำตลาดระดับโลกด้วยการสร้างมูลค่าใหม่และยอมรับการเปลี่ยนแปลงด้วยหลักการที่แน่วแน่", connectBtn: "ติดต่อเรา", aboutTitle: "ประวัติการทำงาน", exp1_time: "ปัจจุบัน", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "อดีต", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "อดีต", exp3_company: "GC Wellbeing", exp3_role: "ผู้นำด้านนวัตกรรมธุรกิจ", exp4_time: "อดีต", exp4_company: "CosmaxBTI", exp4_role: "หัวหน้าทีมวางแผนกลยุทธ์", exp5_time: "อดีต", exp5_company: "GC", exp5_role: "สำนักงานวางแผนกลยุทธ์", contactTitle: "แถลงการณ์ติดต่ออย่างเป็นทางการ", contactDesc: "กรุณาส่งคำถามอย่างเป็นทางการหรือการตรวจสอบบันทึกเครือข่ายด้านล่าง", formSubmit: "ส่งคำแถลง", modalTitle: "ได้รับข้อมูลเรียบร้อยแล้ว", modalDesc: "คำแถลงของคุณได้รับการประมวลผลอย่างปลอดภัยแล้ว สำนักงานของเราจะตรวจสอบและตอบกลับตามความเหมาะสม", modalClose: "ปิด", labelName: "ชื่อ *", labelNationality: "สัญชาติ *", labelCompany: "ชื่อบริษัท *", labelPhone: "หมายเลขโทรศัพท์", labelEmail: "อีเมล *", labelSns: "ตัวระบุโซเชียลมีเดีย / SNS ID (ไม่บังคับ)", labelMessage: "คำแถลงข้อซักถาม / ข้อความ *", connectTitle: "ทะเบียนและช่องทางภายนอก", connectDesc: "เข้าถึงเครือข่ายองค์กรที่ได้รับการตรวจสอบและข้อมูลประจำตัวของโปรแกรมส่งข้อความดิจิทัล", linkedinSub: "เครือข่ายมืออาชีพ", linkedinBtn: "เชื่อมต่อบน LinkedIn", qrTitle: "เกตเวย์ผู้ส่งสารทางโซเชียล"
+                profileTitle: "Executive Profile", profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.", profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.", role: "ประธานเจ้าหน้าที่บริหาร", name: "ชิน วอนจง", heroTitle: "ผู้นำที่มีวิสัยทัศน์ขับเคลื่อนนวัตกรรม.", heroDesc: "เป็นผู้นำตลาดระดับโลกด้วยการสร้างมูลค่าใหม่และยอมรับการเปลี่ยนแปลงด้วยหลักการที่แน่วแน่", connectBtn: "ติดต่อเรา", aboutTitle: "ประวัติการทำงาน", exp1_time: "ปัจจุบัน", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "อดีต", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "อดีต", exp3_company: "GC Wellbeing", exp3_role: "ผู้นำด้านนวัตกรรมธุรกิจ", exp4_time: "อดีต", exp4_company: "CosmaxBTI", exp4_role: "หัวหน้าทีมวางแผนกลยุทธ์", exp5_time: "อดีต", exp5_company: "GC", exp5_role: "สำนักงานวางแผนกลยุทธ์", newsTitle: "News & Press", news1_publisher: "Business Daily", news1_date: "2024. 04", news1_title: "Strategic Innovation and New Growth Engines at MEDIFAB", news1_desc: "COO Sin Wonjong outlines the strategic roadmap for enterprise-wide digital transformation and global market penetration...", news2_publisher: "Bio Healthcare News", news2_date: "2023. 11", news2_title: "BioPlus Revenue Doubles Under CEO Sin Wonjong's Leadership", news2_desc: "A remarkable year of exponential growth as BioPlus International solidifies its position in the global aesthetic medicine market...", news3_publisher: "Economic Review", news3_date: "2022. 08", news3_title: "Expanding Pan-Asian Networks: The Next Big Leap", news3_desc: "Connecting premier medical societies across South Korea with key players in China, Japan, and Vietnam for integrated business development...", readArticle: "Read Article", contactTitle: "แถลงการณ์ติดต่ออย่างเป็นทางการ", contactDesc: "กรุณาส่งคำถามอย่างเป็นทางการหรือการตรวจสอบบันทึกเครือข่ายด้านล่าง", formSubmit: "ส่งคำแถลง", modalTitle: "ได้รับข้อมูลเรียบร้อยแล้ว", modalDesc: "คำแถลงของคุณได้รับการประมวลผลอย่างปลอดภัยแล้ว สำนักงานของเราจะตรวจสอบและตอบกลับตามความเหมาะสม", modalClose: "ปิด", labelName: "ชื่อ *", labelNationality: "สัญชาติ *", labelCompany: "ชื่อบริษัท *", labelPhone: "หมายเลขโทรศัพท์", labelEmail: "อีเมล *", labelSns: "ตัวระบุโซเชียลมีเดีย / SNS ID (ไม่บังคับ)", labelMessage: "คำแถลงข้อซักถาม / ข้อความ *", connectTitle: "ทะเบียนและช่องทางภายนอก", connectDesc: "เข้าถึงเครือข่ายองค์กรที่ได้รับการตรวจสอบและข้อมูลประจำตัวของโปรแกรมส่งข้อความดิจิทัล", linkedinSub: "เครือข่ายมืออาชีพ", linkedinBtn: "เชื่อมต่อบน LinkedIn", qrTitle: "เกตเวย์ผู้ส่งสารทางโซเชียล"
             },
             id: {
-                role: "Chief Executive Officer", name: "Sin Wonjong", heroTitle: "Pemimpin Visioner yang Mendorong Inovasi.", heroDesc: "Memimpin pasar global dengan menciptakan nilai baru dan merangkul perubahan dengan prinsip-prinsip yang tak tergoyahkan.", connectBtn: "Hubungi Kami", aboutTitle: "Sorotan Karir", exp1_time: "Saat Ini", exp1_company: "MEDIFAB", exp1_role: "COO", mantan: "Mantan", exp2_time: "Mantan", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Mantan", exp3_company: "GC Wellbeing", exp3_role: "Pemimpin Inovasi Bisnis", exp4_time: "Mantan", exp4_company: "CosmaxBTI", exp4_role: "Pemimpin Tim Perencanaan Strategis", exp5_time: "Mantan", exp5_company: "GC", exp5_role: "Kantor Perencanaan Strategis", contactTitle: "Pernyataan Komunikasi Resmi", contactDesc: "Silakan kirimkan pertanyaan resmi Anda atau verifikasi catatan jaringan di bawah ini.", formSubmit: "Kirim Pernyataan", modalTitle: "Pengajuan Diterima", modalDesc: "Pernyataan telah diproses dengan aman. Kantor kami akan meninjau dan menanggapinya dengan tepat.", modalClose: "Tutup", labelName: "Nama *", labelNationality: "Kewarganegaraan *", labelCompany: "Nama Perusahaan *", labelPhone: "Nomor Telepon", labelEmail: "Alamat Email *", labelSns: "Pengidentifikasi Media Sosial / ID SNS (Opsional)", labelMessage: "Pernyataan Pertanyaan / Pesan *", connectTitle: "Registrasi & Saluran Eksternal", connectDesc: "Akses jaringan perusahaan terverifikasi dan kredensial pesan digital.", linkedinSub: "Jaringan Profesional", linkedinBtn: "Verifikasi via LinkedIn", qrTitle: "Gerbang Pesan Sosial"
+                profileTitle: "Executive Profile", profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.", profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed dengan jaringan distribusi dan pemasaran Asia yang tak tertandingi...", role: "Chief Executive Officer", name: "Sin Wonjong", heroTitle: "Pemimpin Visioner yang Mendorong Inovasi.", heroDesc: "Memimpin pasar global dengan menciptakan nilai baru dan merangkul perubahan dengan prinsip-prinsip yang tak tergoyahkan.", connectBtn: "Hubungi Kami", aboutTitle: "Sorotan Karir", exp1_time: "Saat Ini", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "Mantan", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Mantan", exp3_company: "GC Wellbeing", exp3_role: "Pemimpin Inovasi Bisnis", exp4_time: "Mantan", exp4_company: "CosmaxBTI", exp4_role: "Pemimpin Tim Perencanaan Strategis", exp5_time: "Mantan", exp5_company: "GC", exp5_role: "Kantor Perencanaan Strategis", newsTitle: "News & Press", news1_publisher: "Business Daily", news1_date: "2024. 04", news1_title: "Strategic Innovation and New Growth Engines at MEDIFAB", news1_desc: "COO Sin Wonjong outlines the strategic roadmap for enterprise-wide digital transformation and global market penetration...", news2_publisher: "Bio Healthcare News", news2_date: "2023. 11", news2_title: "BioPlus Revenue Doubles Under CEO Sin Wonjong's Leadership", news2_desc: "A remarkable year of exponential growth as BioPlus International solidifies its position in the global aesthetic medicine market...", news3_publisher: "Economic Review", news3_date: "2022. 08", news3_title: "Expanding Pan-Asian Networks: The Next Big Leap", news3_desc: "Connecting premier medical societies across South Korea with key players in China, Japan, and Vietnam for integrated business development...", readArticle: "Read Article", contactTitle: "Pernyataan Komunikasi Resmi", contactDesc: "Silakan kirimkan pertanyaan resmi Anda atau verifikasi catatan jaringan di bawah ini.", formSubmit: "Kirim Pernyataan", modalTitle: "Pengajuan Diterima", modalDesc: "Pernyataan telah diproses dengan aman. Kantor kami akan meninjau dan menanggapinya dengan tepat.", modalClose: "Tutup", labelName: "Nama *", labelNationality: "Kewarganegaraan *", labelCompany: "Nama Perusahaan *", labelPhone: "Nomor Telepon", labelEmail: "Alamat Email *", labelSns: "Pengidentifikasi Media Sosial / ID SNS (Opsional)", labelMessage: "Pernyataan Pertanyaan / Pesan *", connectTitle: "Registrasi & Saluran Eksternal", connectDesc: "Akses jaringan perusahaan terverifikasi dan kredensial pesan digital.", linkedinSub: "Jaringan Profesional", linkedinBtn: "Verifikasi via LinkedIn", qrTitle: "Gerbang Pesan Sosial"
             }
         };
 
@@ -406,6 +508,8 @@
                 if (translations[lang][key]) {
                     if (key === 'connectBtn') {
                         el.innerHTML = `${translations[lang][key]} <i class="ph ph-arrow-right"></i>`;
+                    } else if (key === 'readArticle') {
+                        el.innerHTML = `${translations[lang][key]} <i class="ph ph-arrow-up-right"></i>`;
                     } else {
                         el.textContent = translations[lang][key];
                     }

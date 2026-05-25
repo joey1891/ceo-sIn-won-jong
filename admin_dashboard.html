@@ -304,10 +304,6 @@
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Thumbnail Image URL</label>
                     <input type="url" id="newsImageUrl" class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent" placeholder="https://...">
                 </div>
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Description / Summary *</label>
-                    <textarea id="newsDesc" rows="3" required class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none" placeholder="Brief summary of the article..."></textarea>
-                </div>
                 <button type="submit" id="btnSubmitNews" class="w-full bg-accent text-white py-3 mt-4 font-semibold text-sm rounded hover:bg-opacity-90 transition-colors uppercase tracking-wider flex items-center justify-center gap-2">
                     Publish Article
                 </button>
@@ -506,9 +502,8 @@
                     <td class="py-4 px-6">
                         <div class="flex items-start gap-4">
                             ${item.image_url ? `<img src="${item.image_url}" class="w-16 h-12 object-cover rounded border border-gray-200">` : `<div class="w-16 h-12 bg-gray-200 rounded border border-gray-300 flex items-center justify-center text-gray-400"><i class="ph ph-image"></i></div>`}
-                            <div class="flex flex-col">
-                                <span class="text-sm font-bold text-gray-900 line-clamp-1">${item.title}</span>
-                                <span class="text-xs text-gray-500 line-clamp-1 mt-0.5" title="${item.description}">${item.description}</span>
+                            <div class="flex flex-col justify-center">
+                                <span class="text-sm font-bold text-gray-900 line-clamp-2">${item.title}</span>
                             </div>
                         </div>
                     </td>
@@ -552,26 +547,18 @@
             statusText.className = "text-[10px] text-blue-500 mt-1 block";
 
             try {
-                // CORS 문제를 우회하기 위해 무료 프록시(allorigins) 사용
-                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(urlInput)}`;
-                const response = await fetch(proxyUrl);
+                // CORS 및 봇 차단을 우회하고 메타데이터를 안정적으로 추출하기 위해 전문 API(Microlink) 사용
+                const apiUrl = `https://api.microlink.io/?url=${encodeURIComponent(urlInput)}`;
+                const response = await fetch(apiUrl);
                 const data = await response.json();
                 
-                if (data.contents) {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data.contents, "text/html");
-                    
-                    // Open Graph 태그나 일반 메타 태그에서 제목, 썸네일, 요약문 추출
-                    const title = doc.querySelector('meta[property="og:title"]')?.content || doc.querySelector('title')?.innerText || '';
-                    const description = doc.querySelector('meta[property="og:description"]')?.content || doc.querySelector('meta[name="description"]')?.content || '';
-                    const image = doc.querySelector('meta[property="og:image"]')?.content || '';
-                    const siteName = doc.querySelector('meta[property="og:site_name"]')?.content || '';
+                if (data.status === 'success' && data.data) {
+                    const meta = data.data;
 
                     // 폼에 자동 세팅
-                    document.getElementById('newsTitle').value = title;
-                    document.getElementById('newsDesc').value = description;
-                    if(image) document.getElementById('newsImageUrl').value = image;
-                    if(siteName) document.getElementById('newsPublisher').value = siteName;
+                    document.getElementById('newsTitle').value = meta.title || '';
+                    if(meta.image && meta.image.url) document.getElementById('newsImageUrl').value = meta.image.url;
+                    if(meta.publisher) document.getElementById('newsPublisher').value = meta.publisher;
                     
                     // 등록 날짜 기본값 세팅 (현재 년월)
                     const now = new Date();
@@ -580,7 +567,7 @@
                     statusText.textContent = "정보를 성공적으로 불러왔습니다. 내용이 맞는지 확인해주세요.";
                     statusText.className = "text-[10px] text-green-600 mt-1 block";
                 } else {
-                    throw new Error("No content received");
+                    throw new Error("No metadata received");
                 }
             } catch (error) {
                 console.error("Metadata fetch error:", error);
@@ -605,7 +592,6 @@
                 title: document.getElementById('newsTitle').value,
                 publisher: document.getElementById('newsPublisher').value,
                 date: document.getElementById('newsDate').value,
-                description: document.getElementById('newsDesc').value,
                 image_url: document.getElementById('newsImageUrl').value || null
             };
 
@@ -711,7 +697,6 @@
             document.getElementById('newsPublisher').value = article.publisher || '';
             document.getElementById('newsDate').value = article.date || '';
             document.getElementById('newsImageUrl').value = article.image_url || '';
-            document.getElementById('newsDesc').value = article.description || '';
 
             // 모달 타이틀 및 버튼 텍스트 변경
             document.getElementById('newsModalTitle').textContent = 'Edit News Article';

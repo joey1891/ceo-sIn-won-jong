@@ -68,7 +68,7 @@
             display: flex;
             transition: transform 0.5s ease-in-out;
             cursor: grab;
-            touch-action: pan-y; /* 수직 스크롤 허용, 수평은 스와이프 제어 */
+            touch-action: pan-y;
         }
         .carousel-track:active {
             cursor: grabbing;
@@ -78,13 +78,13 @@
             flex-shrink: 0;
             padding: 0 1rem;
             box-sizing: border-box;
-            user-select: none; /* 드래그 시 텍스트 선택 방지 */
+            user-select: none;
         }
         .carousel-slide a {
-            -webkit-user-drag: none; /* 링크 이미지 드래그 방지 */
+            -webkit-user-drag: none;
         }
         .carousel-slide img {
-            pointer-events: none; /* 이미지 고스트 현상 방지 */
+            pointer-events: none;
         }
     </style>
 </head>
@@ -98,7 +98,6 @@
                 </div>
                 <div class="flex items-center space-x-5">
                     
-                    <!-- Admin Link Added Here -->
                     <a href="admin_dashboard.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs font-sans font-medium text-gray-500 hover:text-primary transition-colors uppercase tracking-wider group" title="Admin Portal">
                         <i class="ph ph-shield-check text-lg group-hover:text-accent transition-colors"></i>
                         <span class="hidden sm:inline">Admin</span>
@@ -175,7 +174,7 @@
             </div>
 
             <div class="flex flex-col gap-6">
-                <!-- MEDIFAB Section -->
+                <!-- MEDIFAB Section with Links -->
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-[#F8FAFC] border border-gray-200 rounded">
                     <div class="w-20 h-20 flex-shrink-0 bg-transparent flex items-center justify-center p-1">
                         <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/noBgBlack.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9ub0JnQmxhY2sucG5nIiwiaWF0IjoxNzc5Njk2MTIzLCJleHAiOjIwOTUwNTYxMjN9.ahIYnogTCPomTyynoeFfarR1kvd23gG9EQM9LPrU3_Y" alt="MEDIFAB Logo" class="w-full h-full object-contain">
@@ -203,6 +202,7 @@
                     </div>
                 </div>
 
+                <!-- Other Experiences -->
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-white border border-gray-200 rounded">
                     <div class="w-20 h-20 flex-shrink-0 bg-transparent flex items-center justify-center p-1">
                         <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/biopluslogo.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9iaW9wbHVzbG9nby5wbmciLCJpYXQiOjE3Nzk2OTU4ODMsImV4cCI6MjA5NTA1NTg4M30.099PNyrmD7SjIqXO6JulZ6fW1-2_rls8HDxOdjpLiFY" alt="BioPlus Logo" class="w-full h-full object-contain">
@@ -250,23 +250,46 @@
         </div>
     </section>
 
+    <!-- Company Profiles Section (Table Format with Multi-file) -->
+    <section id="profiles" class="py-24 bg-slate-50 relative border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-10">
+                <h2 data-i18n="profilesTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Resources</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
+                <p data-i18n="profilesDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto">Download official corporate brochures and resources. Password required.</p>
+            </div>
+            
+            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
+                <table class="w-full text-left font-sans text-sm min-w-[600px]">
+                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
+                        <tr>
+                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Title</th>
+                            <th class="px-6 py-4 font-bold" data-i18n="thFiles">Available Files</th>
+                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="brochureTableBody" class="divide-y divide-gray-200">
+                        <!-- Rows will be injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     <!-- News & Press Section -->
-    <section id="news" class="py-24 bg-slate-50 relative border-b border-gray-200">
+    <section id="news" class="py-24 bg-white relative border-b border-gray-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-10">
                 <h2 data-i18n="newsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">News & Press</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
                 
-                <!-- 전체보기 / 접기 토글 버튼 -->
                 <button id="toggleNewsBtn" class="inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
                     <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
                 </button>
             </div>
 
-            <!-- 롤링 및 그리드 컨테이너 -->
             <div id="newsWrapper" class="carousel-container mt-10">
                 <div id="newsContainer" class="carousel-track">
-                    <!-- DB에서 기사를 불러오는 동안 표시되는 로딩 화면 -->
                     <div class="w-full text-center py-12">
                         <i class="ph ph-spinner animate-spin text-4xl text-gray-400 mb-3 inline-block"></i>
                         <p class="text-sm text-gray-500 font-sans tracking-wide uppercase">Loading latest news...</p>
@@ -276,7 +299,34 @@
         </div>
     </section>
 
-    <section id="inquiry" class="py-24 bg-slate-100 relative">
+    <!-- Global Market Reports Section -->
+    <section id="reports" class="py-24 bg-slate-50 relative border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-10">
+                <h2 data-i18n="reportsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Global Market Reports</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
+                <p data-i18n="reportsDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto">Industry and market analysis reports from global business trips. Password required for access.</p>
+            </div>
+            
+            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
+                <table class="w-full text-left font-sans text-sm min-w-[600px]">
+                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
+                        <tr>
+                            <th class="px-6 py-4 font-bold" data-i18n="thRegion">Region/Country</th>
+                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Report Title</th>
+                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
+                            <th class="px-6 py-4 font-bold w-40 text-center" data-i18n="thAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTableBody" class="divide-y divide-gray-200">
+                        <!-- Rows will be injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="inquiry" class="py-24 bg-white relative border-b border-gray-200">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
                 <h2 data-i18n="contactTitle" class="text-3xl font-bold mb-4 text-primary tracking-tight">Official Communication Statement</h2>
@@ -326,14 +376,13 @@
         </div>
     </section>
 
-    <section id="connect" class="py-24 bg-white relative overflow-hidden">
+    <section id="connect" class="py-24 bg-slate-50 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
                 <h2 data-i18n="connectTitle" class="text-3xl font-bold mb-4 tracking-tight">External Registry & Channels</h2>
                 <p data-i18n="connectDesc" class="text-xs font-sans uppercase tracking-widest text-secondary max-w-2xl mx-auto">Access verified corporate networks and digital messenger credentials.</p>
             </div>
 
-            <!-- Changed flex to grid for equal sizes and 2x2 layout -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto mb-16 fade-in">
                 <a href="https://www.linkedin.com/in/won-jong-shin/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
                     <i class="ph-fill ph-linkedin-logo text-3xl text-primary shrink-0"></i>
@@ -343,7 +392,6 @@
                     </div>
                 </a>
 
-                <!-- Personal Blog -->
                 <a href="https://www.ceodailybrief.com/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
                     <i class="ph-fill ph-browser text-3xl text-primary shrink-0"></i>
                     <div class="text-left font-sans">
@@ -352,7 +400,6 @@
                     </div>
                 </a>
 
-                <!-- Personal YouTube -->
                 <a href="https://www.youtube.com/@VisionPrism_TV" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
                     <i class="ph-fill ph-youtube-logo text-3xl text-primary shrink-0"></i>
                     <div class="text-left font-sans">
@@ -361,7 +408,6 @@
                     </div>
                 </a>
 
-                <!-- Naver Blog -->
                 <a href="https://blog.naver.com/wjshin2450" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
                     <i class="ph-fill ph-article text-3xl text-primary shrink-0"></i>
                     <div class="text-left font-sans">
@@ -377,7 +423,7 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto fade-in font-sans">
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-chat-circle text-lg"></i>
                     </div>
@@ -387,7 +433,7 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">KakaoTalk</span>
                 </div>
 
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-chat-teardrop-dots text-lg"></i>
                     </div>
@@ -397,7 +443,7 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">LINE</span>
                 </div>
 
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-telegram-logo text-lg"></i>
                     </div>
@@ -407,7 +453,7 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">Telegram</span>
                 </div>
 
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-wechat-logo text-lg"></i>
                     </div>
@@ -417,7 +463,7 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">WeChat</span>
                 </div>
 
-                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center h-full group">
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-whatsapp-logo text-lg"></i>
                     </div>
@@ -430,6 +476,7 @@
         </div>
     </section>
 
+    <!-- Success Modal -->
     <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
         <div class="bg-white p-8 max-w-sm w-full mx-4 border border-gray-300 shadow-2xl transform transition-transform scale-95 opacity-0 duration-300" id="modalContent">
             <div class="w-12 h-12 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
@@ -438,6 +485,25 @@
             <h3 class="text-xl font-bold text-center text-gray-900 mb-2" data-i18n="modalTitle">Submission Received</h3>
             <p class="text-center font-sans text-xs text-gray-600 mb-6 leading-relaxed" data-i18n="modalDesc">The statement has been securely processed. Our office will review and respond accordingly.</p>
             <button onclick="closeModal()" class="w-full bg-primary text-white py-3 font-sans font-semibold text-xs uppercase tracking-wider hover:bg-opacity-90 transition-colors" data-i18n="modalClose">Dismiss</button>
+        </div>
+    </div>
+
+    <!-- Password Modal for Reports & Brochures -->
+    <div id="passwordModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+        <div class="bg-white p-8 max-w-sm w-full mx-4 border border-gray-300 shadow-2xl transform transition-transform scale-95 opacity-0 duration-300" id="pwdModalContent">
+            <div class="text-center mb-6">
+                <i class="ph ph-lock-key text-4xl text-primary mb-2"></i>
+                <h3 class="text-xl font-bold text-primary" data-i18n="pwdModalTitle">Restricted Access</h3>
+                <p class="text-xs font-sans text-gray-600 mt-2" data-i18n="pwdModalDesc">Please enter the password to view or download this report.</p>
+            </div>
+            <input type="password" id="reportPasswordInput" class="w-full p-3 gov-input bg-white text-sm mb-2 text-center tracking-widest" placeholder="••••••••">
+            <div id="pwdErrorMsg" class="hidden text-red-500 text-xs font-sans text-center mb-4" data-i18n="pwdError">Incorrect password. Please try again.</div>
+            <div id="pwdSuccessMsg" class="hidden text-green-600 text-xs font-sans text-center mb-4 font-bold" data-i18n="pwdSuccess">Access Granted. Opening file...</div>
+            
+            <div class="flex gap-3 mt-4">
+                <button onclick="closePasswordModal()" class="flex-1 bg-gray-200 text-gray-700 py-3 font-sans font-semibold text-xs uppercase tracking-wider hover:bg-gray-300 transition-colors" data-i18n="btnCancel">Cancel</button>
+                <button onclick="submitPassword()" id="btnSubmitPwd" class="flex-1 bg-primary text-white py-3 font-sans font-semibold text-xs uppercase tracking-wider hover:bg-opacity-90 transition-colors" data-i18n="btnConfirm">Confirm</button>
+            </div>
         </div>
     </div>
 
@@ -472,6 +538,16 @@
                 viewAllBtn: "View All",
                 closeBtn: "Collapse",
                 readArticle: "Read Article",
+                reportsTitle: "Global Market Reports",
+                reportsDesc: "Industry and market analysis reports from global business trips. Password required for access.",
+                profilesTitle: "Resources",
+                profilesDesc: "Download official corporate brochures and resources. Password required.",
+                thRegion: "Region/Country", thTitle: "Report Title", thDate: "Date", thAction: "Action",
+                thCategory: "Category", thFiles: "Available Files",
+                btnViewDownload: "View / Download",
+                pwdModalTitle: "Restricted Access", pwdModalDesc: "Please enter the password to view or download this report.",
+                btnCancel: "Cancel", btnConfirm: "Confirm",
+                pwdError: "Incorrect password. Please try again.", pwdSuccess: "Access Granted. Opening file...",
                 contactTitle: "Official Communication Statement",
                 contactDesc: "Please submit your formal inquiries or network record verification below.",
                 formSubmit: "Submit Statement",
@@ -484,7 +560,7 @@
             },
             ko: {
                 profileTitle: "경력 요약 (Executive Profile)",
-                profileP1: "제약, 생명공학, 의료기기, 건강기능식품 및 화장품 산업 전반에 걸쳐 20년 이상 기업 전략, M&A, 비즈니스 개발을 이끌어온 비저너리 C-레벨 경영자입니다. 바이오플러스인터내셔널 CEO 재직 당시 단 1년 만에 기업 매출을 2배로 성장시키며 폭발적인 성장의 촉매제 역할을 했습니다.",
+                profileP1: "제약, 생명공학, 의료기기, 건강기능식품 및 화장품 산업 전반에 걸쳐 20년 이상 기업 전략, M&A, 비즈니스 개발을 이끌어온 비저너리 C-레벨 경영자입니다. 바이오플러스인터내셔널 CEO 재직 당시 단 1년 만에 기업 매출을 가파르게 성장시키며 폭발적인 성장의 촉매제 역할을 했습니다.",
                 profileP2: "중장기 기업 전략 수립, 벤처 투자, 전사적 디지털 전환(DX)을 주도하는 전문가입니다. 한국의 주요 의학회, 병원, 약국과 중국, 홍콩, 일본, 베트남 전역의 제약, 건강기능식품, 의료기기, 화장품 분야 핵심 기업들을 연결하는 아시아 전역의 독보적인 유통 및 마케팅 네트워크를 보유하고 있습니다.",
                 role: "최고경영자 (CEO)",
                 name: "신원종",
@@ -501,6 +577,16 @@
                 viewAllBtn: "전체보기",
                 closeBtn: "접기",
                 readArticle: "기사 원문 읽기",
+                reportsTitle: "글로벌 시장 및 산업 분석 보고서",
+                reportsDesc: "해외 출장 결과 및 국가별 산업/시장 분석 보고서 게시판입니다. 열람을 위해서는 비밀번호가 필요합니다.",
+                profilesTitle: "자료실",
+                profilesDesc: "공식 회사 소개서 및 기업 자료를 다운로드할 수 있습니다. 비밀번호가 필요합니다.",
+                thRegion: "국가 및 지역", thTitle: "보고서 제목", thDate: "등록일", thAction: "액션",
+                thCategory: "분류", thFiles: "제공 파일 (언어)",
+                btnViewDownload: "보기 / 다운로드",
+                pwdModalTitle: "접근 권한 필요", pwdModalDesc: "해당 보고서를 열람하거나 다운로드하려면 비밀번호를 입력해 주세요.",
+                btnCancel: "취소", btnConfirm: "확인",
+                pwdError: "비밀번호가 일치하지 않습니다. 다시 시도해 주세요.", pwdSuccess: "승인 완료. 파일을 엽니다...",
                 contactTitle: "공식 문의 신청 및 서명",
                 contactDesc: "공식 문의 또는 협력 제안 기록을 위해 아래 서식을 빠짐없이 작성해 주십시오.",
                 formSubmit: "조회 및 제출",
@@ -512,39 +598,87 @@
                 blogSub: "개인 블로그", blogBtn: "블로그 방문하기", youtubeSub: "개인 유튜브 채널", youtubeBtn: "유튜브 시청하기", naverSub: "네이버 공식 블로그", naverBtn: "네이버 블로그 방문"
             },
             zh: {
+                profileTitle: "Executive Profile",
+                profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
+                profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "首席执行官 (CEO)", name: "申源鐘", heroTitle: "引领创新的远见卓识领导者.", heroDesc: "以坚定不移的原则拥抱变化，创造新价值，引领全球市场。", connectBtn: "保持联系", aboutTitle: "职业亮点", 
                 exp1_time: "现任", exp1_company: "MEDIFAB", exp1_role: "首席运营官 (COO)", exp1_link1: "官方网站", exp1_link2: "核心技术", exp1_link3: "官方 SNS", exp1_link4: "网上商城",
-                exp2_time: "前任", exp2_company: "BioPlus International", exp2_role: "首席执行官 (CEO)", exp3_time: "前任", exp3_company: "GC Wellbeing", exp3_role: "业务创新负责人 (Business Innovation Leader)", exp4_time: "前任", exp4_company: "CosmaxBTI", exp4_role: "战略规划团队负责人", exp5_time: "前任", exp5_company: "GC", exp5_role: "战略规划室", newsTitle: "News & Press", viewAllBtn: "查看全部", closeBtn: "折叠", readArticle: "Read Article", contactTitle: "官方通讯声明", contactDesc: "请在下方提交您的正式查询 or 网络记录验证。", formSubmit: "提交声明", modalTitle: "提交已收到", modalDesc: "该声明已得到安全处理。我们的办公室将进行审查并作出相应回应。", modalClose: "关闭", labelName: "姓名 *", labelNationality: "国籍 *", labelCompany: "公司名称 *", labelPhone: "联系电话", labelEmail: "电子邮件 *", labelSns: "社交媒体标识符 / SNS ID (可选)", labelMessage: "查询陈述 / 留言 *", connectTitle: "外部注册与渠道", connectDesc: "访问经过验证的企业网络和数字商务信使凭证。", linkedinSub: "专业网络", linkedinBtn: "通过 LinkedIn 验证", qrTitle: "社交商务信使网关",
+                exp2_time: "前任", exp2_company: "BioPlus International", exp2_role: "首席执行官 (CEO)", exp3_time: "前任", exp3_company: "GC Wellbeing", exp3_role: "业务创新负责人 (Business Innovation Leader)", exp4_time: "前任", exp4_company: "CosmaxBTI", exp4_role: "战略规划团队负责人", exp5_time: "前任", exp5_company: "GC", exp5_role: "战略规划室", newsTitle: "News & Press", viewAllBtn: "查看全部", closeBtn: "折叠", readArticle: "Read Article", 
+                reportsTitle: "全球市场报告", reportsDesc: "全球商务旅行的行业和市场分析报告。 需要密码才能访问。", 
+                profilesTitle: "资源", profilesDesc: "下载官方公司宣传册和资源。 需要密码。",
+                thRegion: "国家/地区", thTitle: "报告标题", thDate: "日期", thAction: "行动", 
+                thCategory: "类别", thFiles: "可用文件", btnViewDownload: "查看/下载", pwdModalTitle: "限制访问", pwdModalDesc: "请输入密码以查看或下载此报告。", btnCancel: "取消", btnConfirm: "确认", pwdError: "密码错误。请重试。", pwdSuccess: "访问已授予。 正在打开文件...",
+                contactTitle: "官方通讯声明", contactDesc: "请在下方提交您的正式查询 or 网络记录验证。", formSubmit: "提交声明", modalTitle: "提交已收到", modalDesc: "该声明已得到安全处理。我们的办公室将进行审查并作出相应回应。", modalClose: "关闭", labelName: "姓名 *", labelNationality: "国籍 *", labelCompany: "公司名称 *", labelPhone: "联系电话", labelEmail: "电子邮件 *", labelSns: "社交媒体标识符 / SNS ID (可选)", labelMessage: "查询陈述 / 留言 *", connectTitle: "外部注册与渠道", connectDesc: "访问经过验证的企业网络和数字商务信使凭证。", linkedinSub: "专业网络", linkedinBtn: "通过 LinkedIn 验证", qrTitle: "社交商务信使网关",
                 blogSub: "个人博客", blogBtn: "访问博客", youtubeSub: "视频频道", youtubeBtn: "在 YouTube 上观看", naverSub: "Naver 博客", naverBtn: "访问 Naver 博客"
             },
             ja: {
+                profileTitle: "Executive Profile",
+                profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
+                profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "最高経営責任者 (CEO)", name: "申 源鐘 (シン・ウォンジョン)", heroTitle: "革新을 견인하는 비전 리더.", heroDesc: "揺るぎない原則で変化を受け入れ、新たな価値を創造し、グローバル市場をリードします。", connectBtn: "お問い合わせ", aboutTitle: "主な経歴", 
                 exp1_time: "現職", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "公式ウェブサイト", exp1_link2: "コア技術", exp1_link3: "公式SNS", exp1_link4: "オンラインモール",
-                exp2_time: "前職", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "前職", exp3_company: "GC Wellbeing", exp3_role: "ビジネスイノベーションリーダー", exp4_time: "前職", exp4_company: "CosmaxBTI", exp4_role: "戦略企画チーム長", exp5_time: "前職", exp5_company: "GC", exp5_role: "戦略企画室", newsTitle: "News & Press", viewAllBtn: "すべて見る", closeBtn: "閉じる", readArticle: "Read Article", contactTitle: "公式コミュニケーション声明", contactDesc: "以下に正式な問い合わせまたはネットワーク記録の確認を提出してください。", formSubmit: "声明を提出する", modalTitle: "提出完了", modalDesc: "声明は安全に処理されました。当事務局にて確認の上、対応させていただきます。", modalClose: "閉じる", labelName: "お名前 *", labelNationality: "国籍 *", labelCompany: "会社名 *", labelPhone: "電話番号", labelEmail: "メールアドレス *", labelSns: "SNS識別子 / SNS ID (任意)", labelMessage: "質問内容 / 声明 *", connectTitle: "外部登記＆チャネル", connectDesc: "確認済みの企業ネットワークおよびデジタルメッセンジャーの資格情報にアクセスします。", linkedinSub: "プロフェッショナルネットワーク", linkedinBtn: "LinkedInで確認する", qrTitle: "ソーシャルメッセンジャーゲートウェイ",
+                exp2_time: "前職", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "前職", exp3_company: "GC Wellbeing", exp3_role: "ビジネスイノベーションリーダー", exp4_time: "前職", exp4_company: "CosmaxBTI", exp4_role: "戦略企画チーム長", exp5_time: "前職", exp5_company: "GC", exp5_role: "戦略企画室", newsTitle: "News & Press", viewAllBtn: "すべて見る", closeBtn: "閉じる", readArticle: "Read Article", 
+                reportsTitle: "グローバル市場レポート", reportsDesc: "海外出張からの業界および市場分析レポート。アクセスにはパスワードが必要です。", 
+                profilesTitle: "資料", profilesDesc: "公式の会社案内や資料をダウンロードできます。パスワードが必要です。",
+                thRegion: "地域/国", thTitle: "レポートのタイトル", thDate: "日付", thAction: "アクション", 
+                thCategory: "カテゴリー", thFiles: "利用可能なファイル", btnViewDownload: "表示/ダウンロード", pwdModalTitle: "制限されたアクセス", pwdModalDesc: "このレポートを表示またはダウンロードするには、パスワードを入力してください。", btnCancel: "キャンセル", btnConfirm: "確認", pwdError: "パスワードが間違っています。もう一度お試しください。", pwdSuccess: "アクセスが許可されました。ファイルを開いています...",
+                contactTitle: "公式コミュニケーション声明", contactDesc: "以下に正式な問い合わせまたはネットワーク記録の確認を提出してください。", formSubmit: "声明を提出する", modalTitle: "提出完了", modalDesc: "声明は安全に処理されました。当事務局にて確認の上、対応させていただきます。", modalClose: "閉じる", labelName: "お名前 *", labelNationality: "国籍 *", labelCompany: "会社名 *", labelPhone: "電話番号", labelEmail: "メールアドレス *", labelSns: "SNS識別子 / SNS ID (任意)", labelMessage: "質問内容 / 声明 *", connectTitle: "外部登記＆チャネル", connectDesc: "確認済みの企業ネットワークおよびデジタルメッセンジャーの資格情報にアクセスします。", linkedinSub: "プロフェッショナルネットワーク", linkedinBtn: "LinkedInで確認する", qrTitle: "ソーシャルメッセンジャーゲートウェイ",
                 blogSub: "個人ブログ", blogBtn: "ブログを見る", youtubeSub: "動画チャンネル", youtubeBtn: "YouTube で見る", naverSub: "Naver ブログ", naverBtn: "Naver ブログを見る"
             },
             vi: {
+                profileTitle: "Executive Profile",
+                profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
+                profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "Giám đốc điều hành", name: "Sin Wonjong", heroTitle: "Nhà lãnh đạo tầm nhìn thúc đẩy đổi mới.", heroDesc: "Dẫn dắt thị trường toàn cầu bằng cách tạo ra giá trị mới và nắm bắt sự thay đổi với các nguyên tắc vững chắc.", connectBtn: "Liên hệ", aboutTitle: "Kinh nghiệm làm việc", 
                 exp1_time: "Hiện tại", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "Trang web chính thức", exp1_link2: "Công nghệ cốt lõi", exp1_link3: "SNS chính thức", exp1_link4: "Trung tâm mua sắm",
-                exp2_time: "Cựu", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Cựu", exp3_company: "GC Wellbeing", exp3_role: "Giám đốc Đổi mới Kinh doanh", exp4_time: "Cựu", exp4_company: "CosmaxBTI", exp4_role: "Trưởng nhóm Lập kế hoạch Chiến lược", exp5_time: "Cựu", exp5_company: "GC", exp5_role: "Văn phòng Lập kế hoạch Chiến lược", newsTitle: "News & Press", viewAllBtn: "Xem tất cả", closeBtn: "Thu gọn", readArticle: "Read Article", contactTitle: "Tuyên bố liên lạc chính thức", contactDesc: "Vui lòng gửi câu hỏi chính thức của bạn hoặc xác minh hồ sơ mạng bên dưới.", formSubmit: "Gửi tuyên bố", modalTitle: "Đã nhận được bản gửi", modalDesc: "Tuyên bố đã được xử lý an toàn. Văn phòng chúng tôi sẽ xem xét và phản hồi phù hợp.", modalClose: "Đóng", labelName: "Họ và tên *", labelNationality: "Quốc tịch *", labelCompany: "Tên công ty *", labelPhone: "Số điện thoại", labelEmail: "Địa chỉ Email *", labelSns: "Mã định danh mạng xã hội / SNS ID (Tùy chọn)", labelMessage: "Tuyên bố yêu cầu / Tin nhắn *", connectTitle: "Sổ đăng ký & Kênh bên ngoài", connectDesc: "Truy cập mạng doanh nghiệp đã xác minh và thông পাশ credential kỹ thuật số.", linkedinSub: "Mạng lưới chuyên nghiệp", linkedinBtn: "Xác minh qua LinkedIn", qrTitle: "Cổng nhắn tin xã hội",
+                exp2_time: "Cựu", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Cựu", exp3_company: "GC Wellbeing", exp3_role: "Giám đốc Đổi mới Kinh doanh", exp4_time: "Cựu", exp4_company: "CosmaxBTI", exp4_role: "Trưởng nhóm Lập kế hoạch Chiến lược", exp5_time: "Cựu", exp5_company: "GC", exp5_role: "Văn phòng Lập kế hoạch Chiến lược", newsTitle: "News & Press", viewAllBtn: "Xem tất cả", closeBtn: "Thu gọn", readArticle: "Read Article", 
+                reportsTitle: "Báo cáo thị trường toàn cầu", reportsDesc: "Báo cáo phân tích thị trường và ngành từ các chuyến công tác toàn cầu. Yêu cầu mật khẩu để truy cập.", 
+                profilesTitle: "Tài nguyên", profilesDesc: "Tải xuống tài liệu và tài nguyên chính thức của công ty. Yêu cầu mật khẩu.",
+                thRegion: "Khu vực/Quốc gia", thTitle: "Tiêu đề báo cáo", thDate: "Ngày", thAction: "Hành động", 
+                thCategory: "Thể loại", thFiles: "Các tệp có sẵn", btnViewDownload: "Xem / Tải xuống", pwdModalTitle: "Quyền truy cập bị hạn chế", pwdModalDesc: "Vui lòng nhập mật khẩu để xem hoặc tải xuống báo cáo này.", btnCancel: "Hủy bỏ", btnConfirm: "Xác nhận", pwdError: "Mật khẩu không đúng. Vui lòng thử lại.", pwdSuccess: "Đã cấp quyền truy cập. Đang mở tệp...",
+                contactTitle: "Tuyên bố liên lạc chính thức", contactDesc: "Vui lòng gửi câu hỏi chính thức của bạn hoặc xác minh hồ sơ mạng bên dưới.", formSubmit: "Gửi tuyên bố", modalTitle: "Đã nhận được bản gửi", modalDesc: "Tuyên bố đã được xử lý an toàn. Văn phòng chúng tôi sẽ xem xét và phản hồi phù hợp.", modalClose: "Đóng", labelName: "Họ và tên *", labelNationality: "Quốc tịch *", labelCompany: "Tên công ty *", labelPhone: "Số điện thoại", labelEmail: "Địa chỉ Email *", labelSns: "Mã định danh mạng xã hội / SNS ID (Tùy chọn)", labelMessage: "Tuyên bố yêu cầu / Tin nhắn *", connectTitle: "Sổ đăng ký & Kênh bên ngoài", connectDesc: "Truy cập mạng doanh nghiệp đã xác minh và thông পাশ credential kỹ thuật số.", linkedinSub: "Mạng lưới chuyên nghiệp", linkedinBtn: "Xác minh qua LinkedIn", qrTitle: "Cổng nhắn tin xã hội",
                 blogSub: "Blog cá nhân", blogBtn: "Truy cập Blog", youtubeSub: "Kênh Video", youtubeBtn: "Xem trên YouTube", naverSub: "Blog Naver", naverBtn: "Truy cập Blog Naver"
             },
             ru: {
+                profileTitle: "Executive Profile",
+                profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
+                profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "Генеральный директор", name: "Син Вонджон", heroTitle: "Дальновидный лидер, стимулирующий инновации.", heroDesc: "Лидерство на мировом рынке за счет создания माधव новых ценностей и принятия изменений с непоколебимыми принципами.", connectBtn: "Связаться", aboutTitle: "Основные этапы карьеры", 
                 exp1_time: "В настоящее время", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "Официальный сайт", exp1_link2: "Ключевые технологии", exp1_link3: "Официальный SNS", exp1_link4: "Интернет-магазин",
-                exp2_time: "Бывший", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Бывший", exp3_company: "GC Wellbeing", exp3_role: "Руководитель бизнес-инноваций", exp4_time: "Бывший", exp4_company: "CosmaxBTI", exp4_role: "Руководитель группы стратегического планирования", exp5_time: "Бывший", exp5_company: "GC", exp5_role: "Отдел стратегического планирования", newsTitle: "News & Press", viewAllBtn: "Смотреть все", closeBtn: "Свернуть", readArticle: "Read Article", contactTitle: "Официальное коммуникационное заявление", contactDesc: "Пожалуйста, отправьте ваши официальные запросы или верификацию сетевой записи ниже.", formSubmit: "Подать заявление", modalTitle: "Заявление получено", modalDesc: "Заявление было безопасно обработано. Наш офис рассмотрит его и ответит должным образом.", modalClose: "Закрыть", labelName: "Имя *", labelNationality: "Национальность *", labelCompany: "Название компании *", labelPhone: "Номер телефона", labelEmail: "Электронная почта *", labelSns: "Идентификатор соцсети / SNS ID (Необязательно)", labelMessage: "Текст запроса / Заявление *", connectTitle: "Внешние реестры и каналы", connectDesc: "Доступ к проверенным корпоративным сетям и учетным данным цифровых мессенджеров.", linkedinSub: "Профессиональная сеть", linkedinBtn: "Подтвердить через LinkedIn", qrTitle: "Шлюзы социальных мессенджеров",
+                exp2_time: "Бывший", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Бывший", exp3_company: "GC Wellbeing", exp3_role: "Руководитель бизнес-инноваций", exp4_time: "Бывший", exp4_company: "CosmaxBTI", exp4_role: "Руководитель группы стратегического планирования", exp5_time: "Бывший", exp5_company: "GC", exp5_role: "Отдел стратегического планирования", newsTitle: "News & Press", viewAllBtn: "Смотреть все", closeBtn: "Свернуть", readArticle: "Read Article", 
+                reportsTitle: "Отчеты о мировом рынке", reportsDesc: "Отчеты об анализе отрасли и рынка по итогам зарубежных командировок. Для доступа требуется пароль.", 
+                profilesTitle: "Ресурсы", profilesDesc: "Загрузите официальные брошюры и ресурсы компании. Требуется пароль.",
+                thRegion: "Регион/Страна", thTitle: "Название отчета", thDate: "Дата", thAction: "Действие", 
+                thCategory: "Категория", thFiles: "Доступные файлы", btnViewDownload: "Просмотр / Скачать", pwdModalTitle: "Ограниченный доступ", pwdModalDesc: "Пожалуйста, введите пароль для просмотра или загрузки этого отчета.", btnCancel: "Отмена", btnConfirm: "Подтвердить", pwdError: "Неверный пароль. Пожалуйста, попробуйте еще раз.", pwdSuccess: "Доступ разрешен. Открытие файла...",
+                contactTitle: "Официальное коммуникационное заявление", contactDesc: "Пожалуйста, отправьте ваши официальные запросы или верификацию сетевой записи ниже.", formSubmit: "Подать заявление", modalTitle: "Заявление получено", modalDesc: "Заявление было безопасно обработано. Наш офис рассмотрит его и ответит должным образом.", modalClose: "Закрыть", labelName: "Имя *", labelNationality: "Национальность *", labelCompany: "Название компании *", labelPhone: "Номер телефона", labelEmail: "Электронная почта *", labelSns: "Идентификатор соцсети / SNS ID (Необязательно)", labelMessage: "Текст запроса / Заявление *", connectTitle: "Внешние реестры и каналы", connectDesc: "Доступ к проверенным корпоративным сетям и учетным данным цифровых мессенджеров.", linkedinSub: "Профессиональная сеть", linkedinBtn: "Подтвердить через LinkedIn", qrTitle: "Шлюзы социальных мессенджеров",
                 blogSub: "Личный блог", blogBtn: "Посетить блог", youtubeSub: "Видеоканал", youtubeBtn: "Смотреть на YouTube", naverSub: "Блог Naver", naverBtn: "Посетить блог Naver"
             },
             th: {
+                profileTitle: "Executive Profile",
+                profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
+                profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "ประธานเจ้าหน้าที่บริหาร", name: "ชิน วอนจง", heroTitle: "ผู้นำที่มีวิสัยทัศน์ขับเคลื่อนนวัตกรรม.", heroDesc: "เป็นผู้นำตลาดระดับโลกด้วยการสร้างมูลค่าใหม่และยอมรับการเปลี่ยนแปลงด้วยหลักการที่แน่วแน่", connectBtn: "ติดต่อเรา", aboutTitle: "ประวัติการทำงาน", 
                 exp1_time: "ปัจจุบัน", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "เว็บไซต์ทางการ", exp1_link2: "เทคโนโลยีหลัก", exp1_link3: "SNS ทางการ", exp1_link4: "ห้างสรรพสินค้าออนไลน์",
-                exp2_time: "อดีต", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "อดีต", exp3_company: "GC Wellbeing", exp3_role: "ผู้นำด้านนวัตกรรมธุรกิจ", exp4_time: "อดีต", exp4_company: "CosmaxBTI", exp4_role: "หัวหน้าทีมวางแผนกลยุทธ์", exp5_time: "อดีต", exp5_company: "GC", exp5_role: "สำนักงานวางแผนกลยุทธ์", newsTitle: "News & Press", viewAllBtn: "ดูทั้งหมด", closeBtn: "ย่อ", readArticle: "Read Article", contactTitle: "แถลงการณ์ติดต่ออย่างเป็นทางการ", contactDesc: "กรุณาส่งคำถามอย่างเป็นทางการหรือการตรวจสอบบันทึกเครือข่ายด้านล่าง", formSubmit: "ส่งคำแถลง", modalTitle: "ได้รับข้อมูลเรียบร้อยแล้ว", modalDesc: "คำแถลงของคุณได้รับการประมวลผลอย่างปลอดภัยแล้ว สำนักงานของเราจะตรวจสอบและตอบกลับตามความเหมาะสม", modalClose: "ปิด", labelName: "ชื่อ *", labelNationality: "สัญชาติ *", labelCompany: "ชื่อบริษัท *", labelPhone: "หมายเลขโทรศัพท์", labelEmail: "อีเมล *", labelSns: "ตัวระบุโซเชียลมีเดีย / SNS ID (ไม่บังคับ)", labelMessage: "คำแถลงข้อซักถาม / ข้อความ *", connectTitle: "ทะเบียนและช่องทางภายนอก", connectDesc: "เข้าถึงเครือข่ายองค์กรที่ได้รับการตรวจสอบและข้อมูลประจำตัวของโปรแกรมส่งข้อความดิจิทัล", linkedinSub: "เครือข่ายมืออาชีพ", linkedinBtn: "เชื่อมต่อบน LinkedIn", qrTitle: "เกตเวย์ผู้ส่งสารทางโซเชียล",
+                exp2_time: "อดีต", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "อดีต", exp3_company: "GC Wellbeing", exp3_role: "ผู้นำด้านนวัตกรรมธุรกิจ", exp4_time: "อดีต", exp4_company: "CosmaxBTI", exp4_role: "หัวหน้าทีมวางแผนกลยุทธ์", exp5_time: "อดีต", exp5_company: "GC", exp5_role: "สำนักงานวางแผนกลยุทธ์", newsTitle: "News & Press", viewAllBtn: "ดูทั้งหมด", closeBtn: "ย่อ", readArticle: "Read Article", 
+                reportsTitle: "รายงานตลาดโลก", reportsDesc: "รายงานการวิเคราะห์อุตสาหกรรมและตลาดจากการเดินทางเพื่อธุรกิจทั่วโลก ต้องใช้รหัสผ่านในการเข้าถึง", 
+                profilesTitle: "ทรัพยากร", profilesDesc: "ดาวน์โหลดโบรชัวร์และทรัพยากรของบริษัทอย่างเป็นทางการ ต้องใช้รหัสผ่าน",
+                thRegion: "ภูมิภาค/ประเทศ", thTitle: "ชื่อรายงาน", thDate: "วันที่", thAction: "การดำเนินการ", 
+                thCategory: "หมวดหมู่", thFiles: "ไฟล์ที่มี", btnViewDownload: "ดู / ดาวน์โหลด", pwdModalTitle: "การเข้าถึงที่ถูกจำกัด", pwdModalDesc: "กรุณาป้อนรหัสผ่านเพื่อดูหรือดาวน์โหลดรายงานนี้", btnCancel: "ยกเลิก", btnConfirm: "ยืนยัน", pwdError: "รหัสผ่านไม่ถูกต้อง กรุณาลองอีกครั้ง", pwdSuccess: "อนุญาตให้เข้าถึง กำลังเปิดไฟล์...",
+                contactTitle: "แถลงการณ์ติดต่ออย่างเป็นทางการ", contactDesc: "กรุณาส่งคำถามอย่างเป็นทางการหรือการตรวจสอบบันทึกเครือข่ายด้านล่าง", formSubmit: "ส่งคำแถลง", modalTitle: "ได้รับข้อมูลเรียบร้อยแล้ว", modalDesc: "คำแถลงของคุณได้รับการประมวลผลอย่างปลอดภัยแล้ว สำนักงานของเราจะตรวจสอบและตอบกลับตามความเหมาะสม", modalClose: "ปิด", labelName: "ชื่อ *", labelNationality: "สัญชาติ *", labelCompany: "ชื่อบริษัท *", labelPhone: "หมายเลขโทรศัพท์", labelEmail: "อีเมล *", labelSns: "ตัวระบุโซเชียลมีเดีย / SNS ID (ไม่บังคับ)", labelMessage: "คำแถลงข้อซักถาม / ข้อความ *", connectTitle: "ทะเบียนและช่องทางภายนอก", connectDesc: "เข้าถึงเครือข่ายองค์กรที่ได้รับการตรวจสอบและข้อมูลประจำตัวของโปรแกรมส่งข้อความดิจิทัล", linkedinSub: "เครือข่ายมืออาชีพ", linkedinBtn: "เชื่อมต่อบน LinkedIn", qrTitle: "เกตเวย์ผู้ส่งสารทางโซเชียล",
                 blogSub: "บล็อกส่วนตัว", blogBtn: "เยี่ยมชมบล็อก", youtubeSub: "ช่องวิดีโอ", youtubeBtn: "รับชมบน YouTube", naverSub: "บล็อก Naver", naverBtn: "เยี่ยมชมบล็อก Naver"
             },
             id: {
+                profileTitle: "Executive Profile",
+                profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
+                profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed dengan jaringan distribusi dan pemasaran Asia yang tak tertandingi...",
                 role: "Chief Executive Officer", name: "Sin Wonjong", heroTitle: "Pemimpin Visioner yang Mendorong Inovasi.", heroDesc: "Memimpin pasar global dengan menciptakan nilai baru dan merangkul perubahan dengan prinsip-prinsip yang tak tergoyahkan.", connectBtn: "Hubungi Kami", aboutTitle: "Sorotan Karir", 
                 exp1_time: "Saat Ini", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "Situs Resmi", exp1_link2: "Teknologi Inti", exp1_link3: "SNS Resmi", exp1_link4: "Pusat Perbelanjaan Online",
-                exp2_time: "Mantan", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Mantan", exp3_company: "GC Wellbeing", exp3_role: "Pemimpin Inovasi Bisnis", exp4_time: "Mantan", exp4_company: "CosmaxBTI", exp4_role: "Pemimpin Tim Perencanaan Strategis", exp5_time: "Mantan", exp5_company: "GC", exp5_role: "Kantor Perencanaan Strategis", newsTitle: "News & Press", viewAllBtn: "Lihat Semua", closeBtn: "Tutup", readArticle: "Read Article", contactTitle: "Pernyataan Komunikasi Resmi", contactDesc: "Silakan kirimkan pertanyaan resmi Anda atau verifikasi catatan jaringan di bawah ini.", formSubmit: "Kirim Pernyataan", modalTitle: "Pengajuan Diterima", modalDesc: "Pernyataan telah diproses dengan aman. Kantor kami akan meninjau dan menanggapinya dengan tepat.", modalClose: "Tutup", labelName: "Nama *", labelNationality: "Kewarganegaraan *", labelCompany: "Nama Perusahaan *", labelPhone: "Nomor Telepon", labelEmail: "Alamat Email *", labelSns: "Pengidentifikasi Media Sosial / ID SNS (Opsional)", labelMessage: "Pernyataan Pertanyaan / Pesan *", connectTitle: "Registrasi & Saluran Eksternal", connectDesc: "Akses jaringan perusahaan terverifikasi dan kredensial pesan digital.", linkedinSub: "Jaringan Profesional", linkedinBtn: "Verifikasi via LinkedIn", qrTitle: "Gerbang Pesan Sosial",
+                exp2_time: "Mantan", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Mantan", exp3_company: "GC Wellbeing", exp3_role: "Pemimpin Inovasi Bisnis", exp4_time: "Mantan", exp4_company: "CosmaxBTI", exp4_role: "Pemimpin Tim Perencanaan Strategis", exp5_time: "Mantan", exp5_company: "GC", exp5_role: "Kantor Perencanaan Strategis", newsTitle: "News & Press", viewAllBtn: "Lihat Semua", closeBtn: "Tutup", readArticle: "Read Article", 
+                reportsTitle: "Laporan Pasar Global", reportsDesc: "Laporan analisis industri dan pasar dari perjalanan bisnis global. Diperlukan kata sandi untuk akses.", 
+                profilesTitle: "Sumber Daya", profilesDesc: "Unduh brosur dan sumber daya perusahaan resmi. Diperlukan kata sandi.",
+                thRegion: "Wilayah/Negara", thTitle: "Judul Laporan", thDate: "Tanggal", thAction: "Aksi", 
+                thCategory: "Kategori", thFiles: "File Tersedia", btnViewDownload: "Lihat / Unduh", pwdModalTitle: "Akses Terbatas", pwdModalDesc: "Silakan masukkan kata sandi untuk melihat atau mengunduh laporan ini.", btnCancel: "Batal", btnConfirm: "Konfirmasi", pwdError: "Kata sandi salah. Silakan coba lagi.", pwdSuccess: "Akses Diberikan. Membuka file...",
+                contactTitle: "Pernyataan Komunikasi Resmi", contactDesc: "Silakan kirimkan pertanyaan resmi Anda atau verifikasi catatan jaringan di bawah ini.", formSubmit: "Kirim Pernyataan", modalTitle: "Pengajuan Diterima", modalDesc: "Pernyataan telah diproses dengan aman. Kantor kami akan meninjau dan menanggapinya dengan tepat.", modalClose: "Tutup", labelName: "Nama *", labelNationality: "Kewarganegaraan *", labelCompany: "Nama Perusahaan *", labelPhone: "Nomor Telepon", labelEmail: "Alamat Email *", labelSns: "Pengidentifikasi Media Sosial / ID SNS (Opsional)", labelMessage: "Pernyataan Pertanyaan / Pesan *", connectTitle: "Registrasi & Saluran Eksternal", connectDesc: "Akses jaringan perusahaan terverifikasi dan kredensial pesan digital.", linkedinSub: "Jaringan Profesional", linkedinBtn: "Verifikasi via LinkedIn", qrTitle: "Gerbang Pesan Sosial",
                 blogSub: "Blog Pribadi", blogBtn: "Kunjungi Blog", youtubeSub: "Saluran Video", youtubeBtn: "Tonton di YouTube", naverSub: "Blog Naver", naverBtn: "Kunjungi Blog Naver"
             }
         };
@@ -562,6 +696,9 @@
                         el.innerHTML = `${translations[lang][key]} <i class="ph ph-arrow-up-right"></i>`;
                     } else if (key === 'viewAllBtn' || key === 'closeBtn') {
                         el.innerHTML = `${translations[lang][key]}`;
+                    } else if (key === 'btnViewDownload') {
+                        // Keeps icon for table button
+                        el.innerHTML = `<i class="ph ph-lock-key mr-1.5"></i> ${translations[lang][key]}`;
                     } else {
                         el.textContent = translations[lang][key];
                     }
@@ -599,13 +736,11 @@
         }
 
         // ==========================================
-        // 뉴스 기사 데이터 동적 로드 (Supabase) 및 토글 기능
+        // 뉴스 기사 로직
         // ==========================================
         let carouselInterval;
-        let allNewsData = []; // 전체 기사 저장용 배열
-        let isNewsExpanded = false; // 현재 펼쳐보기 상태 확인
-
-        // 드래그(스와이프)를 위한 상태 변수
+        let allNewsData = []; 
+        let isNewsExpanded = false; 
         let isDragging = false;
         let startPos = 0;
         let currentTranslate = 0;
@@ -619,7 +754,6 @@
             if (!supabaseClient || !newsContainer) return;
 
             try {
-                // limit(3)를 제거하고 전체 기사를 불러옵니다.
                 const { data, error } = await supabaseClient
                     .from('news')
                     .select('*')
@@ -629,7 +763,7 @@
 
                 if (data && data.length > 0) {
                     allNewsData = data;
-                    renderNews(); // 기사를 렌더링
+                    renderNews(); 
                 } else {
                     newsContainer.innerHTML = '<div class="w-full text-center py-10 text-gray-500 font-sans text-sm">No news articles available.</div>';
                 }
@@ -639,7 +773,6 @@
             }
         }
 
-        // 기사 카드 HTML 생성용 헬퍼 함수
         function createArticleCard(article, isCarousel) {
             const fallbackImg = "https://placehold.co/600x400/e2e8f0/475569?text=News";
             const imageUrl = article.image_url ? article.image_url : fallbackImg;
@@ -662,11 +795,9 @@
                     </div>
                 </a>
             `;
-            // 캐러셀 뷰일때만 감싸주는 컨테이너 추가
             return isCarousel ? `<div class="carousel-slide">${innerContent}</div>` : innerContent;
         }
 
-        // 화면 렌더링 (펼치기 / 접기)
         function renderNews() {
             const newsContainer = document.getElementById('newsContainer');
             const newsWrapper = document.getElementById('newsWrapper');
@@ -677,23 +808,20 @@
             newsContainer.innerHTML = ''; 
 
             if (isNewsExpanded) {
-                // [펼쳐보기 모드] - 캐러셀 인터벌을 끄고 그리드 형태로 전체 렌더링
                 if (carouselInterval) clearInterval(carouselInterval);
-                newsWrapper.className = 'mt-10'; // carousel-container 속성 제거
+                newsWrapper.className = 'mt-10'; 
                 newsContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
                 newsContainer.style.transform = 'none';
-                newsContainer.style.cursor = 'default'; // 드래그 커서 해제
+                newsContainer.style.cursor = 'default'; 
 
                 allNewsData.forEach(article => {
                     newsContainer.insertAdjacentHTML('beforeend', createArticleCard(article, false));
                 });
 
-                // 버튼을 '접기' 상태로 전환
                 if(toggleBtnSpan) toggleBtnSpan.setAttribute('data-i18n', 'closeBtn');
                 if(toggleBtnIcon) toggleBtnIcon.className = 'ph ph-caret-up cursor-pointer';
 
             } else {
-                // [접기 모드] - 최신 기사 3개만 추출해서 롤링 형태로 렌더링
                 newsWrapper.className = 'carousel-container mt-10';
                 newsContainer.className = 'carousel-track';
                 newsContainer.style.cursor = 'grab';
@@ -705,22 +833,17 @@
                     newsContainer.insertAdjacentHTML('beforeend', createArticleCard(article, true));
                 });
 
-                // 초기 위치 설정
                 currentIndex = 0;
                 setPositionByIndex();
 
-                // 버튼을 '전체보기' 상태로 전환
                 if(toggleBtnSpan) toggleBtnSpan.setAttribute('data-i18n', 'viewAllBtn');
                 if(toggleBtnIcon) toggleBtnIcon.className = 'ph ph-list cursor-pointer';
 
                 startCarousel();
             }
-
-            // 동적으로 추가된 언어 태그 번역 적용
             changeLanguage(document.getElementById('languageSelect').value);
         }
 
-        // 버튼 클릭 이벤트 리스너
         const toggleNewsBtn = document.getElementById('toggleNewsBtn');
         if(toggleNewsBtn) {
             toggleNewsBtn.addEventListener('click', () => {
@@ -729,7 +852,6 @@
             });
         }
 
-        // 롤링 애니메이션 함수
         function startCarousel() {
             if (slidesCount <= 1 || isNewsExpanded) return; 
 
@@ -741,23 +863,14 @@
             }, 3500); 
         }
 
-        // ==========================================
-        // 드래그(스와이프) 이벤트 로직
-        // ==========================================
         const track = document.getElementById('newsContainer');
-        
-        // Touch events
         track.addEventListener('touchstart', dragStart, {passive: true});
         track.addEventListener('touchend', dragEnd);
         track.addEventListener('touchmove', dragAction, {passive: true});
-
-        // Mouse events
         track.addEventListener('mousedown', dragStart);
         track.addEventListener('mouseup', dragEnd);
         track.addEventListener('mouseleave', dragEnd);
         track.addEventListener('mousemove', dragAction);
-        
-        // 드래그 시 <a> 태그 클릭 방지
         track.addEventListener('click', (e) => {
             if (isClickPrevented) {
                 e.preventDefault();
@@ -775,50 +888,39 @@
             isDragging = true;
             isClickPrevented = false;
             startPos = getPositionX(event);
-            
-            track.style.transition = 'none'; // 드래그 중 애니메이션 끄기
-            
+            track.style.transition = 'none'; 
             if (carouselInterval) clearInterval(carouselInterval);
         }
 
         function dragAction(event) {
             if (!isDragging || isNewsExpanded) return;
-            
             const currentPosition = getPositionX(event);
             const diff = currentPosition - startPos;
-            
-            if (Math.abs(diff) > 5) {
-                isClickPrevented = true; // 5px 이상 움직이면 클릭 막기
-            }
+            if (Math.abs(diff) > 5) isClickPrevented = true; 
             
             const slideWidth = track.clientWidth;
             const movePercent = (diff / slideWidth) * 100;
             currentTranslate = prevTranslate + movePercent;
-            
             track.style.transform = `translateX(${currentTranslate}%)`;
         }
 
         function dragEnd() {
             if (!isDragging || isNewsExpanded) return;
             isDragging = false;
-            
-            track.style.transition = 'transform 0.5s ease-in-out'; // 애니메이션 켜기
-            
+            track.style.transition = 'transform 0.5s ease-in-out'; 
             const movedBy = currentTranslate - prevTranslate;
             
-            // 20% 이상 스와이프 시 다음/이전 슬라이드로 이동
             if (movedBy < -20 && currentIndex < slidesCount - 1) {
                 currentIndex += 1;
             } else if (movedBy > 20 && currentIndex > 0) {
                 currentIndex -= 1;
             } else if (movedBy < -20 && currentIndex === slidesCount - 1) {
-                currentIndex = 0; // 루프
+                currentIndex = 0; 
             } else if (movedBy > 20 && currentIndex === 0) {
-                currentIndex = slidesCount - 1; // 역루프
+                currentIndex = slidesCount - 1; 
             }
-            
             setPositionByIndex();
-            startCarousel(); // 자동 롤링 재시작
+            startCarousel(); 
         }
 
         function setPositionByIndex() {
@@ -827,11 +929,168 @@
             track.style.transform = `translateX(${currentTranslate}%)`;
         }
 
-        // 페이지 로드시 뉴스 불러오기 실행
-        if (supabaseClient) {
-            loadNewsFromSupabase();
+        if (supabaseClient) loadNewsFromSupabase();
+
+        // ==========================================
+        // 회사소개서 및 글로벌 출장 보고서 테이블 렌더링
+        // ==========================================
+        
+        // 다중 파일(회사소개서 등) 더미 데이터 (임시 비밀번호: 123)
+        const dummyBrochures = [
+            { 
+                id: 1, category: "Corporate", title: "MEDIFAB Global Intro 2024", date: "2024-05-20", password: "123",
+                files: [
+                    { lang: "KO", url: "#", label: "Korean" },
+                    { lang: "EN", url: "#", label: "English" },
+                    { lang: "ZH", url: "#", label: "Chinese" }
+                ]
+            },
+            { 
+                id: 2, category: "Product", title: "RESNOVAE Product Lineup", date: "2024-04-10", password: "123",
+                files: [
+                    { lang: "KO", url: "#", label: "Korean" },
+                    { lang: "EN", url: "#", label: "English" }
+                ]
+            }
+        ];
+
+        // 글로벌 보고서 (단일 파일) 더미 데이터 (임시 비밀번호: 123)
+        const dummyReports = [
+            { id: 1, country: "Vietnam / Southeast Asia", title: "2024 Vietnam Pharmaceutical Market Analysis & Entry Strategy", date: "2024-05-12", fileUrl: "#", password: "123" },
+            { id: 2, country: "Japan", title: "Japan Medical Device Regulatory Updates Q2", date: "2024-04-28", fileUrl: "#", password: "123" },
+            { id: 3, country: "China", title: "Cosmetics Distribution Network Assessment in Shanghai", date: "2024-03-15", fileUrl: "#", password: "123" }
+        ];
+
+        let currentPwdTarget = null; // 공통으로 사용할 비밀번호 타겟 객체
+        
+        const brochureTableBody = document.getElementById('brochureTableBody');
+        const reportTableBody = document.getElementById('reportTableBody');
+        
+        const passwordModal = document.getElementById('passwordModal');
+        const pwdModalContent = document.getElementById('pwdModalContent');
+        const reportPasswordInput = document.getElementById('reportPasswordInput');
+        const pwdErrorMsg = document.getElementById('pwdErrorMsg');
+        const pwdSuccessMsg = document.getElementById('pwdSuccessMsg');
+        const btnSubmitPwd = document.getElementById('btnSubmitPwd');
+
+        function renderBrochuresTable() {
+            if (!brochureTableBody) return;
+            brochureTableBody.innerHTML = '';
+            
+            dummyBrochures.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-colors";
+                
+                let filesHtml = '<div class="flex flex-wrap gap-2">';
+                item.files.forEach(file => {
+                    filesHtml += `<button onclick="promptPassword('${item.title} (${file.label})', '${item.password}', '${file.url}')" class="inline-flex items-center gap-1 bg-[#F8FAFC] hover:bg-accent hover:text-white border border-gray-300 px-2.5 py-1.5 rounded text-[11px] font-bold text-secondary transition-colors"><i class="ph ph-file-pdf"></i> ${file.lang}</button>`;
+                });
+                filesHtml += '</div>';
+
+                tr.innerHTML = `
+                    <td class="px-6 py-4 border-b border-gray-100 font-semibold text-primary">${item.title}</td>
+                    <td class="px-6 py-4 border-b border-gray-100">${filesHtml}</td>
+                    <td class="px-6 py-4 border-b border-gray-100 text-gray-500 text-center whitespace-nowrap">${item.date}</td>
+                `;
+                brochureTableBody.appendChild(tr);
+            });
         }
 
+        function renderReportsTable() {
+            if (!reportTableBody) return;
+            reportTableBody.innerHTML = '';
+            
+            dummyReports.forEach(report => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-colors";
+                tr.innerHTML = `
+                    <td class="px-6 py-4 border-b border-gray-100 font-semibold text-primary whitespace-nowrap">${report.country}</td>
+                    <td class="px-6 py-4 border-b border-gray-100 text-gray-600">${report.title}</td>
+                    <td class="px-6 py-4 border-b border-gray-100 text-gray-500 text-center whitespace-nowrap">${report.date}</td>
+                    <td class="px-6 py-4 border-b border-gray-100 text-center">
+                        <button onclick="promptPassword('${report.title}', '${report.password}', '${report.fileUrl}')" class="inline-flex items-center justify-center bg-white border border-gray-300 text-primary px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider hover:bg-primary hover:text-white transition-colors rounded shadow-sm w-full sm:w-auto" data-i18n="btnViewDownload">
+                            <i class="ph ph-lock-key mr-1.5"></i> View / Download
+                        </button>
+                    </td>
+                `;
+                reportTableBody.appendChild(tr);
+            });
+        }
+
+        // 통합 패스워드 모달 호출 함수
+        function promptPassword(title, correctPassword, targetUrl) {
+            currentPwdTarget = { title, password: correctPassword, url: targetUrl };
+            reportPasswordInput.value = '';
+            pwdErrorMsg.classList.add('hidden');
+            pwdSuccessMsg.classList.add('hidden');
+            btnSubmitPwd.disabled = false;
+            
+            passwordModal.classList.remove('hidden');
+            passwordModal.classList.add('flex');
+            setTimeout(() => {
+                pwdModalContent.classList.remove('scale-95', 'opacity-0');
+                pwdModalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            
+            setTimeout(() => reportPasswordInput.focus(), 100);
+        }
+
+        function closePasswordModal() {
+            pwdModalContent.classList.remove('scale-100', 'opacity-100');
+            pwdModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                passwordModal.classList.add('hidden');
+                passwordModal.classList.remove('flex');
+                currentPwdTarget = null;
+            }, 300);
+        }
+
+        function submitPassword() {
+            if (!currentPwdTarget) return;
+            
+            const inputPwd = reportPasswordInput.value;
+            
+            if (inputPwd === currentPwdTarget.password) {
+                // 성공 로직
+                pwdErrorMsg.classList.add('hidden');
+                pwdSuccessMsg.classList.remove('hidden');
+                btnSubmitPwd.disabled = true;
+                
+                // 1초 후 모달 닫고 파일 다운로드(시뮬레이션) 동작
+                setTimeout(() => {
+                    closePasswordModal();
+                    // 실제 서비스 연동 시 아래 코드를 주석 해제하여 사용
+                    // window.open(currentPwdTarget.url, '_blank'); 
+                    alert('File download simulation: ' + currentPwdTarget.title);
+                }, 1000);
+                
+            } else {
+                // 실패 로직
+                pwdErrorMsg.classList.remove('hidden');
+                reportPasswordInput.focus();
+                
+                // 틀렸을 때 모달창 흔들림 효과
+                pwdModalContent.classList.add('animate-pulse');
+                setTimeout(() => pwdModalContent.classList.remove('animate-pulse'), 300);
+            }
+        }
+
+        reportPasswordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitPassword();
+            }
+        });
+
+        // 초기 테이블 렌더링 호출
+        renderBrochuresTable();
+        renderReportsTable();
+        
+        // 동적 렌더링 후 현재 선택된 언어로 번역 텍스트 갱신
+        changeLanguage(document.getElementById('languageSelect').value);
+
+        // ==========================================
+        // Contact Form 및 기타 모달 로직
+        // ==========================================
         const contactForm = document.getElementById('contactForm');
         const successModal = document.getElementById('successModal');
         const modalContent = document.getElementById('modalContent');
@@ -840,12 +1099,9 @@
         if(contactForm) {
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
-                // 버튼 비활성화로 중복 제출 방지
                 submitBtn.disabled = true;
                 submitBtn.style.opacity = '0.5';
 
-                // 사용자 입력 데이터 객체화
                 const visitorData = {
                     name: document.getElementById('formInputName').value,
                     nationality: document.getElementById('formInputNationality').value,
@@ -878,17 +1134,15 @@
                         }
                     } catch (err) {
                         console.error('Data transmission failed:', err);
-                        alert(`데이터베이스 저장 실패!\n\n[확인 사항]\n1. API 키가 정확한지 확인\n2. visitors, inquiries 테이블 생성 여부\n3. RLS(Row Level Security) Insert 허용 여부\n\n상세 에러: ${err.message || JSON.stringify(err)}`);
+                        alert(`데이터베이스 저장 실패!\n상세 에러: ${err.message || JSON.stringify(err)}`);
                         submitBtn.disabled = false;
                         submitBtn.style.opacity = '1';
                         return;
                     }
                 } else {
-                    console.warn('Supabase Client is not initialized. Running in UI Test Mode.');
-                    alert('Supabase 연결 키(ANON KEY)가 코드에 입력되지 않았습니다!\n현재는 화면 테스트 모드로 작동 중이며, 실제 데이터베이스에는 저장되지 않습니다.\n\n코드 하단의 SUPABASE_ANON_KEY 값을 수정해주세요.');
+                    console.warn('Supabase Client is not initialized.');
                 }
 
-                // 제출 성공 시 성공 모달 및 애니메이션 실행
                 submitBtn.disabled = false;
                 submitBtn.style.opacity = '1';
                 successModal.classList.remove('hidden');
@@ -912,7 +1166,6 @@
             }, 300);
         }
 
-        // QR Code Modal Logic
         const qrModal = document.getElementById('qrModal');
         const qrModalImage = document.getElementById('qrModalImage');
 
@@ -920,7 +1173,6 @@
             qrModalImage.src = src;
             qrModal.classList.remove('hidden');
             qrModal.classList.add('flex');
-            
             setTimeout(() => {
                 qrModalImage.classList.remove('scale-95', 'opacity-0');
                 qrModalImage.classList.add('scale-100', 'opacity-100');
@@ -933,7 +1185,7 @@
             setTimeout(() => {
                 qrModal.classList.add('hidden');
                 qrModal.classList.remove('flex');
-                qrModalImage.src = ''; // reset image source
+                qrModalImage.src = ''; 
             }, 300);
         }
     </script>

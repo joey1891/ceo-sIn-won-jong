@@ -211,63 +211,12 @@
                 <div class="w-12 h-0.5 bg-primary mx-auto"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Article 1 -->
-                <a href="#" target="_blank" rel="noopener noreferrer" class="group bg-white border border-gray-200 rounded overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col h-full">
-                    <div class="aspect-video bg-gray-200 overflow-hidden relative">
-                        <!-- 실제 기사 이미지 URL로 변경하세요 -->
-                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=News+Photo+1" alt="News Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex items-center justify-between mb-3 text-[10px] font-sans font-bold uppercase tracking-widest text-secondary">
-                            <span data-i18n="news1_publisher">Business Daily</span>
-                            <span data-i18n="news1_date">2024. 04</span>
-                        </div>
-                        <h3 data-i18n="news1_title" class="text-lg font-bold text-primary mb-3 leading-snug group-hover:text-accent transition-colors">Strategic Innovation and New Growth Engines at MEDIFAB</h3>
-                        <p data-i18n="news1_desc" class="text-sm font-sans text-gray-600 mb-6 flex-1 line-clamp-3">COO Sin Wonjong outlines the strategic roadmap for enterprise-wide digital transformation and global market penetration...</p>
-                        <span class="text-xs font-sans font-semibold text-accent uppercase tracking-wider flex items-center gap-1 mt-auto">
-                            <span data-i18n="readArticle">Read Article</span> <i class="ph ph-arrow-up-right"></i>
-                        </span>
-                    </div>
-                </a>
-
-                <!-- Article 2 -->
-                <a href="#" target="_blank" rel="noopener noreferrer" class="group bg-white border border-gray-200 rounded overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col h-full">
-                    <div class="aspect-video bg-gray-200 overflow-hidden relative">
-                        <!-- 실제 기사 이미지 URL로 변경하세요 -->
-                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=News+Photo+2" alt="News Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex items-center justify-between mb-3 text-[10px] font-sans font-bold uppercase tracking-widest text-secondary">
-                            <span data-i18n="news2_publisher">Bio Healthcare News</span>
-                            <span data-i18n="news2_date">2023. 11</span>
-                        </div>
-                        <h3 data-i18n="news2_title" class="text-lg font-bold text-primary mb-3 leading-snug group-hover:text-accent transition-colors">BioPlus Revenue Doubles Under CEO Sin Wonjong's Leadership</h3>
-                        <p data-i18n="news2_desc" class="text-sm font-sans text-gray-600 mb-6 flex-1 line-clamp-3">A remarkable year of exponential growth as BioPlus International solidifies its position in the global aesthetic medicine market...</p>
-                        <span class="text-xs font-sans font-semibold text-accent uppercase tracking-wider flex items-center gap-1 mt-auto">
-                            <span data-i18n="readArticle">Read Article</span> <i class="ph ph-arrow-up-right"></i>
-                        </span>
-                    </div>
-                </a>
-
-                <!-- Article 3 -->
-                <a href="#" target="_blank" rel="noopener noreferrer" class="group bg-white border border-gray-200 rounded overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col h-full">
-                    <div class="aspect-video bg-gray-200 overflow-hidden relative">
-                        <!-- 실제 기사 이미지 URL로 변경하세요 -->
-                        <img src="https://placehold.co/600x400/e2e8f0/475569?text=News+Photo+3" alt="News Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex items-center justify-between mb-3 text-[10px] font-sans font-bold uppercase tracking-widest text-secondary">
-                            <span data-i18n="news3_publisher">Economic Review</span>
-                            <span data-i18n="news3_date">2022. 08</span>
-                        </div>
-                        <h3 data-i18n="news3_title" class="text-lg font-bold text-primary mb-3 leading-snug group-hover:text-accent transition-colors">Expanding Pan-Asian Networks: The Next Big Leap</h3>
-                        <p data-i18n="news3_desc" class="text-sm font-sans text-gray-600 mb-6 flex-1 line-clamp-3">Connecting premier medical societies across South Korea with key players in China, Japan, and Vietnam for integrated business development...</p>
-                        <span class="text-xs font-sans font-semibold text-accent uppercase tracking-wider flex items-center gap-1 mt-auto">
-                            <span data-i18n="readArticle">Read Article</span> <i class="ph ph-arrow-up-right"></i>
-                        </span>
-                    </div>
-                </a>
+            <div id="newsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- DB에서 기사를 불러오는 동안 표시되는 로딩 화면 -->
+                <div class="col-span-full text-center py-12">
+                    <i class="ph ph-spinner animate-spin text-4xl text-gray-400 mb-3 inline-block"></i>
+                    <p class="text-sm text-gray-500 font-sans tracking-wide uppercase">Loading latest news...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -554,6 +503,65 @@
         let supabaseClient = null;
         if (SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY' && SUPABASE_ANON_KEY.trim() !== '') {
             supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        }
+
+        // ==========================================
+        // 뉴스 기사 데이터 동적 로드 (Supabase)
+        // ==========================================
+        async function loadNewsFromSupabase() {
+            const newsContainer = document.getElementById('newsContainer');
+            if (!supabaseClient || !newsContainer) return;
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('news')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    newsContainer.innerHTML = ''; // 기존 로딩 UI 제거
+                    
+                    data.forEach(article => {
+                        const fallbackImg = "https://placehold.co/600x400/e2e8f0/475569?text=News";
+                        const imageUrl = article.image_url ? article.image_url : fallbackImg;
+                        
+                        const articleHTML = `
+                            <a href="${article.url}" target="_blank" rel="noopener noreferrer" class="group bg-white border border-gray-200 rounded overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col h-full">
+                                <div class="aspect-video bg-gray-200 overflow-hidden relative">
+                                    <img src="${imageUrl}" alt="News Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='${fallbackImg}'">
+                                </div>
+                                <div class="p-6 flex flex-col flex-1">
+                                    <div class="flex items-center justify-between mb-3 text-[10px] font-sans font-bold uppercase tracking-widest text-secondary">
+                                        <span>${article.publisher || 'News'}</span>
+                                        <span>${article.date || ''}</span>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-primary mb-3 leading-snug group-hover:text-accent transition-colors">${article.title}</h3>
+                                    <p class="text-sm font-sans text-gray-600 mb-6 flex-1 line-clamp-3">${article.description}</p>
+                                    <span class="text-xs font-sans font-semibold text-accent uppercase tracking-wider flex items-center gap-1 mt-auto">
+                                        <span data-i18n="readArticle">Read Article</span> <i class="ph ph-arrow-up-right"></i>
+                                    </span>
+                                </div>
+                            </a>
+                        `;
+                        newsContainer.insertAdjacentHTML('beforeend', articleHTML);
+                    });
+                    
+                    // 동적으로 추가된 언어 태그(Read Article)에 번역 다시 적용
+                    changeLanguage(languageSelect.value);
+                } else {
+                    newsContainer.innerHTML = '<div class="col-span-full text-center py-10 text-gray-500 font-sans text-sm">No news articles available.</div>';
+                }
+            } catch (err) {
+                console.error('Error fetching news:', err);
+                newsContainer.innerHTML = '<div class="col-span-full text-center py-10 text-red-500 font-sans text-sm">Failed to load news articles.</div>';
+            }
+        }
+
+        // 페이지 로드시 뉴스 불러오기 실행
+        if (supabaseClient) {
+            loadNewsFromSupabase();
         }
 
         const contactForm = document.getElementById('contactForm');

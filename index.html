@@ -431,12 +431,15 @@
         // ★ SUPABASE INTEGRATION LOGIC ★
         // ==========================================
         
-        // 1. 여기에 발급받으신 Supabase URL과 Anon 공개키를 붙여넣어 주세요!
-        const SUPABASE_URL = 'YOUR_SUPABASE_URL'; 
-        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+        // 1. Supabase Project URL (이미지 호스팅 주소에서 자동 추출 반영)
+        const SUPABASE_URL = 'https://metadqppbypzgiowkgzg.supabase.co'; 
+        
+        // 2. 🔥 여기에 발급받으신 Supabase Anon 키를 반드시 붙여넣어 주세요! 🔥
+        // (Supabase 대시보드 -> Project Settings -> API -> Project API keys의 'anon' 'public' 키)
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ldGFkcXBwYnlwemdpb3drZ3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2ODI3MTksImV4cCI6MjA5NTI1ODcxOX0.qehDot2UZEiys3nshDWUSyzjrA6rXgHD6QAz_nYAo3U';
         
         let supabaseClient = null;
-        if (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
+        if (SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY' && SUPABASE_ANON_KEY.trim() !== '') {
             supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         }
 
@@ -488,13 +491,14 @@
                         }
                     } catch (err) {
                         console.error('Data transmission failed:', err);
-                        alert('Database insertion failed. Please check RLS policy or key permissions.');
+                        alert(`데이터베이스 저장 실패!\n\n[확인 사항]\n1. API 키가 정확한지 확인\n2. visitors, inquiries 테이블 생성 여부\n3. RLS(Row Level Security) Insert 허용 여부\n\n상세 에러: ${err.message || JSON.stringify(err)}`);
                         submitBtn.disabled = false;
                         submitBtn.style.opacity = '1';
                         return;
                     }
                 } else {
                     console.warn('Supabase Client is not initialized. Running in UI Test Mode.');
+                    alert('Supabase 연결 키(ANON KEY)가 코드에 입력되지 않았습니다!\n현재는 화면 테스트 모드로 작동 중이며, 실제 데이터베이스에는 저장되지 않습니다.\n\n코드 하단의 SUPABASE_ANON_KEY 값을 수정해주세요.');
                 }
 
                 // 제출 성공 시 성공 모달 및 애니메이션 실행

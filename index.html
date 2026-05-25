@@ -67,12 +67,24 @@
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
+            cursor: grab;
+            touch-action: pan-y; /* 수직 스크롤 허용, 수평은 스와이프 제어 */
+        }
+        .carousel-track:active {
+            cursor: grabbing;
         }
         .carousel-slide {
             min-width: 100%;
             flex-shrink: 0;
             padding: 0 1rem;
             box-sizing: border-box;
+            user-select: none; /* 드래그 시 텍스트 선택 방지 */
+        }
+        .carousel-slide a {
+            -webkit-user-drag: none; /* 링크 이미지 드래그 방지 */
+        }
+        .carousel-slide img {
+            pointer-events: none; /* 이미지 고스트 현상 방지 */
         }
     </style>
 </head>
@@ -564,6 +576,15 @@
         let allNewsData = []; // 전체 기사 저장용 배열
         let isNewsExpanded = false; // 현재 펼쳐보기 상태 확인
 
+        // 드래그(스와이프)를 위한 상태 변수
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let currentIndex = 0;
+        let slidesCount = 0;
+        let isClickPrevented = false;
+
         async function loadNewsFromSupabase() {
             const newsContainer = document.getElementById('newsContainer');
             if (!supabaseClient || !newsContainer) return;
@@ -632,6 +653,7 @@
                 newsWrapper.className = 'mt-10'; // carousel-container 속성 제거
                 newsContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
                 newsContainer.style.transform = 'none';
+                newsContainer.style.cursor = 'default'; // 드래그 커서 해제
 
                 allNewsData.forEach(article => {
                     newsContainer.insertAdjacentHTML('beforeend', createArticleCard(article, false));
@@ -645,12 +667,18 @@
                 // [접기 모드] - 최신 기사 3개만 추출해서 롤링 형태로 렌더링
                 newsWrapper.className = 'carousel-container mt-10';
                 newsContainer.className = 'carousel-track';
-                newsContainer.style.transform = 'translateX(0)';
+                newsContainer.style.cursor = 'grab';
 
                 const top3 = allNewsData.slice(0, 3);
+                slidesCount = top3.length;
+                
                 top3.forEach(article => {
                     newsContainer.insertAdjacentHTML('beforeend', createArticleCard(article, true));
                 });
+
+                // 초기 위치 설정
+                currentIndex = 0;
+                setPositionByIndex();
 
                 // 버튼을 '전체보기' 상태로 전환
                 if(toggleBtnSpan) toggleBtnSpan.setAttribute('data-i18n', 'viewAllBtn');
@@ -674,17 +702,100 @@
 
         // 롤링 애니메이션 함수
         function startCarousel() {
-            const track = document.getElementById('newsContainer');
-            const slides = document.querySelectorAll('.carousel-slide');
-            if (slides.length <= 1) return; 
+            if (slidesCount <= 1 || isNewsExpanded) return; 
 
-            let currentIndex = 0;
             if(carouselInterval) clearInterval(carouselInterval);
             
             carouselInterval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                currentIndex = (currentIndex + 1) % slidesCount;
+                setPositionByIndex();
             }, 3500); 
+        }
+
+        // ==========================================
+        // 드래그(스와이프) 이벤트 로직
+        // ==========================================
+        const track = document.getElementById('newsContainer');
+        
+        // Touch events
+        track.addEventListener('touchstart', dragStart, {passive: true});
+        track.addEventListener('touchend', dragEnd);
+        track.addEventListener('touchmove', dragAction, {passive: true});
+
+        // Mouse events
+        track.addEventListener('mousedown', dragStart);
+        track.addEventListener('mouseup', dragEnd);
+        track.addEventListener('mouseleave', dragEnd);
+        track.addEventListener('mousemove', dragAction);
+        
+        // 드래그 시 <a> 태그 클릭 방지
+        track.addEventListener('click', (e) => {
+            if (isClickPrevented) {
+                e.preventDefault();
+                e.stopPropagation();
+                isClickPrevented = false;
+            }
+        }, true);
+
+        function getPositionX(event) {
+            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+
+        function dragStart(event) {
+            if (isNewsExpanded || slidesCount <= 1) return;
+            isDragging = true;
+            isClickPrevented = false;
+            startPos = getPositionX(event);
+            
+            track.style.transition = 'none'; // 드래그 중 애니메이션 끄기
+            
+            if (carouselInterval) clearInterval(carouselInterval);
+        }
+
+        function dragAction(event) {
+            if (!isDragging || isNewsExpanded) return;
+            
+            const currentPosition = getPositionX(event);
+            const diff = currentPosition - startPos;
+            
+            if (Math.abs(diff) > 5) {
+                isClickPrevented = true; // 5px 이상 움직이면 클릭 막기
+            }
+            
+            const slideWidth = track.clientWidth;
+            const movePercent = (diff / slideWidth) * 100;
+            currentTranslate = prevTranslate + movePercent;
+            
+            track.style.transform = `translateX(${currentTranslate}%)`;
+        }
+
+        function dragEnd() {
+            if (!isDragging || isNewsExpanded) return;
+            isDragging = false;
+            
+            track.style.transition = 'transform 0.5s ease-in-out'; // 애니메이션 켜기
+            
+            const movedBy = currentTranslate - prevTranslate;
+            
+            // 20% 이상 스와이프 시 다음/이전 슬라이드로 이동
+            if (movedBy < -20 && currentIndex < slidesCount - 1) {
+                currentIndex += 1;
+            } else if (movedBy > 20 && currentIndex > 0) {
+                currentIndex -= 1;
+            } else if (movedBy < -20 && currentIndex === slidesCount - 1) {
+                currentIndex = 0; // 루프
+            } else if (movedBy > 20 && currentIndex === 0) {
+                currentIndex = slidesCount - 1; // 역루프
+            }
+            
+            setPositionByIndex();
+            startCarousel(); // 자동 롤링 재시작
+        }
+
+        function setPositionByIndex() {
+            currentTranslate = currentIndex * -100;
+            prevTranslate = currentTranslate;
+            track.style.transform = `translateX(${currentTranslate}%)`;
         }
 
         // 페이지 로드시 뉴스 불러오기 실행

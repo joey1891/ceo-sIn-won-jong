@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEO Sin Wonjong</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        primary: '#0A122A',   
+                        secondary: '#4A5568', 
+                        accent: '#002147',    
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            scroll-behavior: smooth;
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .gov-input {
+            border: 1px solid #718096;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+        }
+        .gov-input:focus {
+            outline: 2px solid #002147;
+            outline-offset: 1px;
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-primary font-serif antialiased selection:bg-accent selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-serif font-bold text-xl tracking-wider text-primary border-b-2 border-primary">SIN WONJONG</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <select id="languageSelect" class="appearance-none bg-white border border-gray-400 rounded px-4 py-2 pr-8 text-xs font-sans font-medium text-gray-700 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-accent transition-colors cursor-pointer uppercase tracking-wider">
+                            <option value="en">English</option>
+                            <option value="ko">한국어</option>
+                            <option value="zh">中文</option>
+                            <option value="ja">日本語</option>
+                            <option value="vi">Tiếng Việt</option>
+                            <option value="ru">Русский</option>
+                            <option value="th">ไทย</option>
+                            <option value="id">Bahasa Indonesia</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 text-xs">
+                            <i class="ph ph-caret-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center fade-in">
+            <div class="order-2 lg:order-1">
+                <p data-i18n="role" class="text-secondary font-sans font-semibold tracking-widest uppercase text-xs mb-4">Chief Executive Officer</p>
+                <h1 class="text-4xl lg:text-6xl font-bold leading-tight mb-6 text-primary tracking-tight">
+                    <span data-i18n="name">Sin Wonjong</span>
+                </h1>
+                <p data-i18n="heroTitle" class="text-xl lg:text-2xl font-normal text-secondary mb-6 leading-relaxed italic">
+                    Visionary Leader Driving Innovation.
+                </p>
+                <p data-i18n="heroDesc" class="text-base font-sans text-gray-600 mb-10 max-w-lg leading-relaxed">
+                    Leading the global market by creating new value and embracing change with unwavering principles.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#inquiry" data-i18n="connectBtn" class="font-sans bg-accent text-white px-8 py-3.5 rounded font-medium hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase text-xs tracking-wider">
+                        Get in Touch <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 flex justify-center lg:justify-end relative">
+                <div class="relative w-72 sm:w-80 lg:w-[22rem] aspect-[4/5] flex justify-center items-end"
+                     style="-webkit-mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%); mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);">
+                    <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/SINWONJONG-%20HEALTHCARE.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9TSU5XT05KT05HLSBIRUFMVEhDQVJFLmpwZyIsImlhdCI6MTc3OTY4NjU3OSwiZXhwIjoyMDk1MDQ2NTc5fQ.vP2JypJ0XhSXbcjavvhUOVQqJnlbB9peJGTN7WIF-ag" 
+                         alt="CEO Portrait" 
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white relative border-t border-b border-gray-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-16">
+                <h2 data-i18n="aboutTitle" class="text-3xl font-bold mb-4 tracking-tight">Career Highlights</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-[#F8FAFC] border border-gray-200 rounded">
+                    <div class="w-20 h-20 flex-shrink-0 bg-white border border-gray-300 overflow-hidden flex items-center justify-center p-2">
+                        <img src="https://placehold.co/160x160/ffffff/1e3a8a?text=MEDIFAB" alt="MEDIFAB Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-1 text-center sm:text-left">
+                        <span data-i18n="exp1_time" class="inline-block font-sans text-[10px] font-bold uppercase tracking-widest text-secondary mb-1"></span>
+                        <h3 data-i18n="exp1_company" class="text-xl font-bold text-primary mb-1"></h3>
+                        <p data-i18n="exp1_role" class="text-base text-gray-600 italic"></p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-white border border-gray-200 rounded">
+                    <div class="w-20 h-20 flex-shrink-0 bg-white border border-gray-300 overflow-hidden flex items-center justify-center p-2">
+                        <img src="https://placehold.co/160x160/ffffff/047857?text=BioPlus" alt="BioPlus Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-1 text-center sm:text-left">
+                        <span data-i18n="exp2_time" class="inline-block font-sans text-[10px] font-bold uppercase tracking-widest text-secondary mb-1"></span>
+                        <h3 data-i18n="exp2_company" class="text-xl font-bold text-primary mb-1"></h3>
+                        <p data-i18n="exp2_role" class="text-base text-gray-600 italic"></p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-white border border-gray-200 rounded">
+                    <div class="w-20 h-20 flex-shrink-0 bg-white border border-gray-300 overflow-hidden flex items-center justify-center p-2">
+                        <img src="https://placehold.co/160x160/ffffff/059669?text=GC+Wellbeing" alt="GC Wellbeing Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-1 text-center sm:text-left">
+                        <span data-i18n="exp3_time" class="inline-block font-sans text-[10px] font-bold uppercase tracking-widest text-secondary mb-1"></span>
+                        <h3 data-i18n="exp3_company" class="text-xl font-bold text-primary mb-1"></h3>
+                        <p data-i18n="exp3_role" class="text-base text-gray-600 italic"></p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-white border border-gray-200 rounded">
+                    <div class="w-20 h-20 flex-shrink-0 bg-white border border-gray-300 overflow-hidden flex items-center justify-center p-2">
+                        <img src="https://placehold.co/160x160/ffffff/111827?text=CosmaxBTI" alt="CosmaxBTI Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-1 text-center sm:text-left">
+                        <span data-i18n="exp4_time" class="inline-block font-sans text-[10px] font-bold uppercase tracking-widest text-secondary mb-1"></span>
+                        <h3 data-i18n="exp4_company" class="text-xl font-bold text-primary mb-1"></h3>
+                        <p data-i18n="exp4_role" class="text-base text-gray-600 italic"></p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-white border border-gray-200 rounded">
+                    <div class="w-20 h-20 flex-shrink-0 bg-white border border-gray-300 overflow-hidden flex items-center justify-center p-2">
+                        <img src="https://placehold.co/160x160/ffffff/059669?text=GC" alt="GC Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex-1 text-center sm:text-left">
+                        <span data-i18n="exp5_time" class="inline-block font-sans text-[10px] font-bold uppercase tracking-widest text-secondary mb-1"></span>
+                        <h3 data-i18n="exp5_company" class="text-xl font-bold text-primary mb-1"></h3>
+                        <p data-i18n="exp5_role" class="text-base text-gray-600 italic"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="inquiry" class="py-24 bg-slate-100 relative">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-12">
+                <h2 data-i18n="contactTitle" class="text-3xl font-bold mb-4 text-primary tracking-tight">Official Communication Statement</h2>
+                <p data-i18n="contactDesc" class="text-xs font-sans uppercase tracking-widest text-secondary max-w-2xl mx-auto mb-4">Please submit your formal inquiries or network record verification below.</p>
+                <div class="w-12 h-0.5 bg-primary mx-auto"></div>
+            </div>
+
+            <div class="bg-white p-8 md:p-10 border border-gray-300 shadow-sm rounded-none">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelName">Name *</label>
+                            <input type="text" id="formInputName" required class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelNationality">Nationality *</label>
+                            <input type="text" id="formInputNationality" required class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelCompany">Company Name *</label>
+                            <input type="text" id="formInputCompany" required class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelPhone">Phone Number</label>
+                            <input type="tel" id="formInputPhone" class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelEmail">Email Address *</label>
+                            <input type="email" id="formInputEmail" required class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelSns">Social Media Identifier / SNS ID (Optional)</label>
+                            <input type="text" id="formInputSns" class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelMessage">Inquiry Statement / Message *</label>
+                        <textarea id="formInputMessage" rows="5" required class="w-full p-3 gov-input bg-white text-sm resize-none"></textarea>
+                    </div>
+                    <div class="text-center pt-4">
+                        <button type="submit" id="submitBtn" class="font-sans bg-primary text-white px-10 py-4 font-semibold hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase text-xs tracking-wider">
+                            <span data-i18n="formSubmit">Submit Statement</span> <i class="ph ph-paper-plane-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="connect" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 data-i18n="connectTitle" class="text-3xl font-bold mb-4 tracking-tight">External Registry & Channels</h2>
+                <p data-i18n="connectDesc" class="text-xs font-sans uppercase tracking-widest text-secondary max-w-2xl mx-auto">Access verified corporate networks and digital messenger credentials.</p>
+            </div>
+
+            <div class="flex justify-center mb-16 fade-in">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-8 py-4 shadow-sm hover:border-primary transition-all duration-300">
+                    <i class="ph-fill ph-linkedin-logo text-3xl text-primary"></i>
+                    <div class="text-left font-sans">
+                        <p class="text-[10px] text-secondary font-bold uppercase tracking-widest" data-i18n="linkedinSub">Professional Network</p>
+                        <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="linkedinBtn">Verify via LinkedIn</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="text-center mb-10 fade-in">
+                <h3 data-i18n="qrTitle" class="text-sm font-sans font-bold uppercase tracking-widest text-primary mb-2">Social Messenger Gateways</h3>
+                <div class="w-8 h-0.5 bg-gray-400 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto fade-in font-sans">
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                        <i class="ph-fill ph-chat-circle text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/KAKAO.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9LQUtBTy5wbmciLCJpYXQiOjE3Nzk2ODQyNDMsImV4cCI6MjA5NTA0NDI0M30.tTVdFpUMoRQK3mrOiD2brYQe8vrSh4F7kvujdrkG7yQ" alt="Kakao QR" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary">KakaoTalk</span>
+                </div>
+
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                        <i class="ph-fill ph-chat-teardrop-dots text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/LINE.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9MSU5FLmpwZyIsImlhdCI6MTc3OTY4NDI2MSwiZXhwIjoyMDk1MDQ0MjYxfQ.xeu6k5I1_pC2g90CmviAEQ_Sa9iyCkibwoscC1s6Xx4" alt="Line QR" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary">LINE</span>
+                </div>
+
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                        <i class="ph-fill ph-telegram-logo text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/TELEGRAM.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9URUxFR1JBTS5qcGciLCJpYXQiOjE3Nzk2ODQyODIsImV4cCI6MjA5NTA0NDI4Mn0.-ydpkGPaZ9M-nR6t96sSOIov9gwKw-KQR20A5XduX_Q" alt="Telegram QR" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary">Telegram</span>
+                </div>
+
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                        <i class="ph-fill ph-wechat-logo text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/WECHAT.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9XRUNIQVQucG5nIiwiaWF0IjoxNzc5Njg0Mjk1LCJleHAiOjIwOTUwNDQyOTV9.xIurKFlWE9F0aCtjqezQdwhhNp37NibP-P3VO4oGyfo" alt="WeChat QR" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary">WeChat</span>
+                </div>
+
+                <div class="bg-[#F8FAFC] border border-gray-200 p-6 flex flex-col items-center group">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/WHATSAPP.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9XSEFUU0FQUC5qcGciLCJpYXQiOjE3Nzk2ODQzMzQsImV4cCI6MjA5NTA0NDMzNH0.tqdfZeJ-L6u_4oPvmmb2jcbwLXFDLn33IIHHTyd2too" alt="WhatsApp QR" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary">WhatsApp</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-primary text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-xs font-sans flex flex-col items-center tracking-wider">
+            <span class="font-serif font-bold text-lg tracking-widest text-white mb-2">SIN WONJONG</span>
+            <p>&copy; <span id="year"></span> CEO Sin Wonjong. Executive Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+        <div class="bg-white p-8 max-w-sm w-full mx-4 border border-gray-300 shadow-2xl transform transition-transform scale-95 opacity-0 duration-300" id="modalContent">
+            <div class="w-12 h-12 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
+                <i class="ph ph-check text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-center text-gray-900 mb-2" data-i18n="modalTitle">Submission Received</h3>
+            <p class="text-center font-sans text-xs text-gray-600 mb-6 leading-relaxed" data-i18n="modalDesc">The statement has been securely processed. Our office will review and respond accordingly.</p>
+            <button onclick="closeModal()" class="w-full bg-primary text-white py-3 font-sans font-semibold text-xs uppercase tracking-wider hover:bg-opacity-90 transition-colors" data-i18n="modalClose">Dismiss</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const translations = {
+            en: {
+                role: "Chief Executive Officer",
+                name: "Sin Wonjong",
+                heroTitle: "Visionary Leader Driving Innovation.",
+                heroDesc: "Leading the global market by creating new value and embracing change with unwavering principles.",
+                connectBtn: "Get in Touch",
+                aboutTitle: "Career Highlights",
+                exp1_time: "Present", exp1_company: "MEDIFAB", exp1_role: "COO",
+                exp2_time: "Former", exp2_company: "BioPlus International", exp2_role: "CEO",
+                exp3_time: "Former", exp3_company: "GC Wellbeing", exp3_role: "Unit Leader",
+                exp4_time: "Former", exp4_company: "CosmaxBTI", exp4_role: "Strategy Planning Team Leader",
+                exp5_time: "Former", exp5_company: "GC", exp5_role: "Strategy Planning Office",
+                contactTitle: "Official Communication Statement",
+                contactDesc: "Please submit your formal inquiries or network record verification below.",
+                formSubmit: "Submit Statement",
+                modalTitle: "Submission Received",
+                modalDesc: "The statement has been securely processed. Our office will review and respond accordingly.",
+                modalClose: "Dismiss",
+                labelName: "Name *", labelNationality: "Nationality *", labelCompany: "Company Name *", labelPhone: "Phone Number", labelEmail: "Email Address *", labelSns: "Social Media Identifier / SNS ID (Optional)", labelMessage: "Inquiry Statement / Message *",
+                connectTitle: "External Registry & Channels", connectDesc: "Access verified corporate networks and digital messenger credentials.", linkedinSub: "Professional Network", linkedinBtn: "Verify via LinkedIn", qrTitle: "Social Messenger Gateways"
+            },
+            ko: {
+                role: "최고경영자 (CEO)",
+                name: "신원종",
+                heroTitle: "혁신을 이끄는 비저너리 리더.",
+                heroDesc: "흔들림 없는 원칙으로 변화를 수용하고 새로운 가치를 창출하며 글로벌 시장을 선도합니다.",
+                connectBtn: "연락하기",
+                aboutTitle: "주요 경력 사항",
+                exp1_time: "현 (Present)", exp1_company: "MEDIFAB", exp1_role: "COO (최고운영책임자)",
+                exp2_time: "전 (Former)", exp2_company: "바이오플러스인터내셔널", exp2_role: "CEO",
+                exp3_time: "전 (Former)", exp3_company: "GC Wellbeing", exp3_role: "Unit Leader",
+                exp4_time: "전 (Former)", exp4_company: "CosmaxBTI", exp4_role: "전략기획팀장",
+                exp5_time: "전 (Former)", exp5_company: "GC", exp5_role: "전략기획실",
+                contactTitle: "공식 문의 신청 및 서명",
+                contactDesc: "공식 문의 또는 협력 제안 기록을 위해 아래 서식을 빠짐없이 작성해 주십시오.",
+                formSubmit: "조회 및 제출",
+                modalTitle: "제출 완료",
+                modalDesc: "문의 기록이 성공적으로 접수되었습니다. 검토 후 신속히 응답해 드리겠습니다.",
+                modalClose: "닫기",
+                labelName: "성명 / Name *", labelNationality: "국적 / Nationality *", labelCompany: "소속 기업명 / Company Name *", labelPhone: "연락처 / Phone Number", labelEmail: "이메일 주소 / Email *", labelSns: "소셜 메신저 식별자 / SNS ID (선택)", labelMessage: "문의 진술문 / Message *",
+                connectTitle: "외부 인증 레지스트리", connectDesc: "인증된 기업 네트워크 및 소셜 메신저 공식 게이트웨이에 접속합니다.", linkedinSub: "프로페셔널 네트워크", linkedinBtn: "LinkedIn을 통한 본인 인증", qrTitle: "소셜 메신저 커뮤니케이션 채널"
+            },
+            zh: {
+                role: "首席执行官 (CEO)", name: "申源鐘", heroTitle: "引领创新的远见卓识领导者.", heroDesc: "以坚定不移的原则拥抱变化，创造新价值，引领全球市场。", connectBtn: "保持联系", aboutTitle: "职业亮点", exp1_time: "现任", exp1_company: "MEDIFAB", exp1_role: "首席运营官 (COO)", exp2_time: "前任", exp2_company: "BioPlus International", exp2_role: "首席执行官 (CEO)", exp3_time: "前任", exp3_company: "GC Wellbeing", exp3_role: "部门负责人 (Unit Leader)", exp4_time: "前任", exp4_company: "CosmaxBTI", exp4_role: "战略规划团队负责人", exp5_time: "前任", exp5_company: "GC", exp5_role: "战略规划室", contactTitle: "官方通讯声明", contactDesc: "请在下方提交您的正式查询 or 网络记录验证。", formSubmit: "提交声明", modalTitle: "提交已收到", modalDesc: "该声明已得到安全处理。我们的办公室将进行审查并作出相应回应。", modalClose: "关闭", labelName: "姓名 *", labelNationality: "国籍 *", labelCompany: "公司名称 *", labelPhone: "联系电话", labelEmail: "电子邮件 *", labelSns: "社交媒体标识符 / SNS ID (可选)", labelMessage: "查询陈述 / 留言 *", connectTitle: "外部注册与渠道", connectDesc: "访问经过验证的企业网络和数字商务信使凭证。", linkedinSub: "专业网络", linkedinBtn: "通过 LinkedIn 验证", qrTitle: "社交商务信使网关"
+            },
+            ja: {
+                role: "最高経営責任者 (CEO)", name: "申 源鐘 (シン・ウォンジョン)", heroTitle: "革新을 견인하는 비전 리더.", heroDesc: "揺るぎない原則で変化を受け入れ、新たな価値を創造し、グローバル市場をリードします。", connectBtn: "お問い合わせ", aboutTitle: "主な経歴", exp1_time: "現職", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "前職", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "前職", exp3_company: "GC Wellbeing", exp3_role: "ユニットリーダー", exp4_time: "前職", exp4_company: "CosmaxBTI", exp4_role: "戦略企画チーム長", exp5_time: "前職", exp5_company: "GC", exp5_role: "戦略企画室", contactTitle: "公式コミュニケーション声明", contactDesc: "以下に正式な問い合わせまたはネットワーク記録の確認を提出してください。", formSubmit: "声明を提出する", modalTitle: "提出完了", modalDesc: "声明は安全に処理されました。当事務局にて確認の上、対応させていただきます。", modalClose: "閉じる", labelName: "お名前 *", labelNationality: "国籍 *", labelCompany: "会社名 *", labelPhone: "電話番号", labelEmail: "メールアドレス *", labelSns: "SNS識別子 / SNS ID (任意)", labelMessage: "質問内容 / 声明 *", connectTitle: "外部登記＆チャネル", connectDesc: "確認済みの企業ネットワークおよびデジタルメッセンジャーの資格情報にアクセスします。", linkedinSub: "プロフェッショナルネットワーク", linkedinBtn: "LinkedInで確認する", qrTitle: "ソーシャルメッセンジャーゲートウェイ"
+            },
+            vi: {
+                role: "Giám đốc điều hành", name: "Sin Wonjong", heroTitle: "Nhà lãnh đạo tầm nhìn thúc đẩy đổi mới.", heroDesc: "Dẫn dắt thị trường toàn cầu bằng cách tạo ra giá trị mới và nắm bắt sự thay đổi với các nguyên tắc vững chắc.", connectBtn: "Liên hệ", aboutTitle: "Kinh nghiệm làm việc", exp1_time: "Hiện tại", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "Cựu", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Cựu", exp3_company: "GC Wellbeing", exp3_role: "Trưởng bộ phận", exp4_time: "Cựu", exp4_company: "CosmaxBTI", exp4_role: "Trưởng nhóm Lập kế hoạch Chiến lược", exp5_time: "Cựu", exp5_company: "GC", exp5_role: "Văn phòng Lập kế hoạch Chiến lược", contactTitle: "Tuyên bố liên lạc chính thức", contactDesc: "Vui lòng gửi câu hỏi chính thức của bạn hoặc xác minh hồ sơ mạng bên dưới.", formSubmit: "Gửi tuyên bố", modalTitle: "Đã nhận được bản gửi", modalDesc: "Tuyên bố đã được xử lý an toàn. Văn phòng chúng tôi sẽ xem xét và phản hồi phù hợp.", modalClose: "Đóng", labelName: "Họ và tên *", labelNationality: "Quốc tịch *", labelCompany: "Tên công ty *", labelPhone: "Số điện thoại", labelEmail: "Địa chỉ Email *", labelSns: "Mã định danh mạng xã hội / SNS ID (Tùy chọn)", labelMessage: "Tuyên bố yêu cầu / Tin nhắn *", connectTitle: "Sổ đăng ký & Kênh bên ngoài", connectDesc: "Truy cập mạng doanh nghiệp đã xác minh và thông tin xác thực tin nhắn kỹ thuật số.", linkedinSub: "Mạng lưới chuyên nghiệp", linkedinBtn: "Xác minh qua LinkedIn", qrTitle: "Cổng nhắn tin xã hội"
+            },
+            ru: {
+                role: "Генеральный директор", name: "Син Вонджон", heroTitle: "Дальновидный лидер, стимулирующий инновации.", heroDesc: "Лидерство на мировом рынке за счет создания новых ценностей и принятия изменений с непоколебимыми принципами.", connectBtn: "Связаться", aboutTitle: "Основные этапы карьеры", exp1_time: "В настоящее время", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "Бывший", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Бывший", exp3_company: "GC Wellbeing", exp3_role: "Руководитель подразделения", exp4_time: "Бывший", exp4_company: "CosmaxBTI", exp4_role: "Руководитель группы стратегического планирования", exp5_time: "Бывший", exp5_company: "GC", exp5_role: "Отдел стратегического планирования", contactTitle: "Официальное коммуникационное заявление", contactDesc: "Пожалуйста, отправьте ваши официальные запросы или верификацию сетевой записи ниже.", formSubmit: "Подать заявление", modalTitle: "Заявление получено", modalDesc: "Заявление было безопасно обработано. Наш офис рассмотрит его и ответит должным образом.", modalClose: "Закрыть", labelName: "Имя *", labelNationality: "Национальность *", labelCompany: "Название компании *", labelPhone: "Номер телефона", labelEmail: "Электронная почта *", labelSns: "Идентификатор соцсети / SNS ID (Необязательно)", labelMessage: "Текст запроса / Заявление *", connectTitle: "Внешние реестры и каналы", connectDesc: "Доступ к проверенным корпоративным сетям и учетным данным цифровых мессенджеров.", linkedinSub: "Профессиональная сеть", linkedinBtn: "Подтвердить через LinkedIn", qrTitle: "Шлюзы социальных мессенджеров"
+            },
+            th: {
+                role: "ประธานเจ้าหน้าที่บริหาร", name: "ชิน วอนจง", heroTitle: "ผู้นำที่มีวิสัยทัศน์ขับเคลื่อนนวัตกรรม.", heroDesc: "เป็นผู้นำตลาดระดับโลกด้วยการสร้างมูลค่าใหม่และยอมรับการเปลี่ยนแปลงด้วยหลักการที่แน่วแน่", connectBtn: "ติดต่อเรา", aboutTitle: "ประวัติการทำงาน", exp1_time: "ปัจจุบัน", exp1_company: "MEDIFAB", exp1_role: "COO", exp2_time: "อดีต", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "อดีต", exp3_company: "GC Wellbeing", exp3_role: "หัวหน้าหน่วย", exp4_time: "อดีต", exp4_company: "CosmaxBTI", exp4_role: "หัวหน้าทีมวางแผนกลยุทธ์", exp5_time: "อดีต", exp5_company: "GC", exp5_role: "สำนักงานวางแผนกลยุทธ์", contactTitle: "แถลงการณ์ติดต่ออย่างเป็นทางการ", contactDesc: "กรุณาส่งคำถามอย่างเป็นทางการหรือการตรวจสอบบันทึกเครือข่ายด้านล่าง", formSubmit: "ส่งคำแถลง", modalTitle: "ได้รับข้อมูลเรียบร้อยแล้ว", modalDesc: "คำแถลงของคุณได้รับการประมวลผลอย่างปลอดภัยแล้ว สำนักงานของเราจะตรวจสอบและตอบกลับตามความเหมาะสม", modalClose: "ปิด", labelName: "ชื่อ *", labelNationality: "สัญชาติ *", labelCompany: "ชื่อบริษัท *", labelPhone: "หมายเลขโทรศัพท์", labelEmail: "อีเมล *", labelSns: "ตัวระบุโซเชียลมีเดีย / SNS ID (ไม่บังคับ)", labelMessage: "คำแถลงข้อซักถาม / ข้อความ *", connectTitle: "ทะเบียนและช่องทางภายนอก", connectDesc: "เข้าถึงเครือข่ายองค์กรที่ได้รับการตรวจสอบและข้อมูลประจำตัวของโปรแกรมส่งข้อความดิจิทัล", linkedinSub: "เครือข่ายมืออาชีพ", linkedinBtn: "เชื่อมต่อบน LinkedIn", qrTitle: "เกตเวย์ผู้ส่งสารทางโซเชียล"
+            },
+            id: {
+                role: "Chief Executive Officer", name: "Sin Wonjong", heroTitle: "Pemimpin Visioner yang Mendorong Inovasi.", heroDesc: "Memimpin pasar global dengan menciptakan nilai baru dan merangkul perubahan dengan prinsip-prinsip yang tak tergoyahkan.", connectBtn: "Hubungi Kami", aboutTitle: "Sorotan Karir", exp1_time: "Saat Ini", exp1_company: "MEDIFAB", exp1_role: "COO", mantan: "Mantan", exp2_time: "Mantan", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Mantan", exp3_company: "GC Wellbeing", exp3_role: "Pemimpin Unit", exp4_time: "Mantan", exp4_company: "CosmaxBTI", exp4_role: "Pemimpin Tim Perencanaan Strategis", exp5_time: "Mantan", exp5_company: "GC", exp5_role: "Kantor Perencanaan Strategis", contactTitle: "Pernyataan Komunikasi Resmi", contactDesc: "Silakan kirimkan pertanyaan resmi Anda atau verifikasi catatan jaringan di bawah ini.", formSubmit: "Kirim Pernyataan", modalTitle: "Pengajuan Diterima", modalDesc: "Pernyataan telah diproses dengan aman. Kantor kami akan meninjau dan menanggapinya dengan tepat.", modalClose: "Tutup", labelName: "Nama *", labelNationality: "Kewarganegaraan *", labelCompany: "Nama Perusahaan *", labelPhone: "Nomor Telepon", labelEmail: "Alamat Email *", labelSns: "Pengidentifikasi Media Sosial / ID SNS (Opsional)", labelMessage: "Pernyataan Pertanyaan / Pesan *", connectTitle: "Registrasi & Saluran Eksternal", connectDesc: "Akses jaringan perusahaan terverifikasi dan kredensial pesan digital.", linkedinSub: "Jaringan Profesional", linkedinBtn: "Verifikasi via LinkedIn", qrTitle: "Gerbang Pesan Sosial"
+            }
+        };
+
+        const languageSelect = document.getElementById('languageSelect');
+
+        function changeLanguage(lang) {
+            if (!translations[lang]) return;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (key === 'connectBtn') {
+                        el.innerHTML = `${translations[lang][key]} <i class="ph ph-arrow-right"></i>`;
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+            const labels = ['labelName', 'labelNationality', 'labelCompany', 'labelPhone', 'labelEmail', 'labelSns', 'labelMessage'];
+            labels.forEach(id => {
+                const targetEl = document.getElementById(id);
+                if (targetEl && translations[lang][id]) {
+                    targetEl.textContent = translations[lang][id];
+                }
+            });
+        }
+
+        languageSelect.addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+
+        languageSelect.value = 'en';
+        changeLanguage('en');
+
+        // ==========================================
+        // ★ SUPABASE INTEGRATION LOGIC ★
+        // ==========================================
+        
+        // 1. 여기에 발급받으신 Supabase URL과 Anon 공개키를 붙여넣어 주세요!
+        const SUPABASE_URL = 'YOUR_SUPABASE_URL'; 
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+        
+        let supabaseClient = null;
+        if (SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
+            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        }
+
+        const contactForm = document.getElementById('contactForm');
+        const successModal = document.getElementById('successModal');
+        const modalContent = document.getElementById('modalContent');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if(contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // 버튼 비활성화로 중복 제출 방지
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.5';
+
+                // 사용자 입력 데이터 객체화
+                const visitorData = {
+                    name: document.getElementById('formInputName').value,
+                    nationality: document.getElementById('formInputNationality').value,
+                    company_name: document.getElementById('formInputCompany').value,
+                    phone_number: document.getElementById('formInputPhone').value,
+                    email: document.getElementById('formInputEmail').value,
+                    sns_id: document.getElementById('formInputSns').value
+                };
+                const messageText = document.getElementById('formInputMessage').value;
+
+                if (supabaseClient) {
+                    try {
+                        // Step 1: visitors 테이블에 정보 Insert 및 고유 ID(UUID) 반환 받기
+                        const { data: insertedVisitor, error: visitorError } = await supabaseClient
+                            .from('visitors')
+                            .insert([visitorData])
+                            .select()
+                            .single();
+
+                        if (visitorError) throw visitorError;
+
+                        // Step 2: 연계된 inquiries 테이블에 메시지 저장
+                        if (insertedVisitor) {
+                            const { error: inquiryError } = await supabaseClient
+                                .from('inquiries')
+                                .insert([{
+                                    visitor_id: insertedVisitor.id,
+                                    message: messageText
+                                }]);
+                            
+                            if (inquiryError) throw inquiryError;
+                        }
+                    } catch (err) {
+                        console.error('Data transmission failed:', err);
+                        alert('Database insertion failed. Please check RLS policy or key permissions.');
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '1';
+                        return;
+                    }
+                } else {
+                    console.warn('Supabase Client is not initialized. Running in UI Test Mode.');
+                }
+
+                // 제출 성공 시 성공 모달 및 애니메이션 실행
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                successModal.classList.remove('hidden');
+                successModal.classList.add('flex');
+                
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                
+                contactForm.reset();
+            });
+        }
+
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                successModal.classList.add('hidden');
+                successModal.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+</body>
+</html>

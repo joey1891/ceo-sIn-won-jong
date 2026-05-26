@@ -955,14 +955,15 @@
         const pwdSuccessMsg = document.getElementById('pwdSuccessMsg');
         const btnSubmitPwd = document.getElementById('btnSubmitPwd');
 
-        // Supabase에서 회사 소개서 데이터 가져오기
+        // Supabase에서 회사 소개서 데이터 가져오기 (순서 반영)
         async function loadResourcesFromSupabase() {
             if (!supabaseClient || !brochureTableBody) return;
             try {
                 const { data, error } = await supabaseClient
                     .from('resources')
                     .select('*')
-                    .order('created_at', { ascending: false });
+                    .order('sort_order', { ascending: true }) // 정렬 기준 1
+                    .order('created_at', { ascending: false }); // 정렬 기준 2
                 
                 if (error) throw error;
                 renderBrochuresTable(data);
@@ -1003,14 +1004,15 @@
             changeLanguage(document.getElementById('languageSelect').value);
         }
 
-        // Supabase에서 글로벌 출장 보고서 데이터 가져오기
+        // Supabase에서 글로벌 출장 보고서 데이터 가져오기 (순서 반영)
         async function loadReportsFromSupabase() {
             if (!supabaseClient || !reportTableBody) return;
             try {
                 const { data, error } = await supabaseClient
                     .from('market_reports')
                     .select('*')
-                    .order('created_at', { ascending: false });
+                    .order('sort_order', { ascending: true }) // 정렬 기준 1
+                    .order('created_at', { ascending: false }); // 정렬 기준 2
 
                 if (error) throw error;
                 renderReportsTable(data);

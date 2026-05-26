@@ -459,8 +459,8 @@
          * SUPABASE DATABASE SCHEMA REQUIREMENTS:
          * 1. inquiries, visitors: Existing tables for Inquiry section.
          * 2. news: id, url, title, publisher, date, image_url, created_at
-         * 3. market_reports: id, country, title, date, file_url, password, created_at
-         * 4. resources: id, title, date, password, files (JSONB array), created_at
+         * 3. market_reports: id, country, title, date, file_url, password, sort_order, created_at
+         * 4. resources: id, title, date, password, files (JSONB array), sort_order, created_at
          */
 
         const SUPABASE_URL = 'https://metadqppbypzgiowkgzg.supabase.co'; 
@@ -775,13 +775,14 @@
             }
         }
 
-        // --- 6. Market Reports 관리 로직 ---
+        // --- 6. Market Reports 관리 로직 (순서 변경 추가) ---
         async function fetchReportsData() {
             try {
                 const { data, error } = await supabaseClient
                     .from('market_reports')
                     .select('*')
-                    .order('created_at', { ascending: false });
+                    .order('sort_order', { ascending: true }) // 정렬 기준 1
+                    .order('created_at', { ascending: false }); // 정렬 기준 2
                 
                 if (error) {
                     if (error.code === '42P01') { 
@@ -804,7 +805,7 @@
                 return;
             }
             tbody.innerHTML = '';
-            data.forEach((item) => {
+            data.forEach((item, index) => {
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0';
                 tr.innerHTML = `
@@ -813,6 +814,10 @@
                     <td class="py-4 px-6 text-sm text-gray-500 text-center">${item.date}</td>
                     <td class="py-4 px-6 text-xs text-gray-400 text-center font-mono">${item.password}</td>
                     <td class="py-4 px-6 text-center whitespace-nowrap">
+                        <!-- 순서 변경 버튼 -->
+                        <button onclick="moveReport(${index}, -1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-1 ${index === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''} title="Move Up"><i class="ph-bold ph-arrow-up"></i></button>
+                        <button onclick="moveReport(${index}, 1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-3 ${index === data.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === data.length - 1 ? 'disabled' : ''} title="Move Down"><i class="ph-bold ph-arrow-down"></i></button>
+
                         <button onclick="editReport(${item.id})" class="text-blue-500 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 p-2 rounded transition-colors mr-2" title="Edit">
                             <i class="ph-fill ph-pencil-simple"></i>
                         </button>
@@ -823,6 +828,29 @@
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        async function moveReport(index, direction) {
+            if (index + direction < 0 || index + direction >= globalReportsData.length) return;
+            
+            const newArray = [...globalReportsData];
+            const temp = newArray[index];
+            newArray[index] = newArray[index + direction];
+            newArray[index + direction] = temp;
+            
+            document.getElementById('reportTableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Updating order...</td></tr>`;
+            
+            try {
+                // 변경된 배열 순서대로 sort_order 일괄 업데이트
+                const updates = newArray.map((item, i) => {
+                    return supabaseClient.from('market_reports').update({ sort_order: i }).eq('id', item.id);
+                });
+                await Promise.all(updates);
+                fetchReportsData();
+            } catch (err) {
+                alert('Failed to update order: ' + err.message);
+                fetchReportsData();
+            }
         }
 
         document.getElementById('addReportForm').addEventListener('submit', async (e) => {
@@ -839,6 +867,11 @@
                 file_url: document.getElementById('reportFileUrl').value,
                 password: document.getElementById('reportPassword').value
             };
+
+            // 새로 추가 시 최상단으로 오게 하려면 sort_order: 0 세팅
+            if(!editingReportId) {
+                newData.sort_order = 0;
+            }
 
             try {
                 if (editingReportId) {
@@ -866,13 +899,14 @@
             }
         }
 
-        // --- 7. Resources 관리 로직 (동적 파일) ---
+        // --- 7. Resources 관리 로직 (순서 변경 추가) ---
         async function fetchResourcesData() {
             try {
                 const { data, error } = await supabaseClient
                     .from('resources')
                     .select('*')
-                    .order('created_at', { ascending: false });
+                    .order('sort_order', { ascending: true }) // 정렬 기준 1
+                    .order('created_at', { ascending: false }); // 정렬 기준 2
                 
                 if (error) {
                     if (error.code === '42P01') { 
@@ -895,7 +929,7 @@
                 return;
             }
             tbody.innerHTML = '';
-            data.forEach((item) => {
+            data.forEach((item, index) => {
                 const filesArr = item.files || [];
                 const filesHtml = filesArr.map(f => `<span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-[10px] font-bold mr-1 border border-gray-200">${f.lang}</span>`).join('');
 
@@ -907,6 +941,10 @@
                     <td class="py-4 px-6 text-sm text-gray-500 text-center">${item.date}</td>
                     <td class="py-4 px-6 text-xs text-gray-400 text-center font-mono">${item.password}</td>
                     <td class="py-4 px-6 text-center whitespace-nowrap">
+                        <!-- 순서 변경 버튼 -->
+                        <button onclick="moveResource(${index}, -1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-1 ${index === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''} title="Move Up"><i class="ph-bold ph-arrow-up"></i></button>
+                        <button onclick="moveResource(${index}, 1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-3 ${index === data.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === data.length - 1 ? 'disabled' : ''} title="Move Down"><i class="ph-bold ph-arrow-down"></i></button>
+
                         <button onclick="editResource(${item.id})" class="text-blue-500 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 p-2 rounded transition-colors mr-2" title="Edit">
                             <i class="ph-fill ph-pencil-simple"></i>
                         </button>
@@ -917,6 +955,29 @@
                 `;
                 tbody.appendChild(tr);
             });
+        }
+
+        async function moveResource(index, direction) {
+            if (index + direction < 0 || index + direction >= globalResourcesData.length) return;
+            
+            const newArray = [...globalResourcesData];
+            const temp = newArray[index];
+            newArray[index] = newArray[index + direction];
+            newArray[index + direction] = temp;
+            
+            document.getElementById('resourceTableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Updating order...</td></tr>`;
+            
+            try {
+                // 변경된 배열 순서대로 sort_order 일괄 업데이트
+                const updates = newArray.map((item, i) => {
+                    return supabaseClient.from('resources').update({ sort_order: i }).eq('id', item.id);
+                });
+                await Promise.all(updates);
+                fetchResourcesData();
+            } catch (err) {
+                alert('Failed to update order: ' + err.message);
+                fetchResourcesData();
+            }
         }
 
         // 동적 파일 필드 추가/추출 함수
@@ -966,6 +1027,11 @@
                 password: document.getElementById('resPassword').value,
                 files: files
             };
+
+            // 새로 추가 시 최상단으로 오게 하려면 sort_order: 0 세팅
+            if(!editingResourceId) {
+                newData.sort_order = 0;
+            }
 
             try {
                 if (editingResourceId) {

@@ -219,6 +219,7 @@
                                         <th class="py-3 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Region/Country</th>
                                         <th class="py-3 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Title</th>
                                         <th class="py-3 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider text-center">Date</th>
+                                        <th class="py-3 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider text-center">Languages (Files)</th>
                                         <th class="py-3 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider text-center">Password</th>
                                         <th class="py-3 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider text-center">Action</th>
                                     </tr>
@@ -370,9 +371,9 @@
         </div>
     </div>
 
-    <!-- 모달: Reports 추가/수정 -->
+    <!-- 모달: Reports 추가/수정 (다중 파일로 수정됨) -->
     <div id="addReportModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
-        <div class="bg-white p-8 max-w-lg w-full mx-4 rounded border border-gray-300 shadow-2xl transform transition-transform scale-95 opacity-0 duration-300 flex flex-col" id="addReportModalContent">
+        <div class="bg-white p-8 max-w-lg w-full mx-4 rounded border border-gray-300 shadow-2xl transform transition-transform scale-95 opacity-0 duration-300 flex flex-col max-h-[90vh]" id="addReportModalContent">
             <div class="flex justify-between items-start mb-6 pb-4 border-b border-gray-200">
                 <h3 class="text-xl font-bold text-primary" id="reportModalTitle">Add Market Report</h3>
                 <button onclick="closeAddReportModal()" class="text-gray-400 hover:text-gray-700 transition-colors">
@@ -380,7 +381,7 @@
                 </button>
             </div>
             
-            <form id="addReportForm" class="space-y-4">
+            <form id="addReportForm" class="space-y-4 overflow-y-auto pr-2">
                 <div>
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Region/Country *</label>
                     <input type="text" id="reportCountry" required class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent" placeholder="e.g. Vietnam / Southeast Asia">
@@ -399,11 +400,19 @@
                         <input type="text" id="reportPassword" required class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent" placeholder="e.g. 123">
                     </div>
                 </div>
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">File URL *</label>
-                    <input type="url" id="reportFileUrl" required class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent" placeholder="Link to PDF/Document">
+                
+                <!-- 동적 파일 리스트 영역 (Market Reports) -->
+                <div class="mt-4 border-t border-gray-200 pt-4">
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-2">Attached Files (Languages)</label>
+                    <div id="reportFilesContainer" class="space-y-2">
+                        <!-- 동적으로 필드가 추가됨 -->
+                    </div>
+                    <button type="button" onclick="addReportFileField()" class="mt-3 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">
+                        + Add File Link
+                    </button>
                 </div>
-                <button type="submit" id="btnSubmitReport" class="w-full bg-accent text-white py-3 mt-4 font-semibold text-sm rounded hover:bg-opacity-90 transition-colors uppercase tracking-wider flex items-center justify-center gap-2">
+
+                <button type="submit" id="btnSubmitReport" class="w-full bg-accent text-white py-3 mt-6 font-semibold text-sm rounded hover:bg-opacity-90 transition-colors uppercase tracking-wider flex items-center justify-center gap-2">
                     Save Report
                 </button>
             </form>
@@ -436,7 +445,7 @@
                     </div>
                 </div>
                 
-                <!-- 동적 파일 리스트 영역 -->
+                <!-- 동적 파일 리스트 영역 (Resources) -->
                 <div class="mt-4 border-t border-gray-200 pt-4">
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-2">Attached Files (Languages)</label>
                     <div id="resFilesContainer" class="space-y-2">
@@ -459,7 +468,7 @@
          * SUPABASE DATABASE SCHEMA REQUIREMENTS:
          * 1. inquiries, visitors: Existing tables for Inquiry section.
          * 2. news: id, url, title, publisher, date, image_url, created_at
-         * 3. market_reports: id, country, title, date, file_url, password, sort_order, created_at
+         * 3. market_reports: id, country, title, date, files (JSONB array), password, sort_order, created_at
          * 4. resources: id, title, date, password, files (JSONB array), sort_order, created_at
          */
 
@@ -552,7 +561,7 @@
                 document.getElementById('newsTableBody').innerHTML = `<tr><td colspan="4" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</td></tr>`;
                 fetchNewsData();
             } else if (currentTab === 'reports') {
-                document.getElementById('reportTableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</td></tr>`;
+                document.getElementById('reportTableBody').innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</td></tr>`;
                 fetchReportsData();
             } else if (currentTab === 'resources') {
                 document.getElementById('resourceTableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</td></tr>`;
@@ -775,18 +784,18 @@
             }
         }
 
-        // --- 6. Market Reports 관리 로직 (순서 변경 추가) ---
+        // --- 6. Market Reports 관리 로직 (다중 파일) ---
         async function fetchReportsData() {
             try {
                 const { data, error } = await supabaseClient
                     .from('market_reports')
                     .select('*')
-                    .order('sort_order', { ascending: true }) // 정렬 기준 1
-                    .order('created_at', { ascending: false }); // 정렬 기준 2
+                    .order('sort_order', { ascending: true }) 
+                    .order('created_at', { ascending: false }); 
                 
                 if (error) {
                     if (error.code === '42P01') { 
-                        document.getElementById('reportTableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-orange-500 text-sm"><i class="ph ph-warning text-2xl mb-2 inline-block"></i><br>'market_reports' table is missing in Supabase.</td></tr>`;
+                        document.getElementById('reportTableBody').innerHTML = `<tr><td colspan="6" class="py-8 text-center text-orange-500 text-sm"><i class="ph ph-warning text-2xl mb-2 inline-block"></i><br>'market_reports' table is missing in Supabase.</td></tr>`;
                         return;
                     }
                     throw error;
@@ -794,27 +803,31 @@
                 globalReportsData = data;
                 renderReportsTable(globalReportsData);
             } catch (err) {
-                document.getElementById('reportTableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-red-500 text-sm">Failed to load report data.</td></tr>`;
+                document.getElementById('reportTableBody').innerHTML = `<tr><td colspan="6" class="py-8 text-center text-red-500 text-sm">Failed to load report data.</td></tr>`;
             }
         }
 
         function renderReportsTable(data) {
             const tbody = document.getElementById('reportTableBody');
             if (!data || data.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500 text-sm">No reports uploaded yet.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500 text-sm">No reports uploaded yet.</td></tr>`;
                 return;
             }
             tbody.innerHTML = '';
             data.forEach((item, index) => {
+                // 다중 파일 뱃지 렌더링
+                const filesArr = item.files || [];
+                const filesHtml = filesArr.map(f => `<span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-[10px] font-bold mr-1 border border-gray-200">${f.lang}</span>`).join('');
+
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0';
                 tr.innerHTML = `
                     <td class="py-4 px-6 text-sm font-bold text-gray-900">${item.country}</td>
                     <td class="py-4 px-6 text-sm text-gray-700">${item.title}</td>
                     <td class="py-4 px-6 text-sm text-gray-500 text-center">${item.date}</td>
+                    <td class="py-4 px-6 text-sm text-center">${filesHtml}</td>
                     <td class="py-4 px-6 text-xs text-gray-400 text-center font-mono">${item.password}</td>
                     <td class="py-4 px-6 text-center whitespace-nowrap">
-                        <!-- 순서 변경 버튼 -->
                         <button onclick="moveReport(${index}, -1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-1 ${index === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''} title="Move Up"><i class="ph-bold ph-arrow-up"></i></button>
                         <button onclick="moveReport(${index}, 1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-3 ${index === data.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === data.length - 1 ? 'disabled' : ''} title="Move Down"><i class="ph-bold ph-arrow-down"></i></button>
 
@@ -838,10 +851,9 @@
             newArray[index] = newArray[index + direction];
             newArray[index + direction] = temp;
             
-            document.getElementById('reportTableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Updating order...</td></tr>`;
+            document.getElementById('reportTableBody').innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Updating order...</td></tr>`;
             
             try {
-                // 변경된 배열 순서대로 sort_order 일괄 업데이트
                 const updates = newArray.map((item, i) => {
                     return supabaseClient.from('market_reports').update({ sort_order: i }).eq('id', item.id);
                 });
@@ -853,8 +865,43 @@
             }
         }
 
+        // Market Reports용 다중 파일 필드 추가/추출 함수
+        function addReportFileField(lang = '', url = '') {
+            const container = document.getElementById('reportFilesContainer');
+            const div = document.createElement('div');
+            div.className = "flex gap-2 items-center report-file-item";
+            div.innerHTML = `
+                <input type="text" placeholder="e.g. KO" value="${lang}" class="w-16 p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent report-file-lang" required>
+                <input type="url" placeholder="File URL (PDF, etc)" value="${url}" class="flex-1 p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent report-file-url" required>
+                <button type="button" onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-600 bg-red-50 p-2 rounded transition-colors" title="Remove">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            `;
+            container.appendChild(div);
+        }
+
+        function getReportFiles() {
+            const items = document.querySelectorAll('.report-file-item');
+            const files = [];
+            items.forEach(item => {
+                const lang = item.querySelector('.report-file-lang').value.trim();
+                const url = item.querySelector('.report-file-url').value.trim();
+                if(lang && url) {
+                    files.push({ lang, label: lang, url });
+                }
+            });
+            return files;
+        }
+
+
         document.getElementById('addReportForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            const files = getReportFiles();
+            if(files.length === 0) {
+                alert('Please add at least one file link.');
+                return;
+            }
+
             const btn = document.getElementById('btnSubmitReport');
             const originalText = btn.innerHTML;
             btn.disabled = true;
@@ -864,11 +911,10 @@
                 country: document.getElementById('reportCountry').value,
                 title: document.getElementById('reportTitle').value,
                 date: document.getElementById('reportDate').value,
-                file_url: document.getElementById('reportFileUrl').value,
-                password: document.getElementById('reportPassword').value
+                password: document.getElementById('reportPassword').value,
+                files: files
             };
 
-            // 새로 추가 시 최상단으로 오게 하려면 sort_order: 0 세팅
             if(!editingReportId) {
                 newData.sort_order = 0;
             }
@@ -905,8 +951,8 @@
                 const { data, error } = await supabaseClient
                     .from('resources')
                     .select('*')
-                    .order('sort_order', { ascending: true }) // 정렬 기준 1
-                    .order('created_at', { ascending: false }); // 정렬 기준 2
+                    .order('sort_order', { ascending: true }) 
+                    .order('created_at', { ascending: false }); 
                 
                 if (error) {
                     if (error.code === '42P01') { 
@@ -941,7 +987,6 @@
                     <td class="py-4 px-6 text-sm text-gray-500 text-center">${item.date}</td>
                     <td class="py-4 px-6 text-xs text-gray-400 text-center font-mono">${item.password}</td>
                     <td class="py-4 px-6 text-center whitespace-nowrap">
-                        <!-- 순서 변경 버튼 -->
                         <button onclick="moveResource(${index}, -1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-1 ${index === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''} title="Move Up"><i class="ph-bold ph-arrow-up"></i></button>
                         <button onclick="moveResource(${index}, 1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-3 ${index === data.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === data.length - 1 ? 'disabled' : ''} title="Move Down"><i class="ph-bold ph-arrow-down"></i></button>
 
@@ -968,7 +1013,6 @@
             document.getElementById('resourceTableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Updating order...</td></tr>`;
             
             try {
-                // 변경된 배열 순서대로 sort_order 일괄 업데이트
                 const updates = newArray.map((item, i) => {
                     return supabaseClient.from('resources').update({ sort_order: i }).eq('id', item.id);
                 });
@@ -980,7 +1024,7 @@
             }
         }
 
-        // 동적 파일 필드 추가/추출 함수
+        // Resources용 동적 파일 필드 추가/추출 함수
         function addResFileField(lang = '', url = '') {
             const container = document.getElementById('resFilesContainer');
             const div = document.createElement('div');
@@ -1028,7 +1072,6 @@
                 files: files
             };
 
-            // 새로 추가 시 최상단으로 오게 하려면 sort_order: 0 세팅
             if(!editingResourceId) {
                 newData.sort_order = 0;
             }
@@ -1121,6 +1164,9 @@
         function openAddReportModal() {
             editingReportId = null;
             document.getElementById('addReportForm').reset();
+            document.getElementById('reportFilesContainer').innerHTML = ''; // 다중 파일 초기화
+            addReportFileField(); // 1개 빈 필드 생성
+
             document.getElementById('reportModalTitle').textContent = 'Add Market Report';
             document.getElementById('btnSubmitReport').innerHTML = 'Save Report';
 
@@ -1140,8 +1186,14 @@
             document.getElementById('reportCountry').value = report.country || '';
             document.getElementById('reportTitle').value = report.title || '';
             document.getElementById('reportDate').value = report.date || '';
-            document.getElementById('reportFileUrl').value = report.file_url || '';
             document.getElementById('reportPassword').value = report.password || '';
+
+            // 다중 파일 컨테이너 복원
+            const filesContainer = document.getElementById('reportFilesContainer');
+            filesContainer.innerHTML = '';
+            const files = report.files || [];
+            if(files.length === 0) addReportFileField();
+            else files.forEach(f => addReportFileField(f.lang, f.url));
 
             document.getElementById('reportModalTitle').textContent = 'Edit Market Report';
             document.getElementById('btnSubmitReport').innerHTML = 'Save Changes';
@@ -1171,8 +1223,8 @@
         function openAddResourceModal() {
             editingResourceId = null;
             document.getElementById('addResourceForm').reset();
-            document.getElementById('resFilesContainer').innerHTML = ''; // 초기화
-            addResFileField(); // 기본 1개 생성
+            document.getElementById('resFilesContainer').innerHTML = ''; 
+            addResFileField(); 
 
             document.getElementById('resourceModalTitle').textContent = 'Add Resource';
             document.getElementById('btnSubmitResource').innerHTML = 'Save Resource';

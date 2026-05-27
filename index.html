@@ -250,7 +250,7 @@
         </div>
     </section>
 
-    <!-- News & Press Section (Moved here) -->
+    <!-- News & Press Section -->
     <section id="news" class="py-24 bg-slate-50 relative border-b border-gray-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-10">
@@ -273,7 +273,7 @@
         </div>
     </section>
 
-    <!-- Company Profiles Section (Table Format with Multi-file, Moved here) -->
+    <!-- Company Profiles Section -->
     <section id="profiles" class="py-24 bg-white relative border-b border-gray-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-10">
@@ -328,7 +328,7 @@
                             <th class="px-6 py-4 font-bold" data-i18n="thRegion">Region/Country</th>
                             <th class="px-6 py-4 font-bold" data-i18n="thTitle">Report Title</th>
                             <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
-                            <th class="px-6 py-4 font-bold w-40 text-center" data-i18n="thAction">Action</th>
+                            <th class="px-6 py-4 font-bold w-40 text-center" data-i18n="thFiles">Available Files</th>
                         </tr>
                     </thead>
                     <tbody id="reportTableBody" class="divide-y divide-gray-200">
@@ -715,7 +715,6 @@
                     } else if (key === 'viewAllBtn' || key === 'closeBtn') {
                         el.innerHTML = `${translations[lang][key]}`;
                     } else if (key === 'btnViewDownload') {
-                        // Keeps icon for table button
                         el.innerHTML = `<i class="ph ph-lock-key mr-1.5"></i> ${translations[lang][key]}`;
                     } else {
                         el.textContent = translations[lang][key];
@@ -742,10 +741,7 @@
         // ★ SUPABASE INTEGRATION LOGIC ★
         // ==========================================
         
-        // 1. Supabase Project URL
         const SUPABASE_URL = 'https://metadqppbypzgiowkgzg.supabase.co'; 
-        
-        // 2. 🔥 Supabase Anon Key 🔥
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ldGFkcXBwYnlwemdpb3drZ3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2ODI3MTksImV4cCI6MjA5NTI1ODcxOX0.qehDot2UZEiys3nshDWUSyzjrA6rXgHD6QAz_nYAo3U';
         
         let supabaseClient = null;
@@ -947,14 +943,13 @@
             track.style.transform = `translateX(${currentTranslate}%)`;
         }
 
-
         // ==========================================
         // 회사소개서 및 글로벌 출장 보고서 Supabase 렌더링
         // ==========================================
 
         const brochureTableBody = document.getElementById('brochureTableBody');
         const reportTableBody = document.getElementById('reportTableBody');
-        let currentPwdTarget = null; // 공통으로 사용할 비밀번호 타겟 객체
+        let currentPwdTarget = null; 
         
         let allResourcesData = [];
         let isResourcesExpanded = false;
@@ -976,8 +971,8 @@
                 const { data, error } = await supabaseClient
                     .from('resources')
                     .select('*')
-                    .order('sort_order', { ascending: true }) // 정렬 기준 1
-                    .order('created_at', { ascending: false }); // 정렬 기준 2
+                    .order('sort_order', { ascending: true }) 
+                    .order('created_at', { ascending: false }); 
                 
                 if (error) throw error;
                 allResourcesData = data || [];
@@ -1015,7 +1010,6 @@
                 const filesArr = item.files || [];
                 let filesHtml = '<div class="flex flex-wrap gap-2">';
                 filesArr.forEach(file => {
-                    // file 객체는 { lang: 'KO', url: '...' } 형태를 띰
                     filesHtml += `<button onclick="promptPassword('${item.title} (${file.lang})', '${item.password}', '${file.url}')" class="inline-flex items-center gap-1 bg-[#F8FAFC] hover:bg-accent hover:text-white border border-gray-300 px-2.5 py-1.5 rounded text-[11px] font-bold text-secondary transition-colors"><i class="ph ph-file-pdf"></i> ${file.lang}</button>`;
                 });
                 filesHtml += '</div>';
@@ -1058,8 +1052,8 @@
                 const { data, error } = await supabaseClient
                     .from('market_reports')
                     .select('*')
-                    .order('sort_order', { ascending: true }) // 정렬 기준 1
-                    .order('created_at', { ascending: false }); // 정렬 기준 2
+                    .order('sort_order', { ascending: true }) 
+                    .order('created_at', { ascending: false }); 
 
                 if (error) throw error;
                 allReportsData = data || [];
@@ -1093,15 +1087,19 @@
             displayData.forEach(report => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50 transition-colors";
+
+                const filesArr = report.files || [];
+                let filesHtml = '<div class="flex flex-wrap gap-2 justify-center">';
+                filesArr.forEach(file => {
+                    filesHtml += `<button onclick="promptPassword('${report.title} (${file.lang})', '${report.password}', '${file.url}')" class="inline-flex items-center gap-1 bg-white hover:bg-primary hover:text-white border border-gray-300 px-2.5 py-1.5 rounded text-[10px] font-bold text-primary uppercase tracking-wider transition-colors shadow-sm"><i class="ph ph-lock-key"></i> ${file.lang}</button>`;
+                });
+                filesHtml += '</div>';
+
                 tr.innerHTML = `
                     <td class="px-6 py-4 border-b border-gray-100 font-semibold text-primary whitespace-nowrap">${report.country}</td>
                     <td class="px-6 py-4 border-b border-gray-100 text-gray-600">${report.title}</td>
                     <td class="px-6 py-4 border-b border-gray-100 text-gray-500 text-center whitespace-nowrap">${report.date || '-'}</td>
-                    <td class="px-6 py-4 border-b border-gray-100 text-center">
-                        <button onclick="promptPassword('${report.title}', '${report.password}', '${report.file_url}')" class="inline-flex items-center justify-center bg-white border border-gray-300 text-primary px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider hover:bg-primary hover:text-white transition-colors rounded shadow-sm w-full sm:w-auto" data-i18n="btnViewDownload">
-                            <i class="ph ph-lock-key mr-1.5"></i> View / Download
-                        </button>
-                    </td>
+                    <td class="px-6 py-4 border-b border-gray-100 text-center">${filesHtml}</td>
                 `;
                 reportTableBody.appendChild(tr);
             });
@@ -1163,12 +1161,10 @@
             const inputPwd = reportPasswordInput.value;
             
             if (inputPwd === currentPwdTarget.password) {
-                // 성공 로직
                 pwdErrorMsg.classList.add('hidden');
                 pwdSuccessMsg.classList.remove('hidden');
                 btnSubmitPwd.disabled = true;
                 
-                // 1초 후 모달 닫고 실제 파일 열기 동작
                 setTimeout(() => {
                     closePasswordModal();
                     if(currentPwdTarget.url) {
@@ -1179,11 +1175,9 @@
                 }, 1000);
                 
             } else {
-                // 실패 로직
                 pwdErrorMsg.classList.remove('hidden');
                 reportPasswordInput.focus();
                 
-                // 틀렸을 때 모달창 흔들림 효과
                 pwdModalContent.classList.add('animate-pulse');
                 setTimeout(() => pwdModalContent.classList.remove('animate-pulse'), 300);
             }
@@ -1195,18 +1189,13 @@
             }
         });
 
-        // ==========================================
-        // 페이지 로드 시 Supabase에서 데이터 호출
-        // ==========================================
         if (supabaseClient) {
             loadNewsFromSupabase();
             loadResourcesFromSupabase();
             loadReportsFromSupabase();
         }
 
-        // ==========================================
         // Contact Form 및 기타 모달 로직
-        // ==========================================
         const contactForm = document.getElementById('contactForm');
         const successModal = document.getElementById('successModal');
         const modalContent = document.getElementById('modalContent');

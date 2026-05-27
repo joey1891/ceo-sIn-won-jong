@@ -327,8 +327,9 @@
                         <tr>
                             <th class="px-6 py-4 font-bold" data-i18n="thRegion">Region/Country</th>
                             <th class="px-6 py-4 font-bold" data-i18n="thTitle">Report Title</th>
-                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
+                            <!-- Changed Order: Available Files first, then Date -->
                             <th class="px-6 py-4 font-bold w-40 text-center" data-i18n="thFiles">Available Files</th>
+                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
                         </tr>
                     </thead>
                     <tbody id="reportTableBody" class="divide-y divide-gray-200">
@@ -1095,11 +1096,12 @@
                 });
                 filesHtml += '</div>';
 
+                // Changed order: Files first, Date second
                 tr.innerHTML = `
                     <td class="px-6 py-4 border-b border-gray-100 font-semibold text-primary whitespace-nowrap">${report.country}</td>
                     <td class="px-6 py-4 border-b border-gray-100 text-gray-600">${report.title}</td>
-                    <td class="px-6 py-4 border-b border-gray-100 text-gray-500 text-center whitespace-nowrap">${report.date || '-'}</td>
                     <td class="px-6 py-4 border-b border-gray-100 text-center">${filesHtml}</td>
+                    <td class="px-6 py-4 border-b border-gray-100 text-gray-500 text-center whitespace-nowrap">${report.date || '-'}</td>
                 `;
                 reportTableBody.appendChild(tr);
             });

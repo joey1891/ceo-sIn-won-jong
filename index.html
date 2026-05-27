@@ -250,13 +250,40 @@
         </div>
     </section>
 
-    <!-- Company Profiles Section (Table Format with Multi-file) -->
-    <section id="profiles" class="py-24 bg-slate-50 relative border-b border-gray-200">
+    <!-- News & Press Section (Moved here) -->
+    <section id="news" class="py-24 bg-slate-50 relative border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-10">
+                <h2 data-i18n="newsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">News & Press</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
+                
+                <button id="toggleNewsBtn" class="inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
+                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
+                </button>
+            </div>
+
+            <div id="newsWrapper" class="carousel-container mt-10">
+                <div id="newsContainer" class="carousel-track">
+                    <div class="w-full text-center py-12">
+                        <i class="ph ph-spinner animate-spin text-4xl text-gray-400 mb-3 inline-block"></i>
+                        <p class="text-sm text-gray-500 font-sans tracking-wide uppercase">Loading latest news...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Profiles Section (Table Format with Multi-file, Moved here) -->
+    <section id="profiles" class="py-24 bg-white relative border-b border-gray-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-10">
                 <h2 data-i18n="profilesTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Resources</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
-                <p data-i18n="profilesDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto">Download official corporate brochures and resources. Password required.</p>
+                <p data-i18n="profilesDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Download official corporate brochures and resources. Password required.</p>
+                
+                <button id="toggleResourcesBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
+                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
+                </button>
             </div>
             
             <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
@@ -281,36 +308,17 @@
         </div>
     </section>
 
-    <!-- News & Press Section -->
-    <section id="news" class="py-24 bg-white relative border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
-            <div class="text-center mb-10">
-                <h2 data-i18n="newsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">News & Press</h2>
-                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
-                
-                <button id="toggleNewsBtn" class="inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
-                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
-                </button>
-            </div>
-
-            <div id="newsWrapper" class="carousel-container mt-10">
-                <div id="newsContainer" class="carousel-track">
-                    <div class="w-full text-center py-12">
-                        <i class="ph ph-spinner animate-spin text-4xl text-gray-400 mb-3 inline-block"></i>
-                        <p class="text-sm text-gray-500 font-sans tracking-wide uppercase">Loading latest news...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Global Market Reports Section -->
     <section id="reports" class="py-24 bg-slate-50 relative border-b border-gray-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-10">
                 <h2 data-i18n="reportsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Global Market Reports</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
-                <p data-i18n="reportsDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto">Industry and market analysis reports from global business trips. Password required for access.</p>
+                <p data-i18n="reportsDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Industry and market analysis reports from global business trips. Password required for access.</p>
+                
+                <button id="toggleReportsBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
+                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
+                </button>
             </div>
             
             <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
@@ -948,6 +956,12 @@
         const reportTableBody = document.getElementById('reportTableBody');
         let currentPwdTarget = null; // 공통으로 사용할 비밀번호 타겟 객체
         
+        let allResourcesData = [];
+        let isResourcesExpanded = false;
+        
+        let allReportsData = [];
+        let isReportsExpanded = false;
+
         const passwordModal = document.getElementById('passwordModal');
         const pwdModalContent = document.getElementById('pwdModalContent');
         const reportPasswordInput = document.getElementById('reportPasswordInput');
@@ -966,23 +980,35 @@
                     .order('created_at', { ascending: false }); // 정렬 기준 2
                 
                 if (error) throw error;
-                renderBrochuresTable(data);
+                allResourcesData = data || [];
+                renderBrochuresTable();
             } catch (err) {
                 console.error('Error fetching resources:', err);
                 brochureTableBody.innerHTML = '<tr><td colspan="3" class="px-6 py-8 text-center text-red-500 text-sm">Failed to load resources.</td></tr>';
             }
         }
 
-        function renderBrochuresTable(data) {
+        function renderBrochuresTable() {
             if (!brochureTableBody) return;
             brochureTableBody.innerHTML = '';
             
-            if (!data || data.length === 0) {
+            const toggleBtn = document.getElementById('toggleResourcesBtn');
+
+            if (!allResourcesData || allResourcesData.length === 0) {
                 brochureTableBody.innerHTML = '<tr><td colspan="3" class="px-6 py-8 text-center text-gray-500 text-sm">No resources available.</td></tr>';
+                if(toggleBtn) toggleBtn.classList.add('hidden');
                 return;
             }
 
-            data.forEach(item => {
+            if(allResourcesData.length > 5) {
+                if(toggleBtn) toggleBtn.classList.remove('hidden');
+            } else {
+                if(toggleBtn) toggleBtn.classList.add('hidden');
+            }
+
+            const displayData = isResourcesExpanded ? allResourcesData : allResourcesData.slice(0, 5);
+
+            displayData.forEach(item => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50 transition-colors";
                 
@@ -1001,7 +1027,28 @@
                 `;
                 brochureTableBody.appendChild(tr);
             });
+
+            if(toggleBtn) {
+                const span = toggleBtn.querySelector('span');
+                const icon = toggleBtn.querySelector('i');
+                if(isResourcesExpanded) {
+                    span.setAttribute('data-i18n', 'closeBtn');
+                    icon.className = 'ph ph-caret-up cursor-pointer';
+                } else {
+                    span.setAttribute('data-i18n', 'viewAllBtn');
+                    icon.className = 'ph ph-list cursor-pointer';
+                }
+            }
+
             changeLanguage(document.getElementById('languageSelect').value);
+        }
+
+        const toggleResourcesBtn = document.getElementById('toggleResourcesBtn');
+        if(toggleResourcesBtn) {
+            toggleResourcesBtn.addEventListener('click', () => {
+                isResourcesExpanded = !isResourcesExpanded;
+                renderBrochuresTable();
+            });
         }
 
         // Supabase에서 글로벌 출장 보고서 데이터 가져오기 (순서 반영)
@@ -1015,23 +1062,35 @@
                     .order('created_at', { ascending: false }); // 정렬 기준 2
 
                 if (error) throw error;
-                renderReportsTable(data);
+                allReportsData = data || [];
+                renderReportsTable();
             } catch (err) {
                 console.error('Error fetching reports:', err);
                 reportTableBody.innerHTML = '<tr><td colspan="4" class="px-6 py-8 text-center text-red-500 text-sm">Failed to load reports.</td></tr>';
             }
         }
 
-        function renderReportsTable(data) {
+        function renderReportsTable() {
             if (!reportTableBody) return;
             reportTableBody.innerHTML = '';
             
-            if (!data || data.length === 0) {
+            const toggleBtn = document.getElementById('toggleReportsBtn');
+
+            if (!allReportsData || allReportsData.length === 0) {
                 reportTableBody.innerHTML = '<tr><td colspan="4" class="px-6 py-8 text-center text-gray-500 text-sm">No reports available.</td></tr>';
+                if(toggleBtn) toggleBtn.classList.add('hidden');
                 return;
             }
 
-            data.forEach(report => {
+            if(allReportsData.length > 5) {
+                if(toggleBtn) toggleBtn.classList.remove('hidden');
+            } else {
+                if(toggleBtn) toggleBtn.classList.add('hidden');
+            }
+
+            const displayData = isReportsExpanded ? allReportsData : allReportsData.slice(0, 5);
+
+            displayData.forEach(report => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-50 transition-colors";
                 tr.innerHTML = `
@@ -1046,7 +1105,28 @@
                 `;
                 reportTableBody.appendChild(tr);
             });
+
+            if(toggleBtn) {
+                const span = toggleBtn.querySelector('span');
+                const icon = toggleBtn.querySelector('i');
+                if(isReportsExpanded) {
+                    span.setAttribute('data-i18n', 'closeBtn');
+                    icon.className = 'ph ph-caret-up cursor-pointer';
+                } else {
+                    span.setAttribute('data-i18n', 'viewAllBtn');
+                    icon.className = 'ph ph-list cursor-pointer';
+                }
+            }
+
             changeLanguage(document.getElementById('languageSelect').value);
+        }
+
+        const toggleReportsBtn = document.getElementById('toggleReportsBtn');
+        if(toggleReportsBtn) {
+            toggleReportsBtn.addEventListener('click', () => {
+                isReportsExpanded = !isReportsExpanded;
+                renderReportsTable();
+            });
         }
 
         // 통합 패스워드 모달 호출 함수

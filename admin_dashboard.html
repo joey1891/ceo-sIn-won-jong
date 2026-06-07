@@ -177,7 +177,7 @@
                     <div class="flex justify-between items-center mb-6">
                         <div>
                             <h2 class="text-2xl font-bold text-primary tracking-tight">Profile & Career Management</h2>
-                            <p class="text-sm text-gray-500 mt-1">Manage Executive Profile and Career Highlights.</p>
+                            <p class="text-sm text-gray-500 mt-1">Manage Executive Profile and dynamically ordered Career Highlights with Links.</p>
                         </div>
                         <button onclick="saveProfileData()" id="btnSaveProfile" class="bg-accent text-white px-5 py-2.5 rounded font-semibold text-sm hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase tracking-wider">
                             <i class="ph-bold ph-floppy-disk"></i> Save Changes
@@ -192,12 +192,12 @@
                             </div>
                             <div class="p-6 space-y-4" id="profileEditContainer">
                                 <div>
-                                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 1 (EN)</label>
-                                    <textarea id="profileP1" rows="3" class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none"></textarea>
+                                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 1</label>
+                                    <textarea id="profileP1" rows="5" class="w-full p-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none"></textarea>
                                 </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 2 (EN)</label>
-                                    <textarea id="profileP2" rows="3" class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none"></textarea>
+                                <div class="mt-4">
+                                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 2</label>
+                                    <textarea id="profileP2" rows="5" class="w-full p-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -210,9 +210,9 @@
                                     + Add Career
                                 </button>
                             </div>
-                            <div class="p-6">
-                                <div id="careerItemsContainer" class="space-y-6">
-                                    <!-- 동적 커리어 아이템 추가 -->
+                            <div class="p-6 bg-gray-50">
+                                <div id="careerItemsContainer" class="space-y-4">
+                                    <!-- Dynamic career items will be added here -->
                                 </div>
                             </div>
                         </div>
@@ -532,7 +532,7 @@
         let globalNewsData = [];
         let globalReportsData = [];
         let globalResourcesData = [];
-        let globalProfileData = null; // Profile 데이터를 담을 변수
+        let globalProfileData = null;
         
         let currentTab = 'inquiries'; 
         let editingNewsId = null; 
@@ -610,7 +610,8 @@
                 document.getElementById('tableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</td></tr>`;
                 fetchInquiriesData();
             } else if (currentTab === 'profile') {
-                document.getElementById('profileEditContainer').innerHTML = `<div class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</div>`;
+                document.getElementById('profileP1').value = 'Refreshing...';
+                document.getElementById('profileP2').value = 'Refreshing...';
                 fetchProfileData();
             } else if (currentTab === 'news') {
                 document.getElementById('newsTableBody').innerHTML = `<tr><td colspan="4" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</td></tr>`;
@@ -695,16 +696,15 @@
         // --- 5. Profile & Career 관리 로직 ---
         async function fetchProfileData() {
             try {
-                // profile 테이블에서 데이터 하나를 가져옵니다. (id가 1인 단일 레코드 가정)
                 const { data, error } = await supabaseClient
                     .from('profile')
                     .select('*')
                     .eq('id', 1)
                     .single();
 
-                if (error && error.code !== 'PGRST116') { // PGRST116: 결과를 찾을 수 없음
+                if (error && error.code !== 'PGRST116') {
                     if (error.code === '42P01') { 
-                        document.getElementById('profileEditContainer').innerHTML = `<div class="py-8 text-center text-orange-500 text-sm"><i class="ph ph-warning text-2xl mb-2 inline-block"></i><br>'profile' table is missing in Supabase.</div>`;
+                        alert("'profile' table is missing in Supabase.");
                         return;
                     }
                     throw error;
@@ -713,48 +713,47 @@
                 globalProfileData = data || { p1: '', p2: '', careers: [] };
                 renderProfileForm(globalProfileData);
             } catch (err) {
-                document.getElementById('profileEditContainer').innerHTML = `<div class="py-8 text-center text-red-500 text-sm">Failed to load profile data.</div>`;
+                alert("Failed to load profile data.");
             }
         }
 
         function renderProfileForm(data) {
-            // Profile Textareas
-            document.getElementById('profileEditContainer').innerHTML = `
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 1 (EN)</label>
-                    <textarea id="profileP1" rows="3" class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none">${data.p1 || ''}</textarea>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 2 (EN)</label>
-                    <textarea id="profileP2" rows="3" class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none">${data.p2 || ''}</textarea>
-                </div>
-            `;
+            document.getElementById('profileP1').value = data.p1 || '';
+            document.getElementById('profileP2').value = data.p2 || '';
 
-            // Career Highlights
             const container = document.getElementById('careerItemsContainer');
             container.innerHTML = '';
             const careers = data.careers || [];
             
             if (careers.length === 0) {
-                // 초기값 추가
-                addCareerItem({ time: 'Present', company: 'MEDIFAB', role: 'COO', logo_url: '' });
+                addCareerItem({ time: 'Present', company: 'Company Name', role: 'Role', logo_url: '' });
             } else {
                 careers.forEach(career => addCareerItem(career));
             }
         }
 
-        function addCareerItem(career = { time: '', company: '', role: '', logo_url: '' }) {
+        function addCareerItem(career = { time: '', company: '', role: '', logo_url: '', links: [] }) {
             const container = document.getElementById('careerItemsContainer');
-            const div = document.createElement('div');
-            div.className = "p-4 border border-gray-200 rounded bg-gray-50 career-item relative";
-            div.innerHTML = `
-                <button type="button" onclick="this.parentElement.remove()" class="absolute top-2 right-2 text-red-400 hover:text-red-600 p-1 transition-colors" title="Remove">
-                    <i class="ph-bold ph-x"></i>
-                </button>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            const itemDiv = document.createElement('div');
+            itemDiv.className = "career-item bg-white p-5 border border-gray-200 rounded shadow-sm relative";
+            
+            let linksHtml = '';
+            if (career.links && career.links.length > 0) {
+                career.links.forEach(link => {
+                    linksHtml += createLinkHTML(link.label, link.url, link.icon, link.isPrimary);
+                });
+            }
+
+            itemDiv.innerHTML = `
+                <div class="absolute top-3 right-3 flex gap-1 z-10 bg-white shadow-sm border border-gray-200 rounded">
+                    <button type="button" onclick="moveCareerItem(this, -1)" class="p-1.5 text-gray-500 hover:text-primary transition-colors" title="Move Up"><i class="ph-bold ph-arrow-up"></i></button>
+                    <button type="button" onclick="moveCareerItem(this, 1)" class="p-1.5 text-gray-500 hover:text-primary transition-colors border-l border-gray-200" title="Move Down"><i class="ph-bold ph-arrow-down"></i></button>
+                    <button type="button" onclick="this.closest('.career-item').remove()" class="p-1.5 text-red-500 hover:text-red-700 transition-colors border-l border-gray-200" title="Remove Career"><i class="ph-bold ph-trash"></i></button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pr-24">
                     <div>
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Period / Status</label>
-                        <input type="text" value="${career.time}" class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent career-time" placeholder="e.g. Present, Former">
+                        <input type="text" value="${career.time}" class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent career-time" placeholder="e.g. Present, 2020-2023">
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Company Name</label>
@@ -765,12 +764,56 @@
                         <input type="text" value="${career.role}" class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent career-role" placeholder="e.g. COO">
                     </div>
                     <div>
-                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Logo URL (Optional)</label>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Logo URL</label>
                         <input type="url" value="${career.logo_url || ''}" class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent career-logo" placeholder="https://...">
                     </div>
                 </div>
+                
+                <div class="mt-5 border-t border-gray-100 pt-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600">Action Links (Optional)</label>
+                        <button type="button" onclick="addCareerLink(this)" class="text-[10px] font-bold text-blue-600 hover:text-blue-800 transition-colors bg-blue-50 px-2 py-1 rounded">
+                            + Add Link
+                        </button>
+                    </div>
+                    <div class="links-container space-y-2">
+                        ${linksHtml}
+                    </div>
+                </div>
             `;
-            container.appendChild(div);
+            container.appendChild(itemDiv);
+        }
+
+        function createLinkHTML(label = '', url = '', icon = 'ph-globe', isPrimary = false) {
+            return `
+                <div class="link-item flex gap-2 items-center bg-gray-50 p-2 rounded border border-gray-200">
+                    <input type="text" placeholder="Label (e.g. Website)" value="${label}" class="w-1/4 p-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:border-accent link-label" required>
+                    <input type="text" placeholder="Icon (e.g. ph-globe)" value="${icon}" class="w-1/4 p-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:border-accent link-icon">
+                    <input type="url" placeholder="URL" value="${url}" class="flex-1 p-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:border-accent link-url" required>
+                    <label class="flex items-center gap-1 text-[10px] font-bold text-gray-600 whitespace-nowrap cursor-pointer">
+                        <input type="checkbox" class="link-primary" ${isPrimary ? 'checked' : ''}> Dark Style
+                    </label>
+                    <button type="button" onclick="this.closest('.link-item').remove()" class="text-red-400 hover:text-red-600 p-1" title="Remove Link">
+                        <i class="ph-bold ph-x"></i>
+                    </button>
+                </div>
+            `;
+        }
+
+        function addCareerLink(btnElement) {
+            const container = btnElement.closest('.mt-5').querySelector('.links-container');
+            container.insertAdjacentHTML('beforeend', createLinkHTML());
+        }
+
+        function moveCareerItem(btn, direction) {
+            const item = btn.closest('.career-item');
+            const container = item.parentElement;
+            
+            if (direction === -1 && item.previousElementSibling) {
+                container.insertBefore(item, item.previousElementSibling);
+            } else if (direction === 1 && item.nextElementSibling) {
+                container.insertBefore(item.nextElementSibling, item);
+            }
         }
 
         async function saveProfileData() {
@@ -785,18 +828,28 @@
             const careerElements = document.querySelectorAll('.career-item');
             const careers = [];
             careerElements.forEach(el => {
+                const links = [];
+                el.querySelectorAll('.link-item').forEach(linkEl => {
+                    links.push({
+                        label: linkEl.querySelector('.link-label').value,
+                        icon: linkEl.querySelector('.link-icon').value || 'ph-globe',
+                        url: linkEl.querySelector('.link-url').value,
+                        isPrimary: linkEl.querySelector('.link-primary').checked
+                    });
+                });
+
                 careers.push({
                     time: el.querySelector('.career-time').value,
                     company: el.querySelector('.career-company').value,
                     role: el.querySelector('.career-role').value,
-                    logo_url: el.querySelector('.career-logo').value
+                    logo_url: el.querySelector('.career-logo').value,
+                    links: links
                 });
             });
 
             const updateData = { p1, p2, careers };
 
             try {
-                // Upsert logic: id 1로 업데이트 또는 삽입
                 const { error } = await supabaseClient
                     .from('profile')
                     .upsert({ id: 1, ...updateData });

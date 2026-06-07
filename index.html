@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEO Sin Wonjong</title>
+    <title>CEO Shin WonJong</title>
     <!-- 파비콘 추가 (제공된 URL) -->
     <link rel="icon" href="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/SINWONJONG-%20HEALTHCARE%20(1).jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9TSU5XT05KT05HLSBIRUFMVEhDQVJFICgxKS5qcGciLCJpYXQiOjE3ODA4MzEyNzUsImV4cCI6MTc4MTY5NTI3NX0.hBhJAn2F7XATUIkmjC00yNT_mszIdJzILG8a7dZALPU" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -27,6 +28,7 @@
             }
         }
     </script>
+    
     <style>
         body {
             scroll-behavior: smooth;
@@ -96,7 +98,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <span class="font-serif font-bold text-xl tracking-wider text-primary border-b-2 border-primary">SIN WONJONG</span>
+                    <span class="font-serif font-bold text-xl tracking-wider text-primary border-b-2 border-primary">SHIN WONJONG</span>
                 </div>
                 <div class="flex items-center space-x-5">
                     
@@ -131,7 +133,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center fade-in">
             <div class="order-2 lg:order-1">
                 <h1 class="text-4xl lg:text-6xl font-bold leading-tight mb-6 text-primary tracking-tight">
-                    <span data-i18n="name">Sin Wonjong</span>
+                    <span data-i18n="name">Shin WonJong</span>
                 </h1>
                 <p data-i18n="heroTitle" class="text-xl lg:text-2xl font-normal text-secondary mb-6 leading-relaxed italic">
                     Visionary Leader Driving Innovation.
@@ -276,7 +278,231 @@
         </div>
     </section>
 
-    <!-- 3. Digital Channel Architecture -->
+    <!-- 3. Company Profiles Section -->
+    <section id="profiles" class="py-24 bg-white relative border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-10">
+                <h2 data-i18n="profilesTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Resources</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
+                <p data-i18n="profilesDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Download official corporate brochures and resources. Password required.</p>
+                
+                <button id="toggleResourcesBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
+                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
+                </button>
+            </div>
+            
+            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
+                <table class="w-full text-left font-sans text-sm min-w-[600px]">
+                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
+                        <tr>
+                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Title</th>
+                            <th class="px-6 py-4 font-bold" data-i18n="thFiles">Available Files</th>
+                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="brochureTableBody" class="divide-y divide-gray-200">
+                        <tr>
+                            <td colspan="3" class="px-6 py-8 text-center text-gray-500">
+                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
+                                Loading resources...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Global Market Reports Section -->
+    <section id="reports" class="py-24 bg-slate-50 relative border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-10">
+                <h2 data-i18n="reportsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Global Market Reports</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
+                <p data-i18n="reportsDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Industry and market analysis reports from global business trips. Password required for access.</p>
+                
+                <button id="toggleReportsBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
+                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
+                </button>
+            </div>
+            
+            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
+                <table class="w-full text-left font-sans text-sm min-w-[600px]">
+                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
+                        <tr>
+                            <th class="px-6 py-4 font-bold" data-i18n="thRegion">Region/Country</th>
+                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Report Title</th>
+                            <th class="px-6 py-4 font-bold w-40 text-center" data-i18n="thFiles">Available Files</th>
+                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTableBody" class="divide-y divide-gray-200">
+                        <tr>
+                            <td colspan="4" class="px-6 py-8 text-center text-gray-500">
+                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
+                                Loading reports...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. External Registry & Channels Section -->
+    <section id="connect" class="py-24 bg-white relative overflow-hidden border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 data-i18n="connectTitle" class="text-3xl font-bold mb-4 tracking-tight">External Registry & Channels</h2>
+                <p data-i18n="connectDesc" class="text-xs font-sans uppercase tracking-widest text-secondary max-w-2xl mx-auto">Access verified corporate networks and digital messenger credentials.</p>
+            </div>
+
+            <!-- Ordered: 1. LinkedIn, 2. CEO Brief, 3. Naver Blog, 4. YouTube -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto mb-16 fade-in">
+                <a href="https://www.linkedin.com/in/won-jong-shin/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
+                    <i class="ph-fill ph-linkedin-logo text-3xl text-primary shrink-0"></i>
+                    <div class="text-left font-sans">
+                        <p class="text-[10px] text-secondary font-bold uppercase tracking-widest" data-i18n="linkedinSub">Professional Network</p>
+                        <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="linkedinBtn">Verify via LinkedIn</p>
+                    </div>
+                </a>
+
+                <a href="https://www.ceodailybrief.com/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
+                    <i class="ph-fill ph-browser text-3xl text-primary shrink-0"></i>
+                    <div class="text-left font-sans">
+                        <p class="text-[10px] text-secondary font-bold uppercase tracking-widest" data-i18n="blogSub">Personal Journal</p>
+                        <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="blogBtn">Visit CEO Daily Brief</p>
+                    </div>
+                </a>
+
+                <a href="https://blog.naver.com/wjshin2450" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
+                    <i class="ph-fill ph-article text-3xl text-primary shrink-0"></i>
+                    <div class="text-left font-sans">
+                        <p class="text-[10px] text-secondary font-bold uppercase tracking-widest" data-i18n="naverSub">Official Blog</p>
+                        <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="naverBtn">Naver Blog</p>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/@VisionPrism_TV" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
+                    <i class="ph-fill ph-youtube-logo text-3xl text-primary shrink-0"></i>
+                    <div class="text-left font-sans">
+                        <p class="text-[10px] text-secondary font-bold uppercase tracking-widest" data-i18n="youtubeSub">Video Channel</p>
+                        <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="youtubeBtn">Watch on YouTube</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="text-center mb-10 fade-in">
+                <h3 data-i18n="qrTitle" class="text-sm font-sans font-bold uppercase tracking-widest text-primary mb-2">Social Messenger Gateways</h3>
+                <div class="w-8 h-0.5 bg-gray-400 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto fade-in font-sans">
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
+                        <i class="ph-fill ph-chat-circle text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/KAKAO.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9LQUtBTy5wbmciLCJpYXQiOjE3Nzk2ODQyNDMsImV4cCI6MjA5NTA0NDI0M30.tTVdFpUMoRQK3mrOiD2brYQe8vrSh4F7kvujdrkG7yQ" alt="Kakao QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">KakaoTalk</span>
+                </div>
+
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
+                        <i class="ph-fill ph-chat-teardrop-dots text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/LINE.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9MSU5FLmpwZyIsImlhdCI6MTc3OTY4NDI2MSwiZXhwIjoyMDk1MDQ0MjYxfQ.xeu6k5I1_pC2g90CmviAEQ_Sa9iyCkibwoscC1s6Xx4" alt="Line QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">LINE</span>
+                </div>
+
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
+                        <i class="ph-fill ph-telegram-logo text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/TELEGRAM.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9URUxFR1JBTS5qcGciLCJpYXQiOjE3Nzk2ODQyODIsImV4cCI6MjA5NTA0NDI4Mn0.-ydpkGPaZ9M-nR6t96sSOIov9gwKw-KQR20A5XduX_Q" alt="Telegram QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">Telegram</span>
+                </div>
+
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
+                        <i class="ph-fill ph-wechat-logo text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/WECHAT.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9XRUNIQVQucG5nIiwiaWF0IjoxNzc5Njg0Mjk1LCJleHAiOjIwOTUwNDQyOTV9.xIurKFlWE9F0aCtjqezQdwhhNp37NibP-P3VO4oGyfo" alt="WeChat QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">WeChat</span>
+                </div>
+
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
+                        <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/WHATSAPP.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9XSEFUU0FQUC5qcGciLCJpYXQiOjE3Nzk2ODQzMzQsImV4cCI6MjA5NTA0NDMzNH0.tqdfZeJ-L6u_4oPvmmb2jcbwLXFDLn33IIHHTyd2too" alt="WhatsApp QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">WhatsApp</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Official Communication Statement Section -->
+    <section id="inquiry" class="py-24 bg-slate-50 relative border-b border-gray-200">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-12">
+                <h2 data-i18n="contactTitle" class="text-3xl font-bold mb-4 text-primary tracking-tight">Official Communication Statement</h2>
+                <p data-i18n="contactDesc" class="text-xs font-sans uppercase tracking-widest text-secondary max-w-2xl mx-auto mb-4">Please submit your formal inquiries or network record verification below.</p>
+                <div class="w-12 h-0.5 bg-primary mx-auto"></div>
+            </div>
+
+            <div class="bg-white p-8 md:p-10 border border-gray-300 shadow-sm rounded-none">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelName">Name *</label>
+                            <input type="text" id="formInputName" required class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelNationality">Nationality *</label>
+                            <input type="text" id="formInputNationality" required class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelCompany">Company Name *</label>
+                            <input type="text" id="formInputCompany" required class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelPhone">Phone Number</label>
+                            <input type="tel" id="formInputPhone" class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelEmail">Email Address *</label>
+                            <input type="email" id="formInputEmail" required class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelSns">Social Media Identifier / SNS ID (Optional)</label>
+                            <input type="text" id="formInputSns" class="w-full p-3 gov-input bg-white text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelMessage">Inquiry Statement / Message *</label>
+                        <textarea id="formInputMessage" rows="5" required class="w-full p-3 gov-input bg-white text-sm resize-none"></textarea>
+                    </div>
+                    <div class="text-center pt-4">
+                        <button type="submit" id="submitBtn" class="font-sans bg-primary text-white px-10 py-4 font-semibold hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase text-xs tracking-wider">
+                            <span data-i18n="formSubmit">Submit Statement</span> <i class="ph ph-paper-plane-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Digital Channel Architecture -->
     <section id="media-ecosystem" class="py-24 bg-white relative border-b border-gray-200">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-16">
@@ -381,230 +607,6 @@
         </div>
     </section>
 
-    <!-- 4. Company Profiles Section -->
-    <section id="profiles" class="py-24 bg-slate-50 relative border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
-            <div class="text-center mb-10">
-                <h2 data-i18n="profilesTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Resources</h2>
-                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
-                <p data-i18n="profilesDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Download official corporate brochures and resources. Password required.</p>
-                
-                <button id="toggleResourcesBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
-                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
-                </button>
-            </div>
-            
-            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
-                <table class="w-full text-left font-sans text-sm min-w-[600px]">
-                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
-                        <tr>
-                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Title</th>
-                            <th class="px-6 py-4 font-bold" data-i18n="thFiles">Available Files</th>
-                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody id="brochureTableBody" class="divide-y divide-gray-200">
-                        <tr>
-                            <td colspan="3" class="px-6 py-8 text-center text-gray-500">
-                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
-                                Loading resources...
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Global Market Reports Section -->
-    <section id="reports" class="py-24 bg-white relative border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
-            <div class="text-center mb-10">
-                <h2 data-i18n="reportsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Global Market Reports</h2>
-                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
-                <p data-i18n="reportsDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Industry and market analysis reports from global business trips. Password required for access.</p>
-                
-                <button id="toggleReportsBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
-                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
-                </button>
-            </div>
-            
-            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
-                <table class="w-full text-left font-sans text-sm min-w-[600px]">
-                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
-                        <tr>
-                            <th class="px-6 py-4 font-bold" data-i18n="thRegion">Region/Country</th>
-                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Report Title</th>
-                            <th class="px-6 py-4 font-bold w-40 text-center" data-i18n="thFiles">Available Files</th>
-                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody id="reportTableBody" class="divide-y divide-gray-200">
-                        <tr>
-                            <td colspan="4" class="px-6 py-8 text-center text-gray-500">
-                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
-                                Loading reports...
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. External Registry & Channels Section -->
-    <section id="connect" class="py-24 bg-slate-50 relative overflow-hidden border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 data-i18n="connectTitle" class="text-3xl font-bold mb-4 tracking-tight">External Registry & Channels</h2>
-                <p data-i18n="connectDesc" class="text-xs font-sans uppercase tracking-widest text-secondary max-w-2xl mx-auto">Access verified corporate networks and digital messenger credentials.</p>
-            </div>
-
-            <!-- Ordered: 1. LinkedIn, 2. CEO Brief, 3. Naver Blog, 4. YouTube -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto mb-16 fade-in">
-                <a href="https://www.linkedin.com/in/won-jong-shin/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
-                    <i class="ph-fill ph-linkedin-logo text-3xl text-primary shrink-0"></i>
-                    <div class="text-left font-sans">
-                        <p class="text-[10px] text-secondary font-bold uppercase tracking-widest" data-i18n="linkedinSub">Professional Network</p>
-                        <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="linkedinBtn">Verify via LinkedIn</p>
-                    </div>
-                </a>
-
-                <a href="https://www.ceodailybrief.com/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
-                    <i class="ph-fill ph-browser text-3xl text-primary shrink-0"></i>
-                    <div class="text-left font-sans">
-                        <p class="text-[10px] text-secondary font-bold uppercase tracking-widest" data-i18n="blogSub">Personal Journal</p>
-                        <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="blogBtn">Visit CEO Daily Brief</p>
-                    </div>
-                </a>
-
-                <a href="https://blog.naver.com/wjshin2450" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
-                    <i class="ph-fill ph-article text-3xl text-primary shrink-0"></i>
-                    <div class="text-left font-sans">
-                        <p class="text-[10px] text-secondary font-bold uppercase tracking-widest" data-i18n="naverSub">Official Blog</p>
-                        <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="naverBtn">Naver Blog</p>
-                    </div>
-                </a>
-
-                <a href="https://www.youtube.com/@VisionPrism_TV" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
-                    <i class="ph-fill ph-youtube-logo text-3xl text-primary shrink-0"></i>
-                    <div class="text-left font-sans">
-                        <p class="text-[10px] text-secondary font-bold uppercase tracking-widest" data-i18n="youtubeSub">Video Channel</p>
-                        <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="youtubeBtn">Watch on YouTube</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="text-center mb-10 fade-in">
-                <h3 data-i18n="qrTitle" class="text-sm font-sans font-bold uppercase tracking-widest text-primary mb-2">Social Messenger Gateways</h3>
-                <div class="w-8 h-0.5 bg-gray-400 mx-auto"></div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto fade-in font-sans">
-                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
-                        <i class="ph-fill ph-chat-circle text-lg"></i>
-                    </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
-                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/KAKAO.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9LQUtBTy5wbmciLCJpYXQiOjE3Nzk2ODQyNDMsImV4cCI6MjA5NTA0NDI0M30.tTVdFpUMoRQK3mrOiD2brYQe8vrSh4F7kvujdrkG7yQ" alt="Kakao QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">KakaoTalk</span>
-                </div>
-
-                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
-                        <i class="ph-fill ph-chat-teardrop-dots text-lg"></i>
-                    </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
-                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/LINE.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9MSU5FLmpwZyIsImlhdCI6MTc3OTY4NDI2MSwiZXhwIjoyMDk1MDQ0MjYxfQ.xeu6k5I1_pC2g90CmviAEQ_Sa9iyCkibwoscC1s6Xx4" alt="Line QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">LINE</span>
-                </div>
-
-                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
-                        <i class="ph-fill ph-telegram-logo text-lg"></i>
-                    </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
-                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/TELEGRAM.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9URUxFR1JBTS5qcGciLCJpYXQiOjE3Nzk2ODQyODIsImV4cCI6MjA5NTA0NDI4Mn0.-ydpkGPaZ9M-nR6t96sSOIov9gwKw-KQR20A5XduX_Q" alt="Telegram QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">Telegram</span>
-                </div>
-
-                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
-                        <i class="ph-fill ph-wechat-logo text-lg"></i>
-                    </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
-                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/WECHAT.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9XRUNIQVQucG5nIiwiaWF0IjoxNzc5Njg0Mjk1LCJleHAiOjIwOTUwNDQyOTV9.xIurKFlWE9F0aCtjqezQdwhhNp37NibP-P3VO4oGyfo" alt="WeChat QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">WeChat</span>
-                </div>
-
-                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
-                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
-                        <i class="ph-fill ph-whatsapp-logo text-lg"></i>
-                    </div>
-                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
-                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/WHATSAPP.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9XSEFUU0FQUC5qcGciLCJpYXQiOjE3Nzk2ODQzMzQsImV4cCI6MjA5NTA0NDMzNH0.tqdfZeJ-L6u_4oPvmmb2jcbwLXFDLn33IIHHTyd2too" alt="WhatsApp QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">WhatsApp</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. Official Communication Statement Section -->
-    <section id="inquiry" class="py-24 bg-white relative border-b border-gray-200">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
-            <div class="text-center mb-12">
-                <h2 data-i18n="contactTitle" class="text-3xl font-bold mb-4 text-primary tracking-tight">Official Communication Statement</h2>
-                <p data-i18n="contactDesc" class="text-xs font-sans uppercase tracking-widest text-secondary max-w-2xl mx-auto mb-4">Please submit your formal inquiries or network record verification below.</p>
-                <div class="w-12 h-0.5 bg-primary mx-auto"></div>
-            </div>
-
-            <div class="bg-white p-8 md:p-10 border border-gray-300 shadow-sm rounded-none">
-                <form id="contactForm" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelName">Name *</label>
-                            <input type="text" id="formInputName" required class="w-full p-3 gov-input bg-white text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelNationality">Nationality *</label>
-                            <input type="text" id="formInputNationality" required class="w-full p-3 gov-input bg-white text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelCompany">Company Name *</label>
-                            <input type="text" id="formInputCompany" required class="w-full p-3 gov-input bg-white text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelPhone">Phone Number</label>
-                            <input type="tel" id="formInputPhone" class="w-full p-3 gov-input bg-white text-sm">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelEmail">Email Address *</label>
-                            <input type="email" id="formInputEmail" required class="w-full p-3 gov-input bg-white text-sm">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelSns">Social Media Identifier / SNS ID (Optional)</label>
-                            <input type="text" id="formInputSns" class="w-full p-3 gov-input bg-white text-sm">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-sans font-bold uppercase tracking-wider text-primary mb-2" id="labelMessage">Inquiry Statement / Message *</label>
-                        <textarea id="formInputMessage" rows="5" required class="w-full p-3 gov-input bg-white text-sm resize-none"></textarea>
-                    </div>
-                    <div class="text-center pt-4">
-                        <button type="submit" id="submitBtn" class="font-sans bg-primary text-white px-10 py-4 font-semibold hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase text-xs tracking-wider">
-                            <span data-i18n="formSubmit">Submit Statement</span> <i class="ph ph-paper-plane-right"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <!-- Success Modal -->
     <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
         <div class="bg-white p-8 max-w-sm w-full mx-4 border border-gray-300 shadow-2xl transform transition-transform scale-95 opacity-0 duration-300" id="modalContent">
@@ -653,7 +655,7 @@
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "Chief Executive Officer",
-                name: "Sin Wonjong",
+                name: "Shin WonJong",
                 heroTitle: "Visionary Leader Driving Innovation.",
                 heroDesc: "Leading the global market by creating new value and embracing change with unwavering principles.",
                 connectBtn: "Get in Touch",
@@ -762,7 +764,7 @@
                 profileTitle: "Executive Profile",
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
-                role: "Giám đốc điều hành", name: "Sin Wonjong", heroTitle: "Nhà lãnh đạo tầm nhìn thúc đẩy đổi mới.", heroDesc: "Dẫn dắt thị trường toàn cầu bằng cách tạo ra giá trị mới và nắm bắt sự thay đổi với các nguyên tắc vững chắc.", connectBtn: "Liên hệ", aboutTitle: "Kinh nghiệm làm việc", 
+                role: "Giám đốc điều hành", name: "Shin WonJong", heroTitle: "Nhà lãnh đạo tầm nhìn thúc đẩy đổi mới.", heroDesc: "Dẫn dắt thị trường toàn cầu bằng cách tạo ra giá trị mới và nắm bắt sự thay đổi với các nguyên tắc vững chắc.", connectBtn: "Liên hệ", aboutTitle: "Kinh nghiệm làm việc", 
                 exp1_time: "Hiện tại", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "Trang web chính thức", exp1_link2: "Công nghệ cốt lõi", exp1_link3: "SNS chính thức", exp1_link4: "Trung tâm mua sắm",
                 exp2_time: "Cựu", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Cựu", exp3_company: "GC Wellbeing", exp3_role: "Giám đốc Đổi mới Kinh doanh", exp4_time: "Cựu", exp4_company: "CosmaxBTI", exp4_role: "Trưởng nhóm Lập kế hoạch Chiến lược", exp5_time: "Cựu", exp5_company: "GC", exp5_role: "Văn phòng Lập kế hoạch Chiến lược", newsTitle: "News & Press", viewAllBtn: "Xem tất cả", closeBtn: "Thu gọn", readArticle: "Read Article", 
                 reportsTitle: "Báo cáo thị trường toàn cầu", reportsDesc: "Báo cáo phân tích thị trường và ngành từ các chuyến công tác toàn cầu. Yêu cầu mật khẩu để truy cập.", 
@@ -807,7 +809,7 @@
                 profileTitle: "Executive Profile",
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed dengan jaringan distribusi dan pemasaran Asia yang tak tertandingi...",
-                role: "Chief Executive Officer", name: "Sin Wonjong", heroTitle: "Pemimpin Visioner yang Mendorong Inovasi.", heroDesc: "Memimpin pasar global dengan menciptakan nilai baru dan merangkul perubahan dengan prinsip-prinsip yang tak tergoyahkan.", connectBtn: "Hubungi Kami", aboutTitle: "Sorotan Karir", 
+                role: "Chief Executive Officer", name: "Shin WonJong", heroTitle: "Pemimpin Visioner yang Mendorong Inovasi.", heroDesc: "Memimpin pasar global dengan menciptakan nilai baru dan merangkul perubahan dengan prinsip-prinsip yang tak tergoyahkan.", connectBtn: "Hubungi Kami", aboutTitle: "Sorotan Karir", 
                 exp1_time: "Saat Ini", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "Situs Resmi", exp1_link2: "Teknologi Inti", exp1_link3: "SNS Resmi", exp1_link4: "Pusat Perbelanjaan Online",
                 exp2_time: "Mantan", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Mantan", exp3_company: "GC Wellbeing", exp3_role: "Pemimpin Inovasi Bisnis", exp4_time: "Mantan", exp4_company: "CosmaxBTI", exp4_role: "Pemimpin Tim Perencanaan Strategis", exp5_time: "Mantan", exp5_company: "GC", exp5_role: "Kantor Perencanaan Strategis", newsTitle: "News & Press", viewAllBtn: "Lihat Semua", closeBtn: "Tutup", readArticle: "Read Article", 
                 reportsTitle: "Laporan Pasar Global", reportsDesc: "Laporan analisis industri dan pasar dari perjalanan bisnis global. Diperlukan kata sandi untuk akses.", 
@@ -1085,7 +1087,6 @@
         const pwdSuccessMsg = document.getElementById('pwdSuccessMsg');
         const btnSubmitPwd = document.getElementById('btnSubmitPwd');
 
-        // Supabase에서 회사 소개서 데이터 가져오기 (순서 반영)
         async function loadResourcesFromSupabase() {
             if (!supabaseClient || !brochureTableBody) return;
             try {
@@ -1166,7 +1167,6 @@
             });
         }
 
-        // Supabase에서 글로벌 출장 보고서 데이터 가져오기 (순서 반영)
         async function loadReportsFromSupabase() {
             if (!supabaseClient || !reportTableBody) return;
             try {
@@ -1216,7 +1216,6 @@
                 });
                 filesHtml += '</div>';
 
-                // Changed order: Files first, Date second
                 tr.innerHTML = `
                     <td class="px-6 py-4 border-b border-gray-100 font-semibold text-primary whitespace-nowrap">${report.country}</td>
                     <td class="px-6 py-4 border-b border-gray-100 text-gray-600">${report.title}</td>
@@ -1249,7 +1248,6 @@
             });
         }
 
-        // 통합 패스워드 모달 호출 함수
         function promptPassword(title, correctPassword, targetUrl) {
             currentPwdTarget = { title, password: correctPassword, url: targetUrl };
             reportPasswordInput.value = '';

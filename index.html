@@ -1,4 +1,3 @@
-```html:CEO Portfolio:index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -187,7 +186,7 @@
             <div class="flex flex-col gap-6" id="careerHighlightsContainer">
                 <div class="text-center py-10 text-gray-500 font-sans text-sm">
                     <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
-                        Loading careers...
+                    Loading careers...
                 </div>
             </div>
         </div>
@@ -824,7 +823,7 @@
                     if (careers.length > 0) {
                         careerContainer.innerHTML = ''; 
                         
-                        careers.forEach(item => {
+                        careers.forEach((item, index) => {
                             const links = item.links || [];
                             let linksHtml = '';
                             
@@ -854,9 +853,11 @@
                                 ? `<img src="${item.logo_url}" alt="${item.company} Logo" class="w-full h-full object-contain">`
                                 : `<div class="text-gray-300"><i class="ph-fill ph-buildings text-4xl"></i></div>`;
 
-                            // 배경색을 무조건 bg-white로 수정
+                            // 첫 번째 경력(보통 현재 경력)은 배경색 bg-[#F8FAFC], 나머지는 bg-white
+                            const bgClass = index === 0 ? 'bg-[#F8FAFC]' : 'bg-white';
+
                             careerContainer.insertAdjacentHTML('beforeend', `
-                                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-white border border-gray-200 rounded hover:shadow-md transition-shadow">
+                                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 ${bgClass} border border-gray-200 rounded hover:shadow-md transition-shadow">
                                     <div class="w-20 h-20 flex-shrink-0 bg-transparent flex items-center justify-center p-1">
                                         ${logoHtml}
                                     </div>
@@ -879,7 +880,6 @@
                 document.getElementById('careerHighlightsContainer').innerHTML = '<div class="text-center py-10 text-red-500 font-sans text-sm">Failed to load profile data.</div>';
             }
         }
-
 
         // ==========================================
         // 2. 뉴스 기사 로직

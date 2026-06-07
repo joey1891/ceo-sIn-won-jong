@@ -1,3 +1,4 @@
+```html:CEO Portfolio:index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,8 +168,9 @@
                     <h2 data-i18n="profileTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Executive Profile</h2>
                     <div class="w-12 h-0.5 bg-primary mx-auto"></div>
                 </div>
+                <!-- ID is required here to dynamically inject content from Supabase -->
                 <div class="font-sans text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose space-y-6 text-left max-w-3xl mx-auto break-keep" id="executiveProfileContainer">
-                    <div class="text-center py-10 text-gray-500">
+                    <div class="text-center py-10 text-gray-500 font-sans text-sm">
                         <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
                         Loading profile...
                     </div>
@@ -181,10 +183,11 @@
             </div>
 
             <!-- Career Highlights Container -->
+            <!-- ID is required here to dynamically inject careers from Supabase -->
             <div class="flex flex-col gap-6" id="careerHighlightsContainer">
                 <div class="text-center py-10 text-gray-500 font-sans text-sm">
                     <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
-                    Loading careers...
+                        Loading careers...
                 </div>
             </div>
         </div>
@@ -594,11 +597,6 @@
                 heroDesc: "Leading the global market by creating new value and embracing change with unwavering principles.",
                 connectBtn: "Get in Touch",
                 aboutTitle: "Career Highlights",
-                exp1_time: "Present", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "Official Website", exp1_link2: "Core Tech", exp1_link3: "Official SNS", exp1_link4: "Online Mall",
-                exp2_time: "Former", exp2_company: "BioPlus International", exp2_role: "CEO",
-                exp3_time: "Former", exp3_company: "GC Wellbeing", exp3_role: "Business Innovation Leader",
-                exp4_time: "Former", exp4_company: "CosmaxBTI", exp4_role: "Strategy Planning Team Leader",
-                exp5_time: "Former", exp5_company: "GC", exp5_role: "Strategy Planning Office",
                 newsTitle: "News & Press",
                 viewAllBtn: "View All",
                 closeBtn: "Collapse",
@@ -634,11 +632,6 @@
                 heroDesc: "흔들림 없는 원칙으로 변화를 수용하고 새로운 가치를 창출하며 글로벌 시장을 선도합니다.",
                 connectBtn: "연락하기",
                 aboutTitle: "주요 경력 사항",
-                exp1_time: "현 (Present)", exp1_company: "MEDIFAB", exp1_role: "COO (최고운영책임자)", exp1_link1: "공식 홈페이지", exp1_link2: "핵심 기술", exp1_link3: "공식 SNS", exp1_link4: "온라인 쇼핑몰",
-                exp2_time: "전 (Former)", exp2_company: "바이오플러스인터내셔널", exp2_role: "CEO",
-                exp3_time: "전 (Former)", exp3_company: "GC Wellbeing", exp3_role: "Business Innovation Leader",
-                exp4_time: "전 (Former)", exp4_company: "CosmaxBTI", exp4_role: "전략기획팀장",
-                exp5_time: "전 (Former)", exp5_company: "GC", exp5_role: "전략기획실",
                 newsTitle: "언론 보도 및 기사",
                 viewAllBtn: "전체보기",
                 closeBtn: "접기",
@@ -669,8 +662,7 @@
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "首席执行官 (CEO)", name: "申源鐘", heroTitle: "引领创新的远见卓识领导者.", heroDesc: "以坚定不移的原则拥抱变化，创造新价值，引领全球市场。", connectBtn: "保持联系", aboutTitle: "职业亮点", 
-                exp1_time: "现任", exp1_company: "MEDIFAB", exp1_role: "首席运营官 (COO)", exp1_link1: "官方网站", exp1_link2: "核心技术", exp1_link3: "官方 SNS", exp1_link4: "网上商城",
-                exp2_time: "前任", exp2_company: "BioPlus International", exp2_role: "首席执行官 (CEO)", exp3_time: "前任", exp3_company: "GC Wellbeing", exp3_role: "业务创新负责人 (Business Innovation Leader)", exp4_time: "前任", exp4_company: "CosmaxBTI", exp4_role: "战略规划团队负责人", exp5_time: "前任", exp5_company: "GC", exp5_role: "战略规划室", newsTitle: "News & Press", viewAllBtn: "查看全部", closeBtn: "折叠", readArticle: "Read Article", 
+                newsTitle: "News & Press", viewAllBtn: "查看全部", closeBtn: "折叠", readArticle: "Read Article", 
                 reportsTitle: "全球市场报告", reportsDesc: "全球商务旅行的行业和市场分析报告。 需要密码才能访问。", 
                 profilesTitle: "资源", profilesDesc: "下载官方公司宣传册和资源。 需要密码。",
                 thRegion: "国家/地区", thTitle: "报告标题", thDate: "日期", thAction: "行动", 
@@ -684,8 +676,7 @@
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "最高経営責任者 (CEO)", name: "申 源鐘 (シン・ウォンジョン)", heroTitle: "革新を牽引するビジョンリーダー.", heroDesc: "揺るぎない原則で変化を受け入れ、新たな価値を創造し、グローバル市場をリードします。", connectBtn: "お問い合わせ", aboutTitle: "主な経歴", 
-                exp1_time: "現職", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "公式ウェブサイト", exp1_link2: "コア技術", exp1_link3: "公式SNS", exp1_link4: "オンラインモール",
-                exp2_time: "前職", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "前職", exp3_company: "GC Wellbeing", exp3_role: "ビジネスイノベーションリーダー", exp4_time: "前職", exp4_company: "CosmaxBTI", exp4_role: "戦略企画チーム長", exp5_time: "前職", exp5_company: "GC", exp5_role: "戦略企画室", newsTitle: "News & Press", viewAllBtn: "すべて見る", closeBtn: "閉じる", readArticle: "Read Article", 
+                newsTitle: "News & Press", viewAllBtn: "すべて見る", closeBtn: "閉じる", readArticle: "Read Article", 
                 reportsTitle: "グローバル市場レポート", reportsDesc: "海外出張からの業界および市場分析レポート。アクセスにはパスワードが必要です。", 
                 profilesTitle: "資料", profilesDesc: "公式の会社案内や資料をダウンロードできます。パスワードが必要です。",
                 thRegion: "地域/国", thTitle: "レポートのタイトル", thDate: "日付", thAction: "アクション", 
@@ -699,8 +690,7 @@
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "Giám đốc điều hành", name: "Shin WonJong", heroTitle: "Nhà lãnh đạo tầm nhìn thúc đẩy đổi mới.", heroDesc: "Dẫn dắt thị trường toàn cầu bằng cách tạo ra giá trị mới và nắm bắt sự thay đổi với các nguyên tắc vững chắc.", connectBtn: "Liên hệ", aboutTitle: "Kinh nghiệm làm việc", 
-                exp1_time: "Hiện tại", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "Trang web chính thức", exp1_link2: "Công nghệ cốt lõi", exp1_link3: "SNS chính thức", exp1_link4: "Trung tâm mua sắm",
-                exp2_time: "Cựu", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Cựu", exp3_company: "GC Wellbeing", exp3_role: "Giám đốc Đổi mới Kinh doanh", exp4_time: "Cựu", exp4_company: "CosmaxBTI", exp4_role: "Trưởng nhóm Lập kế hoạch Chiến lược", exp5_time: "Cựu", exp5_company: "GC", exp5_role: "Văn phòng Lập kế hoạch Chiến lược", newsTitle: "News & Press", viewAllBtn: "Xem tất cả", closeBtn: "Thu gọn", readArticle: "Read Article", 
+                newsTitle: "News & Press", viewAllBtn: "Xem tất cả", closeBtn: "Thu gọn", readArticle: "Read Article", 
                 reportsTitle: "Báo cáo thị trường toàn cầu", reportsDesc: "Báo cáo phân tích thị trường và ngành từ các chuyến công tác toàn cầu. Yêu cầu mật khẩu để truy cập.", 
                 profilesTitle: "Tài nguyên", profilesDesc: "Tải xuống tài liệu và tài nguyên chính thức của công ty. Yêu cầu mật khẩu.",
                 thRegion: "Khu vực/Quốc gia", thTitle: "Tiêu đề báo cáo", thDate: "Ngày", thAction: "Hành động", 
@@ -714,8 +704,7 @@
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "Генеральный директор", name: "Син Вонджон", heroTitle: "Дальновидный лидер, стимулирующий инновации.", heroDesc: "Лидерство на мировом рынке за счет создания новых ценностей и принятия изменений с непоколебимыми принципами.", connectBtn: "Связаться", aboutTitle: "Основные этапы карьеры", 
-                exp1_time: "В настоящее время", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "Официальный сайт", exp1_link2: "Ключевые технологии", exp1_link3: "Официальный SNS", exp1_link4: "Интернет-магазин",
-                exp2_time: "Бывший", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Бывший", exp3_company: "GC Wellbeing", exp3_role: "Руководитель бизнес-инноваций", exp4_time: "Бывший", exp4_company: "CosmaxBTI", exp4_role: "Руководитель группы стратегического планирования", exp5_time: "Бывший", exp5_company: "GC", exp5_role: "Отдел стратегического планирования", newsTitle: "News & Press", viewAllBtn: "Смотреть все", closeBtn: "Свернуть", readArticle: "Read Article", 
+                newsTitle: "News & Press", viewAllBtn: "Смотреть все", closeBtn: "Свернуть", readArticle: "Read Article", 
                 reportsTitle: "Отчеты о мировом рынке", reportsDesc: "Отчеты об анализе отрасли и рынка по итогам зарубежных командировок. Для доступа требуется пароль.", 
                 profilesTitle: "Ресурсы", profilesDesc: "Загрузите официальные брошюры и ресурсы компании. Требуется пароль.",
                 thRegion: "Регион/Страна", thTitle: "Название отчета", thDate: "Дата", thAction: "Действие", 
@@ -729,8 +718,7 @@
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
                 role: "ประธานเจ้าหน้าที่บริหาร", name: "ชิน วอนจง", heroTitle: "ผู้นำที่มีวิสัยทัศน์ขับเคลื่อนนวัตกรรม.", heroDesc: "เป็นผู้นำตลาดระดับโลกด้วยการสร้างมูลค่าใหม่และยอมรับการเปลี่ยนแปลงด้วยหลักการที่แน่วแน่", connectBtn: "ติดต่อเรา", aboutTitle: "ประวัติการทำงาน", 
-                exp1_time: "ปัจจุบัน", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "เว็บไซต์ทางการ", exp1_link2: "เทคโนโลยีหลัก", exp1_link3: "SNS ทางการ", exp1_link4: "ห้างสรรพสินค้าออนไลน์",
-                exp2_time: "อดีต", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "อดีต", exp3_company: "GC Wellbeing", exp3_role: "ผู้นำด้านนวัตกรรมธุรกิจ", exp4_time: "อดีต", exp4_company: "CosmaxBTI", exp4_role: "หัวหน้าทีมวางแผนกลยุทธ์", exp5_time: "อดีต", exp5_company: "GC", exp5_role: "สำนักงานวางแผนกลยุทธ์", newsTitle: "News & Press", viewAllBtn: "ดูทั้งหมด", closeBtn: "ย่อ", readArticle: "Read Article", 
+                newsTitle: "News & Press", viewAllBtn: "ดูทั้งหมด", closeBtn: "ย่อ", readArticle: "Read Article", 
                 reportsTitle: "รายงานตลาดโลก", reportsDesc: "รายงานการวิเคราะห์อุตสาหกรรมและตลาดจากการเดินทางเพื่อธุรกิจทั่วโลก ต้องใช้รหัสผ่านในการเข้าถึง", 
                 profilesTitle: "ทรัพยากร", profilesDesc: "ดาวน์โหลดโบรชัวร์และทรัพยากรของบริษัทอย่างเป็นทางการ ต้องใช้รหัสผ่าน",
                 thRegion: "ภูมิภาค/ประเทศ", thTitle: "ชื่อรายงาน", thDate: "วันที่", thAction: "การดำเนินการ", 
@@ -744,8 +732,7 @@
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed dengan jaringan distribusi dan pemasaran Asia yang tak tertandingi...",
                 role: "Chief Executive Officer", name: "Shin WonJong", heroTitle: "Pemimpin Visioner yang Mendorong Inovasi.", heroDesc: "Memimpin pasar global dengan menciptakan nilai baru dan merangkul perubahan dengan prinsip-prinsip yang tak tergoyahkan.", connectBtn: "Hubungi Kami", aboutTitle: "Sorotan Karir", 
-                exp1_time: "Saat Ini", exp1_company: "MEDIFAB", exp1_role: "COO", exp1_link1: "Situs Resmi", exp1_link2: "Teknologi Inti", exp1_link3: "SNS Resmi", exp1_link4: "Pusat Perbelanjaan Online",
-                exp2_time: "Mantan", exp2_company: "BioPlus International", exp2_role: "CEO", exp3_time: "Mantan", exp3_company: "GC Wellbeing", exp3_role: "Pemimpin Inovasi Bisnis", exp4_time: "Mantan", exp4_company: "CosmaxBTI", exp4_role: "Pemimpin Tim Perencanaan Strategis", exp5_time: "Mantan", exp5_company: "GC", exp5_role: "Kantor Perencanaan Strategis", newsTitle: "News & Press", viewAllBtn: "Lihat Semua", closeBtn: "Tutup", readArticle: "Read Article", 
+                newsTitle: "News & Press", viewAllBtn: "Lihat Semua", closeBtn: "Tutup", readArticle: "Read Article", 
                 reportsTitle: "Laporan Pasar Global", reportsDesc: "Laporan analisis industri dan pasar dari perjalanan bisnis global. Diperlukan kata sandi untuk akses.", 
                 profilesTitle: "Sumber Daya", profilesDesc: "Unduh brosur dan sumber daya perusahaan resmi. Diperlukan kata sandi.",
                 thRegion: "Wilayah/Negara", thTitle: "Judul Laporan", thDate: "Tanggal", thAction: "Aksi", 
@@ -813,7 +800,7 @@
             if (!supabaseClient) return;
 
             try {
-                // 어드민 페이지와 동일하게 'profile' 테이블 하나에서 모든 데이터 가져오기
+                // 단일 profile 테이블 하나에서 모두 불러오기 (어드민과 동일 구조)
                 const { data, error } = await supabaseClient
                     .from('profile')
                     .select('*')
@@ -835,46 +822,48 @@
                     const careers = data.careers || [];
                     
                     if (careers.length > 0) {
-                        careerContainer.innerHTML = ''; // 로딩 스피너 초기화
+                        careerContainer.innerHTML = ''; 
                         
                         careers.forEach(item => {
                             const links = item.links || [];
                             let linksHtml = '';
                             
-                            // 연동 링크가 존재할 경우에만 렌더링
                             if (links.length > 0) {
                                 linksHtml = '<div class="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full mt-2">';
                                 links.forEach(link => {
-                                    // 어드민에서 'isPrimary'로 저장됨
-                                    if (link.isPrimary) {
+                                    // 기본값 처리
+                                    const iconClass = link.icon || 'ph-globe';
+                                    const isPrimary = link.isPrimary || link.is_dark;
+
+                                    if (isPrimary) {
                                         linksHtml += `
                                             <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center gap-1.5 px-2 py-2.5 bg-accent text-white border border-accent text-[11px] sm:text-xs font-sans font-semibold hover:bg-opacity-90 transition-colors rounded shadow-sm text-center">
-                                                <i class="ph ${link.icon || 'ph-link'} text-sm shrink-0"></i> <span class="leading-tight whitespace-nowrap">${link.label}</span>
+                                                <i class="ph ${iconClass} text-sm shrink-0"></i> <span class="leading-tight whitespace-nowrap">${link.label}</span>
                                             </a>`;
                                     } else {
                                         linksHtml += `
                                             <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center gap-1.5 px-2 py-2.5 bg-white border border-gray-300 text-[11px] sm:text-xs font-sans font-semibold text-gray-700 hover:text-accent hover:border-accent transition-colors rounded shadow-sm text-center">
-                                                <i class="ph ${link.icon || 'ph-link'} text-sm shrink-0"></i> <span class="leading-tight whitespace-nowrap">${link.label}</span>
+                                                <i class="ph ${iconClass} text-sm shrink-0"></i> <span class="leading-tight whitespace-nowrap">${link.label}</span>
                                             </a>`;
                                     }
                                 });
                                 linksHtml += '</div>';
                             }
 
-                            // 로고 처리 (없으면 기본 아이콘)
                             const logoHtml = item.logo_url 
                                 ? `<img src="${item.logo_url}" alt="${item.company} Logo" class="w-full h-full object-contain">`
                                 : `<div class="text-gray-300"><i class="ph-fill ph-buildings text-4xl"></i></div>`;
 
+                            // 배경색을 무조건 bg-white로 수정
                             careerContainer.insertAdjacentHTML('beforeend', `
-                                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-[#F8FAFC] border border-gray-200 rounded hover:shadow-md transition-shadow">
+                                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-white border border-gray-200 rounded hover:shadow-md transition-shadow">
                                     <div class="w-20 h-20 flex-shrink-0 bg-transparent flex items-center justify-center p-1">
                                         ${logoHtml}
                                     </div>
                                     <div class="flex-1 text-center sm:text-left w-full">
-                                        <span class="inline-block font-sans text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">${item.time}</span>
-                                        <h3 class="text-xl font-bold text-primary mb-1">${item.company}</h3>
-                                        <p class="text-base text-gray-600 italic ${links.length > 0 ? 'mb-4' : ''}">${item.role}</p>
+                                        <span class="inline-block font-sans text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">${item.time || ''}</span>
+                                        <h3 class="text-xl font-bold text-primary mb-1">${item.company || ''}</h3>
+                                        <p class="text-base text-gray-600 italic ${links.length > 0 ? 'mb-4' : ''}">${item.role || ''}</p>
                                         ${linksHtml}
                                     </div>
                                 </div>
@@ -1329,9 +1318,8 @@
             }
         });
 
-        // Supabase 초기화 후 데이터 로드 실행
         if (supabaseClient) {
-            loadProfileData();
+            loadProfileData(); // 단일 테이블 프로필/커리어 로드
             loadNewsFromSupabase();
             loadResourcesFromSupabase();
             loadReportsFromSupabase();

@@ -168,8 +168,10 @@
                     <div class="w-12 h-0.5 bg-primary mx-auto"></div>
                 </div>
                 <div class="font-sans text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose space-y-6 text-left max-w-3xl mx-auto break-keep" id="executiveProfileContainer">
-                    <p data-i18n="profileP1">A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.</p>
-                    <p data-i18n="profileP2">Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.</p>
+                    <div class="text-center py-10 text-gray-500">
+                        <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
+                        Loading profile...
+                    </div>
                 </div>
             </div>
 
@@ -182,7 +184,7 @@
             <div class="flex flex-col gap-6" id="careerHighlightsContainer">
                 <div class="text-center py-10 text-gray-500 font-sans text-sm">
                     <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
-                    Loading profile...
+                    Loading careers...
                 </div>
             </div>
         </div>
@@ -811,76 +813,76 @@
             if (!supabaseClient) return;
 
             try {
-                // A. Executive Profile 불러오기
-                const { data: execData, error: execError } = await supabaseClient
-                    .from('executive_profile')
+                // 어드민 페이지와 동일하게 'profile' 테이블 하나에서 모든 데이터 가져오기
+                const { data, error } = await supabaseClient
+                    .from('profile')
                     .select('*')
-                    .limit(1);
+                    .eq('id', 1)
+                    .single();
 
-                if (!execError && execData && execData.length > 0) {
+                if (error && error.code !== 'PGRST116') throw error;
+
+                if (data) {
+                    // A. Executive Profile 렌더링
                     const profileContainer = document.getElementById('executiveProfileContainer');
-                    const profile = execData[0];
-                    profileContainer.innerHTML = ''; // 기본 하드코딩 텍스트 초기화
+                    profileContainer.innerHTML = ''; 
                     
-                    if(profile.p1) profileContainer.innerHTML += `<p>${profile.p1}</p>`;
-                    if(profile.p2) profileContainer.innerHTML += `<p>${profile.p2}</p>`;
-                }
+                    if(data.p1) profileContainer.innerHTML += `<p>${data.p1}</p>`;
+                    if(data.p2) profileContainer.innerHTML += `<p>${data.p2}</p>`;
 
-                // B. Career Highlights 불러오기
-                const { data: careerData, error: careerError } = await supabaseClient
-                    .from('career_highlights')
-                    .select('*')
-                    .order('sort_order', { ascending: true });
-
-                const careerContainer = document.getElementById('careerHighlightsContainer');
-                
-                if (!careerError && careerData && careerData.length > 0) {
-                    careerContainer.innerHTML = ''; // 로딩 스피너 초기화
+                    // B. Career Highlights 렌더링
+                    const careerContainer = document.getElementById('careerHighlightsContainer');
+                    const careers = data.careers || [];
                     
-                    careerData.forEach(item => {
-                        const links = item.links || [];
-                        let linksHtml = '';
+                    if (careers.length > 0) {
+                        careerContainer.innerHTML = ''; // 로딩 스피너 초기화
                         
-                        // 연동 링크가 존재할 경우에만 렌더링
-                        if (links.length > 0) {
-                            linksHtml = '<div class="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full mt-2">';
-                            links.forEach(link => {
-                                if (link.is_dark) {
-                                    linksHtml += `
-                                        <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center gap-1.5 px-2 py-2.5 bg-accent text-white border border-accent text-[11px] sm:text-xs font-sans font-semibold hover:bg-opacity-90 transition-colors rounded shadow-sm text-center">
-                                            <i class="ph ph-link text-sm shrink-0"></i> <span class="leading-tight whitespace-nowrap">${link.label}</span>
-                                        </a>`;
-                                } else {
-                                    linksHtml += `
-                                        <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center gap-1.5 px-2 py-2.5 bg-white border border-gray-300 text-[11px] sm:text-xs font-sans font-semibold text-gray-700 hover:text-accent hover:border-accent transition-colors rounded shadow-sm text-center">
-                                            <i class="ph ph-link text-sm shrink-0"></i> <span class="leading-tight whitespace-nowrap">${link.label}</span>
-                                        </a>`;
-                                }
-                            });
-                            linksHtml += '</div>';
-                        }
+                        careers.forEach(item => {
+                            const links = item.links || [];
+                            let linksHtml = '';
+                            
+                            // 연동 링크가 존재할 경우에만 렌더링
+                            if (links.length > 0) {
+                                linksHtml = '<div class="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full mt-2">';
+                                links.forEach(link => {
+                                    // 어드민에서 'isPrimary'로 저장됨
+                                    if (link.isPrimary) {
+                                        linksHtml += `
+                                            <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center gap-1.5 px-2 py-2.5 bg-accent text-white border border-accent text-[11px] sm:text-xs font-sans font-semibold hover:bg-opacity-90 transition-colors rounded shadow-sm text-center">
+                                                <i class="ph ${link.icon || 'ph-link'} text-sm shrink-0"></i> <span class="leading-tight whitespace-nowrap">${link.label}</span>
+                                            </a>`;
+                                    } else {
+                                        linksHtml += `
+                                            <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center gap-1.5 px-2 py-2.5 bg-white border border-gray-300 text-[11px] sm:text-xs font-sans font-semibold text-gray-700 hover:text-accent hover:border-accent transition-colors rounded shadow-sm text-center">
+                                                <i class="ph ${link.icon || 'ph-link'} text-sm shrink-0"></i> <span class="leading-tight whitespace-nowrap">${link.label}</span>
+                                            </a>`;
+                                    }
+                                });
+                                linksHtml += '</div>';
+                            }
 
-                        // 로고 처리 (없으면 기본 아이콘)
-                        const logoHtml = item.logo_url 
-                            ? `<img src="${item.logo_url}" alt="${item.company_name} Logo" class="w-full h-full object-contain">`
-                            : `<div class="text-gray-300"><i class="ph-fill ph-buildings text-4xl"></i></div>`;
+                            // 로고 처리 (없으면 기본 아이콘)
+                            const logoHtml = item.logo_url 
+                                ? `<img src="${item.logo_url}" alt="${item.company} Logo" class="w-full h-full object-contain">`
+                                : `<div class="text-gray-300"><i class="ph-fill ph-buildings text-4xl"></i></div>`;
 
-                        careerContainer.insertAdjacentHTML('beforeend', `
-                            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-[#F8FAFC] border border-gray-200 rounded hover:shadow-md transition-shadow">
-                                <div class="w-20 h-20 flex-shrink-0 bg-transparent flex items-center justify-center p-1">
-                                    ${logoHtml}
+                            careerContainer.insertAdjacentHTML('beforeend', `
+                                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8 p-6 bg-[#F8FAFC] border border-gray-200 rounded hover:shadow-md transition-shadow">
+                                    <div class="w-20 h-20 flex-shrink-0 bg-transparent flex items-center justify-center p-1">
+                                        ${logoHtml}
+                                    </div>
+                                    <div class="flex-1 text-center sm:text-left w-full">
+                                        <span class="inline-block font-sans text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">${item.time}</span>
+                                        <h3 class="text-xl font-bold text-primary mb-1">${item.company}</h3>
+                                        <p class="text-base text-gray-600 italic ${links.length > 0 ? 'mb-4' : ''}">${item.role}</p>
+                                        ${linksHtml}
+                                    </div>
                                 </div>
-                                <div class="flex-1 text-center sm:text-left w-full">
-                                    <span class="inline-block font-sans text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">${item.period}</span>
-                                    <h3 class="text-xl font-bold text-primary mb-1">${item.company_name}</h3>
-                                    <p class="text-base text-gray-600 italic ${links.length > 0 ? 'mb-4' : ''}">${item.role}</p>
-                                    ${linksHtml}
-                                </div>
-                            </div>
-                        `);
-                    });
-                } else {
-                    careerContainer.innerHTML = '<div class="text-center py-10 text-gray-500 font-sans text-sm">No career highlights available.</div>';
+                            `);
+                        });
+                    } else {
+                        careerContainer.innerHTML = '<div class="text-center py-10 text-gray-500 font-sans text-sm">No career highlights available.</div>';
+                    }
                 }
 
             } catch (err) {

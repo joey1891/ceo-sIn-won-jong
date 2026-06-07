@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Portal - Sin Wonjong</title>
+    <title>Admin Portal - Shin WonJong</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -58,7 +58,7 @@
                     <div class="w-8 h-8 bg-primary text-white flex items-center justify-center rounded">
                         <i class="ph-bold ph-briefcase"></i>
                     </div>
-                    <span class="font-bold text-lg tracking-wider text-primary whitespace-nowrap">CEO EXECUTIVE PORTAL</span>
+                    <span class="font-bold text-lg tracking-wider text-primary whitespace-nowrap">SHIN WONJONG EXECUTIVE PORTAL</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <a href="index.html" target="_blank" class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium whitespace-nowrap">
@@ -79,6 +79,9 @@
             <div class="px-6 pt-2 flex gap-6 bg-gray-50 overflow-x-auto">
                 <button onclick="switchTab('inquiries')" id="tabBtnInquiries" class="pb-3 text-sm font-bold uppercase tracking-wider text-primary border-b-2 border-primary transition-colors whitespace-nowrap">
                     Inquiries
+                </button>
+                <button onclick="switchTab('profile')" id="tabBtnProfile" class="pb-3 text-sm font-bold uppercase tracking-wider text-gray-400 border-b-2 border-transparent hover:text-primary transition-colors whitespace-nowrap">
+                    Profile & Career
                 </button>
                 <button onclick="switchTab('news')" id="tabBtnNews" class="pb-3 text-sm font-bold uppercase tracking-wider text-gray-400 border-b-2 border-transparent hover:text-primary transition-colors whitespace-nowrap">
                     News
@@ -165,6 +168,53 @@
                         </div>
                         <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 text-xs text-gray-500 flex justify-between">
                             <span id="showingText">Showing 0 records</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROFILE & CAREER TAB CONTENT -->
+                <div id="profileSection" class="hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-primary tracking-tight">Profile & Career Management</h2>
+                            <p class="text-sm text-gray-500 mt-1">Manage Executive Profile and Career Highlights.</p>
+                        </div>
+                        <button onclick="saveProfileData()" id="btnSaveProfile" class="bg-accent text-white px-5 py-2.5 rounded font-semibold text-sm hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase tracking-wider">
+                            <i class="ph-bold ph-floppy-disk"></i> Save Changes
+                        </button>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Executive Profile Edit -->
+                        <div class="bg-white border border-gray-200 rounded shadow-sm overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                                <h3 class="text-base font-bold text-primary uppercase tracking-wider">Executive Profile</h3>
+                            </div>
+                            <div class="p-6 space-y-4" id="profileEditContainer">
+                                <div>
+                                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 1 (EN)</label>
+                                    <textarea id="profileP1" rows="3" class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 2 (EN)</label>
+                                    <textarea id="profileP2" rows="3" class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Career Highlights Edit -->
+                        <div class="bg-white border border-gray-200 rounded shadow-sm overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
+                                <h3 class="text-base font-bold text-primary uppercase tracking-wider">Career Highlights</h3>
+                                <button onclick="addCareerItem()" class="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors bg-blue-50 px-3 py-1.5 rounded">
+                                    + Add Career
+                                </button>
+                            </div>
+                            <div class="p-6">
+                                <div id="careerItemsContainer" class="space-y-6">
+                                    <!-- 동적 커리어 아이템 추가 -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -482,6 +532,7 @@
         let globalNewsData = [];
         let globalReportsData = [];
         let globalResourcesData = [];
+        let globalProfileData = null; // Profile 데이터를 담을 변수
         
         let currentTab = 'inquiries'; 
         let editingNewsId = null; 
@@ -526,13 +577,14 @@
 
         function refreshAllData() {
             fetchInquiriesData();
+            fetchProfileData();
             fetchNewsData();
             fetchReportsData();
             fetchResourcesData();
         }
 
         // --- 3. 탭 스위칭 로직 ---
-        const tabs = ['inquiries', 'news', 'reports', 'resources'];
+        const tabs = ['inquiries', 'profile', 'news', 'reports', 'resources'];
         
         function switchTab(tabName) {
             currentTab = tabName;
@@ -557,6 +609,9 @@
             if(currentTab === 'inquiries') {
                 document.getElementById('tableBody').innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</td></tr>`;
                 fetchInquiriesData();
+            } else if (currentTab === 'profile') {
+                document.getElementById('profileEditContainer').innerHTML = `<div class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</div>`;
+                fetchProfileData();
             } else if (currentTab === 'news') {
                 document.getElementById('newsTableBody').innerHTML = `<tr><td colspan="4" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Refreshing...</td></tr>`;
                 fetchNewsData();
@@ -637,7 +692,126 @@
             document.getElementById('statRecent').textContent = recentCount;
         }
 
-        // --- 5. News 관리 로직 ---
+        // --- 5. Profile & Career 관리 로직 ---
+        async function fetchProfileData() {
+            try {
+                // profile 테이블에서 데이터 하나를 가져옵니다. (id가 1인 단일 레코드 가정)
+                const { data, error } = await supabaseClient
+                    .from('profile')
+                    .select('*')
+                    .eq('id', 1)
+                    .single();
+
+                if (error && error.code !== 'PGRST116') { // PGRST116: 결과를 찾을 수 없음
+                    if (error.code === '42P01') { 
+                        document.getElementById('profileEditContainer').innerHTML = `<div class="py-8 text-center text-orange-500 text-sm"><i class="ph ph-warning text-2xl mb-2 inline-block"></i><br>'profile' table is missing in Supabase.</div>`;
+                        return;
+                    }
+                    throw error;
+                }
+                
+                globalProfileData = data || { p1: '', p2: '', careers: [] };
+                renderProfileForm(globalProfileData);
+            } catch (err) {
+                document.getElementById('profileEditContainer').innerHTML = `<div class="py-8 text-center text-red-500 text-sm">Failed to load profile data.</div>`;
+            }
+        }
+
+        function renderProfileForm(data) {
+            // Profile Textareas
+            document.getElementById('profileEditContainer').innerHTML = `
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 1 (EN)</label>
+                    <textarea id="profileP1" rows="3" class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none">${data.p1 || ''}</textarea>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Paragraph 2 (EN)</label>
+                    <textarea id="profileP2" rows="3" class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent resize-none">${data.p2 || ''}</textarea>
+                </div>
+            `;
+
+            // Career Highlights
+            const container = document.getElementById('careerItemsContainer');
+            container.innerHTML = '';
+            const careers = data.careers || [];
+            
+            if (careers.length === 0) {
+                // 초기값 추가
+                addCareerItem({ time: 'Present', company: 'MEDIFAB', role: 'COO', logo_url: '' });
+            } else {
+                careers.forEach(career => addCareerItem(career));
+            }
+        }
+
+        function addCareerItem(career = { time: '', company: '', role: '', logo_url: '' }) {
+            const container = document.getElementById('careerItemsContainer');
+            const div = document.createElement('div');
+            div.className = "p-4 border border-gray-200 rounded bg-gray-50 career-item relative";
+            div.innerHTML = `
+                <button type="button" onclick="this.parentElement.remove()" class="absolute top-2 right-2 text-red-400 hover:text-red-600 p-1 transition-colors" title="Remove">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Period / Status</label>
+                        <input type="text" value="${career.time}" class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent career-time" placeholder="e.g. Present, Former">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Company Name</label>
+                        <input type="text" value="${career.company}" class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent career-company" placeholder="e.g. MEDIFAB">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Role / Position</label>
+                        <input type="text" value="${career.role}" class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent career-role" placeholder="e.g. COO">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Logo URL (Optional)</label>
+                        <input type="url" value="${career.logo_url || ''}" class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent career-logo" placeholder="https://...">
+                    </div>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        async function saveProfileData() {
+            const btn = document.getElementById('btnSaveProfile');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<i class="ph ph-spinner animate-spin"></i> Saving...`;
+
+            const p1 = document.getElementById('profileP1').value;
+            const p2 = document.getElementById('profileP2').value;
+
+            const careerElements = document.querySelectorAll('.career-item');
+            const careers = [];
+            careerElements.forEach(el => {
+                careers.push({
+                    time: el.querySelector('.career-time').value,
+                    company: el.querySelector('.career-company').value,
+                    role: el.querySelector('.career-role').value,
+                    logo_url: el.querySelector('.career-logo').value
+                });
+            });
+
+            const updateData = { p1, p2, careers };
+
+            try {
+                // Upsert logic: id 1로 업데이트 또는 삽입
+                const { error } = await supabaseClient
+                    .from('profile')
+                    .upsert({ id: 1, ...updateData });
+
+                if (error) throw error;
+                alert('Profile updated successfully!');
+            } catch (err) {
+                alert(`Failed to save profile. \nError: ${err.message}`);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+        // --- 6. News 관리 로직 ---
         async function fetchNewsData() {
             try {
                 const { data, error } = await supabaseClient

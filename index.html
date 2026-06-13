@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEO Shin WonJong</title>
-    <!-- 파비콘 추가 -->
     <link rel="icon" href="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/SINWONJONG-%20HEALTHCARE%20(1).jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9TSU5XT05KT05HLSBIRUFMVEhDQVJFICgxKS5qcGciLCJpYXQiOjE3ODA4MzEyNzUsImV4cCI6MTc4MTY5NTI3NX0.hBhJAn2F7XATUIkmjC00yNT_mszIdJzILG8a7dZALPU" type="image/jpeg">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -61,7 +60,6 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        /* News Carousel Styles */
         .carousel-container {
             overflow: hidden;
             position: relative;
@@ -102,14 +100,11 @@
                     <span class="font-serif font-bold text-xl tracking-wider text-primary border-b-2 border-primary">SHIN WONJONG</span>
                 </div>
                 <div class="flex items-center space-x-5">
-                    
                     <a href="admin_dashboard.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs font-sans font-medium text-gray-500 hover:text-primary transition-colors uppercase tracking-wider group" title="Admin Portal">
                         <i class="ph ph-shield-check text-lg group-hover:text-accent transition-colors"></i>
                         <span class="hidden sm:inline">Admin</span>
                     </a>
-
                     <div class="w-px h-4 bg-gray-300 hidden sm:block"></div>
-
                     <div class="relative">
                         <select id="languageSelect" class="appearance-none bg-white border border-gray-400 rounded px-4 py-2 pr-8 text-xs font-sans font-medium text-gray-700 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-accent transition-colors cursor-pointer uppercase tracking-wider">
                             <option value="en">English</option>
@@ -162,13 +157,11 @@
     <!-- 1. Executive Profile & Career Highlights -->
     <section class="py-24 bg-white relative border-t border-b border-gray-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
-            <!-- Executive Profile -->
             <div class="mb-24">
                 <div class="text-center mb-10">
                     <h2 data-i18n="profileTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Executive Profile</h2>
                     <div class="w-12 h-0.5 bg-primary mx-auto"></div>
                 </div>
-                <!-- ID is required here to dynamically inject content from Supabase -->
                 <div class="font-sans text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed sm:leading-loose space-y-6 text-left max-w-3xl mx-auto break-keep" id="executiveProfileContainer">
                     <div class="text-center py-10 text-gray-500 font-sans text-sm">
                         <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
@@ -181,9 +174,6 @@
                 <h2 data-i18n="aboutTitle" class="text-3xl font-bold mb-4 tracking-tight">Career Highlights</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto"></div>
             </div>
-
-            <!-- Career Highlights Container -->
-            <!-- ID is required here to dynamically inject careers from Supabase -->
             <div class="flex flex-col gap-6" id="careerHighlightsContainer">
                 <div class="text-center py-10 text-gray-500 font-sans text-sm">
                     <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
@@ -199,12 +189,10 @@
             <div class="text-center mb-10">
                 <h2 data-i18n="newsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">News & Press</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
-                
                 <button id="toggleNewsBtn" class="inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
                     <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
                 </button>
             </div>
-
             <div id="newsWrapper" class="carousel-container mt-10">
                 <div id="newsContainer" class="carousel-track">
                     <div class="w-full text-center py-12">
@@ -216,8 +204,120 @@
         </div>
     </section>
 
-    <!-- 3. Business Systems Section (NEW) -->
-    <section id="business-systems" class="py-24 bg-white relative border-b border-gray-200">
+    <!-- 3. Business Management Systems Section (NEWLY ADDED) -->
+    <section id="business-management" class="py-24 bg-white relative border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 tracking-tight text-primary">Business Management Systems</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
+                <p class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Access core systems for business operations and management.</p>
+            </div>
+
+            <!-- 6 Columns Grid Configuration -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 font-sans">
+                <!-- Row 1 -->
+                <a href="https://www.coworkcity.co.kr/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-buildings text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Office Management</h3>
+                </a>
+
+                <a href="https://reg.help-me.kr/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-certificate text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Corporate Incorporation</h3>
+                </a>
+
+                <a href="https://app.standby.kr/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-briefcase text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Corporate Management</h3>
+                </a>
+
+                <a href="https://app.zuzu.network/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-users-three text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Shareholder Management</h3>
+                </a>
+
+                <a href="https://www.heumtax.com/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-calculator text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Accounting & Tax</h3>
+                </a>
+
+                <a href="https://flex.team/auth/login" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-identification-card text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">HR System</h3>
+                </a>
+
+                <!-- Row 2 -->
+                <a href="#biz-plan" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-strategy text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Business Planning</h3>
+                </a>
+
+                <a href="#feasibility" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-magnifying-glass text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Feasibility Study</h3>
+                </a>
+
+                <a href="#cash-flow" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-coins text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Operating Cash Flow</h3>
+                </a>
+
+                <a href="https://my.lawform.io/dashboard" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-scales text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Legal Affairs</h3>
+                </a>
+
+                <a href="https://apps.docusign.com/send/home" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-signature text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Contract Management</h3>
+                </a>
+
+                <a href="https://joey1891.github.io/Sales-Forecast/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+                    <div class="w-14 h-14 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-4 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-chart-line-up text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Sales Status</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Integrated Business Systems Section -->
+    <section id="business-systems" class="py-24 bg-slate-50 relative border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-4 tracking-tight text-primary">Integrated Business Systems</h2>
@@ -226,7 +326,6 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 font-sans">
-                <!-- 1. Global B2C -->
                 <a href="#b2c-system" class="group flex flex-col items-center justify-center p-8 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
                     <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
                     <div class="w-16 h-16 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-5 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
@@ -235,7 +334,6 @@
                     <h3 class="text-[13px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Global B2C<br>System</h3>
                 </a>
 
-                <!-- 2. B2B Domestic -->
                 <a href="#b2b-domestic" class="group flex flex-col items-center justify-center p-8 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
                     <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
                     <div class="w-16 h-16 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-5 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
@@ -244,7 +342,6 @@
                     <h3 class="text-[13px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">B2B Domestic<br>Distribution</h3>
                 </a>
 
-                <!-- 3. B2B Export -->
                 <a href="https://medifab-global-portal.vercel.app/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
                     <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
                     <div class="w-16 h-16 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-5 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
@@ -253,7 +350,6 @@
                     <h3 class="text-[13px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">B2B Export<br>System</h3>
                 </a>
 
-                <!-- 4. Group Purchasing -->
                 <a href="#group-purchasing" class="group flex flex-col items-center justify-center p-8 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
                     <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
                     <div class="w-16 h-16 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-5 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
@@ -262,7 +358,6 @@
                     <h3 class="text-[13px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Group Purchasing<br>System</h3>
                 </a>
 
-                <!-- 5. Network Sales -->
                 <a href="#network-sales" class="group flex flex-col items-center justify-center p-8 bg-white border border-gray-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-primary transition-all duration-300 h-full relative overflow-hidden z-10">
                     <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-primary transition-colors"></div>
                     <div class="w-16 h-16 bg-slate-50 border border-gray-100 rounded-full flex items-center justify-center text-secondary mb-5 group-hover:text-primary group-hover:bg-blue-50 transition-all duration-300 shrink-0">
@@ -274,19 +369,17 @@
         </div>
     </section>
 
-    <!-- 4. Company Profiles Section -->
-    <section id="profiles" class="py-24 bg-slate-50 relative border-b border-gray-200">
+    <!-- 5. Company Profiles Section -->
+    <section id="profiles" class="py-24 bg-white relative border-b border-gray-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-10">
                 <h2 data-i18n="profilesTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Resources</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
                 <p data-i18n="profilesDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Download official corporate brochures and resources. Password required.</p>
-                
                 <button id="toggleResourcesBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
                     <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
                 </button>
             </div>
-            
             <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
                 <table class="w-full text-left font-sans text-sm min-w-[600px]">
                     <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
@@ -309,19 +402,17 @@
         </div>
     </section>
 
-    <!-- 5. Global Market Reports Section -->
-    <section id="reports" class="py-24 bg-white relative border-b border-gray-200">
+    <!-- 6. Global Market Reports Section -->
+    <section id="reports" class="py-24 bg-slate-50 relative border-b border-gray-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-10">
                 <h2 data-i18n="reportsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Global Market Reports</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
                 <p data-i18n="reportsDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Industry and market analysis reports from global business trips. Password required for access.</p>
-                
                 <button id="toggleReportsBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
                     <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
                 </button>
             </div>
-            
             <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
                 <table class="w-full text-left font-sans text-sm min-w-[600px]">
                     <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
@@ -345,14 +436,13 @@
         </div>
     </section>
 
-    <!-- 6. External Registry & Channels Section -->
-    <section id="connect" class="py-24 bg-slate-50 relative overflow-hidden border-b border-gray-200">
+    <!-- 7. External Registry & Channels Section -->
+    <section id="connect" class="py-24 bg-white relative overflow-hidden border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 fade-in">
                 <h2 data-i18n="connectTitle" class="text-3xl font-bold mb-4 tracking-tight">External Registry & Channels</h2>
                 <p data-i18n="connectDesc" class="text-xs font-sans uppercase tracking-widest text-secondary max-w-2xl mx-auto">Access verified corporate networks and digital messenger credentials.</p>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto mb-16 fade-in">
                 <a href="https://www.linkedin.com/in/won-jong-shin/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
                     <i class="ph-fill ph-linkedin-logo text-3xl text-primary shrink-0"></i>
@@ -361,7 +451,6 @@
                         <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="linkedinBtn">Verify via LinkedIn</p>
                     </div>
                 </a>
-
                 <a href="https://www.ceodailybrief.com/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
                     <i class="ph-fill ph-browser text-3xl text-primary shrink-0"></i>
                     <div class="text-left font-sans">
@@ -369,7 +458,6 @@
                         <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="blogBtn">Visit CEO Daily Brief</p>
                     </div>
                 </a>
-
                 <a href="https://blog.naver.com/wjshin2450" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
                     <i class="ph-fill ph-article text-3xl text-primary shrink-0"></i>
                     <div class="text-left font-sans">
@@ -377,7 +465,6 @@
                         <p class="text-base font-semibold text-primary uppercase tracking-wider" data-i18n="naverBtn">Naver Blog</p>
                     </div>
                 </a>
-
                 <a href="https://www.youtube.com/@VisionPrism_TV" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-4 bg-white border border-gray-300 px-6 py-4 shadow-sm hover:border-primary transition-all duration-300 w-full h-full">
                     <i class="ph-fill ph-youtube-logo text-3xl text-primary shrink-0"></i>
                     <div class="text-left font-sans">
@@ -386,13 +473,12 @@
                     </div>
                 </a>
             </div>
-
             <div class="text-center mb-10 fade-in">
                 <h3 data-i18n="qrTitle" class="text-sm font-sans font-bold uppercase tracking-widest text-primary mb-2">Social Messenger Gateways</h3>
                 <div class="w-8 h-0.5 bg-gray-400 mx-auto"></div>
             </div>
-
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto fade-in font-sans">
+                <!-- QR Codes Code remains identical -->
                 <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-chat-circle text-lg"></i>
@@ -402,7 +488,6 @@
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">KakaoTalk</span>
                 </div>
-
                 <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-chat-teardrop-dots text-lg"></i>
@@ -412,7 +497,6 @@
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">LINE</span>
                 </div>
-
                 <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-telegram-logo text-lg"></i>
@@ -422,7 +506,6 @@
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">Telegram</span>
                 </div>
-
                 <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-wechat-logo text-lg"></i>
@@ -432,7 +515,6 @@
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">WeChat</span>
                 </div>
-
                 <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
                         <i class="ph-fill ph-whatsapp-logo text-lg"></i>
@@ -446,15 +528,14 @@
         </div>
     </section>
 
-    <!-- 7. Official Communication Statement Section -->
-    <section id="inquiry" class="py-24 bg-white relative border-b border-gray-200">
+    <!-- 8. Official Communication Statement Section -->
+    <section id="inquiry" class="py-24 bg-slate-50 relative border-b border-gray-200">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
                 <h2 data-i18n="contactTitle" class="text-3xl font-bold mb-4 text-primary tracking-tight">Official Communication Statement</h2>
                 <p data-i18n="contactDesc" class="text-xs font-sans uppercase tracking-widest text-secondary max-w-2xl mx-auto mb-4">Please submit your formal inquiries or network record verification below.</p>
                 <div class="w-12 h-0.5 bg-primary mx-auto"></div>
             </div>
-
             <div class="bg-white p-8 md:p-10 border border-gray-300 shadow-sm rounded-none">
                 <form id="contactForm" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -497,17 +578,15 @@
         </div>
     </section>
 
-    <!-- 8. Digital Channel Architecture -->
-    <section id="media-ecosystem" class="py-24 bg-slate-50 relative border-b border-gray-200">
+    <!-- 9. Digital Channel Architecture -->
+    <section id="media-ecosystem" class="py-24 bg-white relative border-b border-gray-200">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-16">
                 <h2 data-i18n="ecosystemTitle" class="text-3xl font-bold mb-4 text-primary tracking-tight">Digital Channel Architecture</h2>
                 <p data-i18n="ecosystemDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Channel Roles and Content Expansion Flow Centered on Shinwonjong.com</p>
                 <div class="w-12 h-0.5 bg-primary mx-auto"></div>
             </div>
-
             <div class="flex flex-col items-center font-sans mt-10">
-                <!-- Top Level: shinwonjong.com -->
                 <a href="#" class="bg-white border border-gray-300 rounded p-6 w-full max-w-sm text-center shadow-sm relative z-10 hover:-translate-y-1 hover:border-primary transition-all duration-300 block">
                     <div class="flex items-center justify-center gap-3 mb-2">
                         <div class="w-10 h-10 bg-[#F8FAFC] border border-gray-200 rounded-full flex items-center justify-center text-primary shrink-0">
@@ -517,8 +596,6 @@
                     </div>
                     <p data-i18n="ecoMainDesc" class="text-sm text-gray-600">Comprehensive Media Portal Function</p>
                 </a>
-
-                <!-- Connecting Lines (Desktop) -->
                 <div class="hidden md:block w-full max-w-[65%] mx-auto relative h-12">
                     <div class="w-px h-6 bg-gray-400 mx-auto"></div>
                     <div class="w-full border-t-2 border-gray-400 relative">
@@ -526,15 +603,9 @@
                         <div class="absolute -right-[1px] top-0 w-px h-6 bg-gray-400"></div>
                     </div>
                 </div>
-
-                <!-- Second Level -->
                 <div class="flex flex-col md:flex-row w-full max-w-4xl gap-8 relative z-10 justify-between items-start">
-                    
-                    <!-- Left: CEO Daily Brief -->
                     <div class="w-full md:w-[45%] flex flex-col items-center">
-                        <!-- Mobile line down -->
                         <div class="w-px h-8 bg-gray-400 md:hidden"></div>
-                        
                         <a href="https://www.ceodailybrief.com/" target="_blank" rel="noopener noreferrer" class="bg-white border border-gray-300 rounded p-6 w-full shadow-sm hover:-translate-y-1 hover:border-primary transition-all duration-300 block">
                             <div class="flex items-start gap-4">
                                 <div class="w-12 h-12 shrink-0 bg-[#F8FAFC] border border-gray-200 rounded-full flex items-center justify-center text-primary">
@@ -550,13 +621,8 @@
                             </div>
                         </a>
                     </div>
-
-                    <!-- Right: Naver Blog Flow -->
                     <div class="w-full md:w-[45%] flex flex-col items-center">
-                        <!-- Mobile line down -->
                         <div class="w-px h-8 bg-gray-400 md:hidden"></div>
-
-                        <!-- Naver Blog -->
                         <a href="https://blog.naver.com/wjshin2450" target="_blank" rel="noopener noreferrer" class="bg-white border border-gray-300 rounded p-6 w-full shadow-sm hover:-translate-y-1 hover:border-primary transition-all duration-300 block">
                             <div class="flex items-start gap-4">
                                 <div class="w-12 h-12 shrink-0 bg-[#F8FAFC] border border-gray-200 rounded-full flex items-center justify-center text-primary">
@@ -571,16 +637,12 @@
                                 </div>
                             </div>
                         </a>
-
-                        <!-- Flow Arrow / Label -->
                         <div class="flex flex-col items-center my-2 relative w-full h-16">
                             <div class="w-px h-full bg-gray-400"></div>
                             <div class="bg-white border border-gray-200 shadow-sm rounded-full px-4 py-1.5 text-[11px] font-bold text-gray-700 z-10 flex items-center gap-1.5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap tracking-wide">
                                 <span data-i18n="ecoFlowLabel">주제 선별 & 영상화</span> <i class="ph-bold ph-arrow-down text-gray-400"></i>
                             </div>
                         </div>
-
-                        <!-- YouTube -->
                         <a href="https://www.youtube.com/@VisionPrism_TV" target="_blank" rel="noopener noreferrer" class="bg-white border border-gray-300 rounded p-6 w-full shadow-sm hover:-translate-y-1 hover:border-primary transition-all duration-300 block">
                             <div class="flex items-start gap-4">
                                 <div class="w-12 h-12 shrink-0 bg-[#F8FAFC] border border-gray-200 rounded-full flex items-center justify-center text-primary">
@@ -595,7 +657,6 @@
                                 </div>
                             </div>
                         </a>
-
                     </div>
                 </div>
             </div>
@@ -625,7 +686,6 @@
             <input type="password" id="reportPasswordInput" class="w-full p-3 gov-input bg-white text-sm mb-2 text-center tracking-widest" placeholder="••••••••">
             <div id="pwdErrorMsg" class="hidden text-red-500 text-xs font-sans text-center mb-4" data-i18n="pwdError">Incorrect password. Please try again.</div>
             <div id="pwdSuccessMsg" class="hidden text-green-600 text-xs font-sans text-center mb-4 font-bold" data-i18n="pwdSuccess">Access Granted. Opening file...</div>
-            
             <div class="flex gap-3 mt-4">
                 <button onclick="closePasswordModal()" class="flex-1 bg-gray-200 text-gray-700 py-3 font-sans font-semibold text-xs uppercase tracking-wider hover:bg-gray-300 transition-colors" data-i18n="btnCancel">Cancel</button>
                 <button onclick="submitPassword()" id="btnSubmitPwd" class="flex-1 bg-primary text-white py-3 font-sans font-semibold text-xs uppercase tracking-wider hover:bg-opacity-90 transition-colors" data-i18n="btnConfirm">Confirm</button>
@@ -649,155 +709,49 @@
                 profileTitle: "Executive Profile",
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
-                role: "Chief Executive Officer",
-                name: "Shin WonJong",
-                heroTitle: "Visionary Leader Driving Innovation.",
-                heroDesc: "Leading the global market by creating new value and embracing change with unwavering principles.",
-                connectBtn: "Get in Touch",
-                aboutTitle: "Career Highlights",
-                newsTitle: "News & Press",
-                viewAllBtn: "View All",
-                closeBtn: "Collapse",
-                readArticle: "Read Article",
-                reportsTitle: "Global Market Reports",
-                reportsDesc: "Industry and market analysis reports from global business trips. Password required for access.",
-                profilesTitle: "Resources",
-                profilesDesc: "Download official corporate brochures and resources. Password required.",
-                thRegion: "Region/Country", thTitle: "Report Title", thDate: "Date", thAction: "Action",
-                thCategory: "Category", thFiles: "Available Files",
-                btnViewDownload: "View / Download",
-                pwdModalTitle: "Restricted Access", pwdModalDesc: "Please enter the password to view or download this report.",
-                btnCancel: "Cancel", btnConfirm: "Confirm",
-                pwdError: "Incorrect password. Please try again.", pwdSuccess: "Access Granted. Opening file...",
-                contactTitle: "Official Communication Statement",
-                contactDesc: "Please submit your formal inquiries or network record verification below.",
-                formSubmit: "Submit Statement",
-                modalTitle: "Submission Received",
-                modalDesc: "The statement has been securely processed. Our office will review and respond accordingly.",
-                modalClose: "Dismiss",
-                labelName: "Name *", labelNationality: "Nationality *", labelCompany: "Company Name *", labelPhone: "Phone Number", labelEmail: "Email Address *", labelSns: "Social Media Identifier / SNS ID (Optional)", labelMessage: "Inquiry Statement / Message *",
-                connectTitle: "External Registry & Channels", connectDesc: "Access verified corporate networks and digital messenger credentials.", linkedinSub: "Professional Network", linkedinBtn: "Verify via LinkedIn", qrTitle: "Social Messenger Gateways",
-                blogSub: "Personal Journal", blogBtn: "Visit CEO Daily Brief", youtubeSub: "Video Channel", youtubeBtn: "Watch on YouTube", naverSub: "Official Blog", naverBtn: "Naver Blog",
-                ecosystemTitle: "Digital Channel Architecture", ecosystemDesc: "Channel Roles and Content Expansion Flow Centered on shinwonjong.com", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "Comprehensive Media Portal Function", ecoBriefTitle: "CEO Daily Brief (Personal Journal)", ecoBriefDesc1: "Provides economic & current affairs info", ecoBriefDesc2: "Features in-depth original editorials", ecoBlogTitle: "Naver Blog (Daily Life)", ecoBlogDesc1: "Various topics around everyday life", ecoBlogDesc2: "Covers topics the public is curious about", ecoFlowLabel: "Topic Selection & Video Prod.", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "Video production of innovative trends from the blog", ecoYtDesc2: "Incorporates and combines historical insights"
+                role: "Chief Executive Officer", name: "Shin WonJong", heroTitle: "Visionary Leader Driving Innovation.", heroDesc: "Leading the global market by creating new value and embracing change with unwavering principles.", connectBtn: "Get in Touch", aboutTitle: "Career Highlights", newsTitle: "News & Press", viewAllBtn: "View All", closeBtn: "Collapse", readArticle: "Read Article", reportsTitle: "Global Market Reports", reportsDesc: "Industry and market analysis reports from global business trips. Password required for access.", profilesTitle: "Resources", profilesDesc: "Download official corporate brochures and resources. Password required.", thRegion: "Region/Country", thTitle: "Report Title", thDate: "Date", thAction: "Action", thCategory: "Category", thFiles: "Available Files", btnViewDownload: "View / Download", pwdModalTitle: "Restricted Access", pwdModalDesc: "Please enter the password to view or download this report.", btnCancel: "Cancel", btnConfirm: "Confirm", pwdError: "Incorrect password. Please try again.", pwdSuccess: "Access Granted. Opening file...", contactTitle: "Official Communication Statement", contactDesc: "Please submit your formal inquiries or network record verification below.", formSubmit: "Submit Statement", modalTitle: "Submission Received", modalDesc: "The statement has been securely processed. Our office will review and respond accordingly.", modalClose: "Dismiss", labelName: "Name *", labelNationality: "Nationality *", labelCompany: "Company Name *", labelPhone: "Phone Number", labelEmail: "Email Address *", labelSns: "Social Media Identifier / SNS ID (Optional)", labelMessage: "Inquiry Statement / Message *", connectTitle: "External Registry & Channels", connectDesc: "Access verified corporate networks and digital messenger credentials.", linkedinSub: "Professional Network", linkedinBtn: "Verify via LinkedIn", qrTitle: "Social Messenger Gateways", blogSub: "Personal Journal", blogBtn: "Visit CEO Daily Brief", youtubeSub: "Video Channel", youtubeBtn: "Watch on YouTube", naverSub: "Official Blog", naverBtn: "Naver Blog", ecosystemTitle: "Digital Channel Architecture", ecosystemDesc: "Channel Roles and Content Expansion Flow Centered on shinwonjong.com", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "Comprehensive Media Portal Function", ecoBriefTitle: "CEO Daily Brief (Personal Journal)", ecoBriefDesc1: "Provides economic & current affairs info", ecoBriefDesc2: "Features in-depth original editorials", ecoBlogTitle: "Naver Blog (Daily Life)", ecoBlogDesc1: "Various topics around everyday life", ecoBlogDesc2: "Covers topics the public is curious about", ecoFlowLabel: "Topic Selection & Video Prod.", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "Video production of innovative trends from the blog", ecoYtDesc2: "Incorporates and combines historical insights"
             },
             ko: {
                 profileTitle: "경력 요약 (Executive Profile)",
                 profileP1: "제약, 생명공학, 의료기기, 건강기능식품 및 화장품 산업 전반에 걸쳐 20년 이상 기업 전략, M&A, 비즈니스 개발을 이끌어온 비저너리 C-레벨 경영자입니다. 바이오플러스인터내셔널 CEO 재직 당시 단 1년 만에 기업 매출을 가파르게 성장시키며 폭발적인 성장의 촉매제 역할을 했습니다.",
                 profileP2: "중장기 기업 전략 수립, 벤처 투자, 전사적 디지털 전환(DX)을 주도하는 전문가입니다. 한국의 주요 의학회, 병원, 약국과 중국, 홍콩, 일본, 베트남 전역의 제약, 건강기능식품, 의료기기, 화장품 분야 핵심 기업들을 연결하는 아시아 전역의 독보적인 유통 및 마케팅 네트워크를 보유하고 있습니다.",
-                role: "최고경영자 (CEO)",
-                name: "신원종",
-                heroTitle: "혁신을 이끄는 비저너리 리더.",
-                heroDesc: "흔들림 없는 원칙으로 변화를 수용하고 새로운 가치를 창출하며 글로벌 시장을 선도합니다.",
-                connectBtn: "연락하기",
-                aboutTitle: "주요 경력 사항",
-                newsTitle: "언론 보도 및 기사",
-                viewAllBtn: "전체보기",
-                closeBtn: "접기",
-                readArticle: "기사 원문 읽기",
-                reportsTitle: "글로벌 시장 및 산업 분석 보고서",
-                reportsDesc: "해외 출장 결과 및 국가별 산업/시장 분석 보고서 게시판입니다. 열람을 위해서는 비밀번호가 필요합니다.",
-                profilesTitle: "자료실",
-                profilesDesc: "공식 회사 소개서 및 기업 자료를 다운로드할 수 있습니다. 비밀번호가 필요합니다.",
-                thRegion: "국가 및 지역", thTitle: "보고서 제목", thDate: "등록일", thAction: "액션",
-                thCategory: "분류", thFiles: "제공 파일 (언어)",
-                btnViewDownload: "보기 / 다운로드",
-                pwdModalTitle: "접근 권한 필요", pwdModalDesc: "해당 보고서를 열람하거나 다운로드하려면 비밀번호를 입력해 주세요.",
-                btnCancel: "취소", btnConfirm: "확인",
-                pwdError: "비밀번호가 일치하지 않습니다. 다시 시도해 주세요.", pwdSuccess: "승인 완료. 파일을 엽니다...",
-                contactTitle: "공식 문의 신청 및 서명",
-                contactDesc: "공식 문의 또는 협력 제안 기록을 위해 아래 서식을 빠짐없이 작성해 주십시오.",
-                formSubmit: "조회 및 제출",
-                modalTitle: "제출 완료",
-                modalDesc: "문의 기록이 성공적으로 접수되었습니다. 검토 후 신속히 응답해 드리겠습니다.",
-                modalClose: "닫기",
-                labelName: "성명 / Name *", labelNationality: "국적 / Nationality *", labelCompany: "소속 기업명 / Company Name *", labelPhone: "연락처 / Phone Number", labelEmail: "이메일 주소 / Email *", labelSns: "소셜 메신저 식별자 / SNS ID (선택)", labelMessage: "문의 진술문 / Message *",
-                connectTitle: "외부 인증 레지스트리", connectDesc: "인증된 기업 네트워크 및 소셜 메신저 공식 게이트웨이에 접속합니다.", linkedinSub: "프로페셔널 네트워크", linkedinBtn: "LinkedIn을 통한 본인 인증", qrTitle: "소셜 메신저 커뮤니케이션 채널",
-                blogSub: "개인 블로그", blogBtn: "CEO Daily Brief 방문", youtubeSub: "개인 유튜브 채널", youtubeBtn: "유튜브 시청하기", naverSub: "네이버 공식 블로그", naverBtn: "네이버 블로그 방문",
-                ecosystemTitle: "디지털 채널 아키텍처", ecosystemDesc: "shinwonjong.com 중심의 채널별 역할 및 콘텐츠 확장 흐름", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "전체 미디어 포털 기능", ecoBriefTitle: "CEO Daily Brief (퍼스널 저널)", ecoBriefDesc1: "경제 및 시사 정보 제공", ecoBriefDesc2: "깊이 있는 오리지널 사설 다룸", ecoBlogTitle: "네이버 블로그 (일상 블로그)", ecoBlogDesc1: "일상 주변의 다양한 주제", ecoBlogDesc2: "대중이 궁금해하는 내용 다룸", ecoFlowLabel: "주제 선별 & 영상화", ecoYtTitle: "유튜브 비전프리즘", ecoYtDesc1: "블로그 내 혁신 기업·기술·트렌드 영상화", ecoYtDesc2: "역사적 통찰 표기 및 결합"
+                role: "최고경영자 (CEO)", name: "신원종", heroTitle: "혁신을 이끄는 비저너리 리더.", heroDesc: "흔들림 없는 원칙으로 변화를 수용하고 새로운 가치를 창출하며 글로벌 시장을 선도합니다.", connectBtn: "연락하기", aboutTitle: "주요 경력 사항", newsTitle: "언론 보도 및 기사", viewAllBtn: "전체보기", closeBtn: "접기", readArticle: "기사 원문 읽기", reportsTitle: "글로벌 시장 및 산업 분석 보고서", reportsDesc: "해외 출장 결과 및 국가별 산업/시장 분석 보고서 게시판입니다. 열람을 위해서는 비밀번호가 필요합니다.", profilesTitle: "자료실", profilesDesc: "공식 회사 소개서 및 기업 자료를 다운로드할 수 있습니다. 비밀번호가 필요합니다.", thRegion: "국가 및 지역", thTitle: "보고서 제목", thDate: "등록일", thAction: "액션", thCategory: "분류", thFiles: "제공 파일 (언어)", btnViewDownload: "보기 / 다운로드", pwdModalTitle: "접근 권한 필요", pwdModalDesc: "해당 보고서를 열람하거나 다운로드하려면 비밀번호를 입력해 주세요.", btnCancel: "취소", btnConfirm: "확인", pwdError: "비밀번호가 일치하지 않습니다. 다시 시도해 주세요.", pwdSuccess: "승인 완료. 파일을 엽니다...", contactTitle: "공식 문의 신청 및 서명", contactDesc: "공식 문의 또는 협력 제안 기록을 위해 아래 서식을 빠짐없이 작성해 주십시오.", formSubmit: "조회 및 제출", modalTitle: "제출 완료", modalDesc: "문의 기록이 성공적으로 접수되었습니다. 검토 후 신속히 응답해 드리겠습니다.", modalClose: "닫기", labelName: "성명 / Name *", labelNationality: "국적 / Nationality *", labelCompany: "소속 기업명 / Company Name *", labelPhone: "연락처 / Phone Number", labelEmail: "이메일 주소 / Email *", labelSns: "소셜 메신저 식별자 / SNS ID (선택)", labelMessage: "문의 진술문 / Message *", connectTitle: "외부 인증 레지스트리", connectDesc: "인증된 기업 네트워크 및 소셜 메신저 공식 게이트웨이에 접속합니다.", linkedinSub: "프로페셔널 네트워크", linkedinBtn: "LinkedIn을 통한 본인 인증", qrTitle: "소셜 메신저 커뮤니케이션 채널", blogSub: "개인 블로그", blogBtn: "CEO Daily Brief 방문", youtubeSub: "개인 유튜브 채널", youtubeBtn: "유튜브 시청하기", naverSub: "네이버 공식 블로그", naverBtn: "네이버 블로그 방문", ecosystemTitle: "디지털 채널 아키텍처", ecosystemDesc: "shinwonjong.com 중심의 채널별 역할 및 콘텐츠 확장 흐름", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "전체 미디어 포털 기능", ecoBriefTitle: "CEO Daily Brief (퍼스널 저널)", ecoBriefDesc1: "경제 및 시사 정보 제공", ecoBriefDesc2: "깊이 있는 오리지널 사설 다룸", ecoBlogTitle: "네이버 블로그 (일상 블로그)", ecoBlogDesc1: "일상 주변의 다양한 주제", ecoBlogDesc2: "대중이 궁금해하는 내용 다룸", ecoFlowLabel: "주제 선별 & 영상화", ecoYtTitle: "유튜브 비전프리즘", ecoYtDesc1: "블로그 내 혁신 기업·기술·트렌드 영상화", ecoYtDesc2: "역사적 통찰 표기 및 결합"
             },
             zh: {
                 profileTitle: "Executive Profile",
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
-                role: "首席执行官 (CEO)", name: "申源鐘", heroTitle: "引领创新的远见卓识领导者.", heroDesc: "以坚定不移的原则拥抱变化，创造新价值，引领全球市场。", connectBtn: "保持联系", aboutTitle: "职业亮点", 
-                newsTitle: "News & Press", viewAllBtn: "查看全部", closeBtn: "折叠", readArticle: "Read Article", 
-                reportsTitle: "全球市场报告", reportsDesc: "全球商务旅行的行业和市场分析报告。 需要密码才能访问。", 
-                profilesTitle: "资源", profilesDesc: "下载官方公司宣传册和资源。 需要密码。",
-                thRegion: "国家/地区", thTitle: "报告标题", thDate: "日期", thAction: "行动", 
-                thCategory: "类别", thFiles: "可用文件", btnViewDownload: "查看/下载", pwdModalTitle: "限制访问", pwdModalDesc: "请输入密码以查看或下载此报告。", btnCancel: "取消", btnConfirm: "确认", pwdError: "密码错误。请重试。", pwdSuccess: "访问已授予。 正在打开文件...",
-                contactTitle: "官方通讯声明", contactDesc: "请在下方提交您的正式查询 or 网络记录验证。", formSubmit: "提交声明", modalTitle: "提交已收到", modalDesc: "该声明已得到安全处理。我们的办公室将进行审查并作出相应回应。", modalClose: "关闭", labelName: "姓名 *", labelNationality: "国籍 *", labelCompany: "公司名称 *", labelPhone: "联系电话", labelEmail: "电子邮件 *", labelSns: "社交媒体标识符 / SNS ID (可选)", labelMessage: "查询陈述 / 留言 *", connectTitle: "外部注册与渠道", connectDesc: "访问经过验证的企业网络和数字商务信使凭证。", linkedinSub: "专业网络", linkedinBtn: "通过 LinkedIn 验证", qrTitle: "社交商务信使网关",
-                blogSub: "个人博客", blogBtn: "访问 CEO Daily Brief", youtubeSub: "视频频道", youtubeBtn: "在 YouTube 上观看", naverSub: "Naver 博客", naverBtn: "访问 Naver 博客",
-                ecosystemTitle: "数字渠道架构", ecosystemDesc: "以 shinwonjong.com 为中心的渠道角色和内容扩展流程", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "综合媒体门户功能", ecoBriefTitle: "CEO Daily Brief (个人日志)", ecoBriefDesc1: "提供经济和时事信息", ecoBriefDesc2: "以深入的原创社论为特色", ecoBlogTitle: "Naver Blog (日常生活)", ecoBlogDesc1: "日常生活的各种话题", ecoBlogDesc2: "涵盖公众好奇的话题", ecoFlowLabel: "主题选择和视频制作", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "博客中创新趋势的视频制作", ecoYtDesc2: "融入并结合历史见解"
+                role: "首席执行官 (CEO)", name: "申源鐘", heroTitle: "引领创新的远见卓识领导者.", heroDesc: "以坚定不移的原则拥抱变化，创造新价值，引领全球市场。", connectBtn: "保持联系", aboutTitle: "职业亮点", newsTitle: "News & Press", viewAllBtn: "查看全部", closeBtn: "折叠", readArticle: "Read Article", reportsTitle: "全球市场报告", reportsDesc: "全球商务旅行的行业和市场分析报告。 需要密码才能访问。", profilesTitle: "资源", profilesDesc: "下载官方公司宣传册和资源。 需要密码。", thRegion: "国家/地区", thTitle: "报告标题", thDate: "日期", thAction: "行动", thCategory: "类别", thFiles: "可用文件", btnViewDownload: "查看/下载", pwdModalTitle: "限制访问", pwdModalDesc: "请输入密码以查看或下载此报告。", btnCancel: "取消", btnConfirm: "确认", pwdError: "密码错误。请重试。", pwdSuccess: "访问已授予。 正在打开文件...", contactTitle: "官方通讯声明", contactDesc: "请在下方提交您的正式查询 or 网络记录验证。", formSubmit: "提交声明", modalTitle: "提交已收到", modalDesc: "该声明已得到安全处理。我们的办公室将进行审查并作出相应回应。", modalClose: "关闭", labelName: "姓名 *", labelNationality: "国籍 *", labelCompany: "公司名称 *", labelPhone: "联系电话", labelEmail: "电子邮件 *", labelSns: "社交媒体标识符 / SNS ID (可选)", labelMessage: "查询陈述 / 留言 *", connectTitle: "外部注册与渠道", connectDesc: "访问经过验证的企业网络和数字商务信使凭证。", linkedinSub: "专业网络", linkedinBtn: "通过 LinkedIn 验证", qrTitle: "社交商务信使网关", blogSub: "个人博客", blogBtn: "访问 CEO Daily Brief", youtubeSub: "视频频道", youtubeBtn: "在 YouTube 上观看", naverSub: "Naver 博客", naverBtn: "访问 Naver 博客", ecosystemTitle: "数字渠道架构", ecosystemDesc: "以 shinwonjong.com 为中心的渠道角色和内容扩展流程", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "综合媒体门户功能", ecoBriefTitle: "CEO Daily Brief (个人日志)", ecoBriefDesc1: "提供经济和时事信息", ecoBriefDesc2: "以深入的原创社论为特色", ecoBlogTitle: "Naver Blog (日常生活)", ecoBlogDesc1: "日常生活的各种话题", ecoBlogDesc2: "涵盖公众好奇的话题", ecoFlowLabel: "主题选择和视频制作", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "博客中创新趋势的视频制作", ecoYtDesc2: "融入并结合历史见解"
             },
             ja: {
                 profileTitle: "Executive Profile",
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
-                role: "最高経営責任者 (CEO)", name: "申 源鐘 (シン・ウォンジョン)", heroTitle: "革新を牽引するビジョンリーダー.", heroDesc: "揺るぎない原則で変化を受け入れ、新たな価値を創造し、グローバル市場をリードします。", connectBtn: "お問い合わせ", aboutTitle: "主な経歴", 
-                newsTitle: "News & Press", viewAllBtn: "すべて見る", closeBtn: "閉じる", readArticle: "Read Article", 
-                reportsTitle: "グローバル市場レポート", reportsDesc: "海外出張からの業界および市場分析レポート。アクセスにはパスワードが必要です。", 
-                profilesTitle: "資料", profilesDesc: "公式の会社案内や資料をダウンロードできます。パスワードが必要です。",
-                thRegion: "地域/国", thTitle: "レポートのタイトル", thDate: "日付", thAction: "アクション", 
-                thCategory: "カテゴリー", thFiles: "利用可能なファイル", btnViewDownload: "表示/ダウンロード", pwdModalTitle: "制限されたアクセス", pwdModalDesc: "このレポートを表示またはダウンロードするには、パスワードを入力してください。", btnCancel: "キャンセル", btnConfirm: "確認", pwdError: "パスワードが間違っています。もう一度お試しください。", pwdSuccess: "アクセスが許可されました。ファイルを開いています...",
-                contactTitle: "公式コミュニケーション声明", contactDesc: "以下に正式な問い合わせまたはネットワーク記録の確認を提出してください。", formSubmit: "声明を提出する", modalTitle: "提出完了", modalDesc: "声明は安全に処理されました。当事務局にて確認の上、対応させていただきます。", modalClose: "閉じる", labelName: "お名前 *", labelNationality: "国籍 *", labelCompany: "会社名 *", labelPhone: "電話番号", labelEmail: "メールアドレス *", labelSns: "SNS識別子 / SNS ID (任意)", labelMessage: "質問内容 / 声明 *", connectTitle: "外部登記＆チャネル", connectDesc: "確認済みの企業ネットワークおよびデジタルメッセンジャーの資格情報にアクセスします。", linkedinSub: "プロフェッショナルネットワーク", linkedinBtn: "LinkedInで確認する", qrTitle: "ソーシャルメッセンジャーゲートウェイ",
-                blogSub: "個人ブログ", blogBtn: "CEO Daily Brief を見る", youtubeSub: "動画チャンネル", youtubeBtn: "YouTube で見る", naverSub: "Naver ブログ", naverBtn: "Naver ブログを見る",
-                ecosystemTitle: "デジタルチャネルアーキテクチャ", ecosystemDesc: "shinwonjong.comを中心としたチャネルの役割とコンテンツ拡張フロー", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "総合メディアポータル機能", ecoBriefTitle: "CEO Daily Brief (パーソナルジャーナル)", ecoBriefDesc1: "経済および時事情報を提供", ecoBriefDesc2: "深みのあるオリジナル社説を特集", ecoBlogTitle: "Naver Blog (日常ブログ)", ecoBlogDesc1: "日常生活の様々なトピック", ecoBlogDesc2: "大衆が気になる内容を扱う", ecoFlowLabel: "トピック選定＆動画化", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "ブログ内の革新的なトレンドを動画化", ecoYtDesc2: "歴史的洞察の表記と結合"
+                role: "最高経営責任者 (CEO)", name: "申 源鐘 (シン・ウォンジョン)", heroTitle: "革新を牽引するビジョンリーダー.", heroDesc: "揺るぎない原則で変化を受け入れ、新たな価値を創造し、グローバル市場をリードします。", connectBtn: "お問い合わせ", aboutTitle: "主な経歴", newsTitle: "News & Press", viewAllBtn: "すべて見る", closeBtn: "閉じる", readArticle: "Read Article", reportsTitle: "グローバル市場レポート", reportsDesc: "海外出張からの業界および市場分析レポート。アクセスにはパスワードが必要です。", profilesTitle: "資料", profilesDesc: "公式の会社案内や資料をダウンロードできます。パスワードが必要です。", thRegion: "地域/国", thTitle: "レポートのタイトル", thDate: "日付", thAction: "アクション", thCategory: "カテゴリー", thFiles: "利用可能なファイル", btnViewDownload: "表示/ダウンロード", pwdModalTitle: "制限されたアクセス", pwdModalDesc: "このレポートを表示またはダウンロードするには、パスワードを入力してください。", btnCancel: "キャンセル", btnConfirm: "確認", pwdError: "パスワードが間違っています。もう一度お試しください。", pwdSuccess: "アクセスが許可されました。ファイルを開いています...", contactTitle: "公式コミュニケーション声明", contactDesc: "以下に正式な問い合わせまたはネットワーク記録の確認を提出してください。", formSubmit: "声明を提出する", modalTitle: "提出完了", modalDesc: "声明は安全に処理されました。当事務局にて確認の上、対応させていただきます。", modalClose: "閉じる", labelName: "お名前 *", labelNationality: "国籍 *", labelCompany: "会社名 *", labelPhone: "電話番号", labelEmail: "メールアドレス *", labelSns: "SNS識別子 / SNS ID (任意)", labelMessage: "質問内容 / 声明 *", connectTitle: "外部登記＆チャネル", connectDesc: "確認済みの企業ネットワークおよびデジタルメッセンジャーの資格情報にアクセスします。", linkedinSub: "プロフェッショナルネットワーク", linkedinBtn: "LinkedInで確認する", qrTitle: "ソーシャルメッセンジャーゲートウェイ", blogSub: "個人ブログ", blogBtn: "CEO Daily Brief を見る", youtubeSub: "動画チャンネル", youtubeBtn: "YouTube で見る", naverSub: "Naver ブログ", naverBtn: "Naver ブログを見る", ecosystemTitle: "デジタルチャネルアーキテクチャ", ecosystemDesc: "shinwonjong.comを中心としたチャネルの役割とコンテンツ拡張フロー", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "総合メディアポータル機能", ecoBriefTitle: "CEO Daily Brief (パーソナルジャーナル)", ecoBriefDesc1: "経済および時事情報を提供", ecoBriefDesc2: "深みのあるオリジナル社説を特集", ecoBlogTitle: "Naver Blog (日常ブログ)", ecoBlogDesc1: "日常生活の様々なトピック", ecoBlogDesc2: "大衆が気になる内容を扱う", ecoFlowLabel: "トピック選定＆動画化", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "ブログ内の革新的なトレンドを動画化", ecoYtDesc2: "歴史的洞察の表記と結合"
             },
             vi: {
                 profileTitle: "Executive Profile",
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
-                role: "Giám đốc điều hành", name: "Shin WonJong", heroTitle: "Nhà lãnh đạo tầm nhìn thúc đẩy đổi mới.", heroDesc: "Dẫn dắt thị trường toàn cầu bằng cách tạo ra giá trị mới và nắm bắt sự thay đổi với các nguyên tắc vững chắc.", connectBtn: "Liên hệ", aboutTitle: "Kinh nghiệm làm việc", 
-                newsTitle: "News & Press", viewAllBtn: "Xem tất cả", closeBtn: "Thu gọn", readArticle: "Read Article", 
-                reportsTitle: "Báo cáo thị trường toàn cầu", reportsDesc: "Báo cáo phân tích thị trường và ngành từ các chuyến công tác toàn cầu. Yêu cầu mật khẩu để truy cập.", 
-                profilesTitle: "Tài nguyên", profilesDesc: "Tải xuống tài liệu và tài nguyên chính thức của công ty. Yêu cầu mật khẩu.",
-                thRegion: "Khu vực/Quốc gia", thTitle: "Tiêu đề báo cáo", thDate: "Ngày", thAction: "Hành động", 
-                thCategory: "Thể loại", thFiles: "Các tệp có sẵn", btnViewDownload: "Xem / Tải xuống", pwdModalTitle: "Quyền truy cập bị hạn chế", pwdModalDesc: "Vui lòng nhập mật khẩu để xem hoặc tải xuống báo cáo này.", btnCancel: "Hủy bỏ", btnConfirm: "Xác nhận", pwdError: "Mật khẩu không đúng. Vui lòng thử lại.", pwdSuccess: "Đã cấp quyền truy cập. Đang mở tệp...",
-                contactTitle: "Tuyên bố liên lạc chính thức", contactDesc: "Vui lòng gửi câu hỏi chính thức của bạn hoặc xác minh hồ sơ mạng bên dưới.", formSubmit: "Gửi tuyên bố", modalTitle: "Đã nhận được bản gửi", modalDesc: "Tuyên bố đã được xử lý an toàn. Văn phòng chúng tôi sẽ xem xét và phản hồi phù hợp.", modalClose: "Đóng", labelName: "Họ và tên *", labelNationality: "Quốc tịch *", labelCompany: "Tên công ty *", labelPhone: "Số điện thoại", labelEmail: "Địa chỉ Email *", labelSns: "Mã định danh mạng xã hội / SNS ID (Tùy chọn)", labelMessage: "Tuyên bố yêu cầu / Tin nhắn *", connectTitle: "Sổ đăng ký & Kênh bên ngoài", connectDesc: "Truy cập mạng doanh nghiệp đã xác minh và thông tin xác thực tin nhắn kỹ thuật số.", linkedinSub: "Mạng lưới chuyên nghiệp", linkedinBtn: "Xác minh qua LinkedIn", qrTitle: "Cổng nhắn tin xã hội",
-                blogSub: "Blog cá nhân", blogBtn: "Truy cập CEO Daily Brief", youtubeSub: "Kênh Video", youtubeBtn: "Xem trên YouTube", naverSub: "Blog Naver", naverBtn: "Truy cập Blog Naver",
-                ecosystemTitle: "Kiến trúc kênh kỹ thuật số", ecosystemDesc: "Vai trò kênh và luồng mở rộng nội dung lấy shinwonjong.com làm trung tâm", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "Chức năng cổng thông tin truyền thông toàn diện", ecoBriefTitle: "CEO Daily Brief (Nhật ký cá nhân)", ecoBriefDesc1: "Cung cấp thông tin kinh tế & thời sự", ecoBriefDesc2: "Các bài xã luận gốc chuyên sâu", ecoBlogTitle: "Naver Blog (Blog đời sống)", ecoBlogDesc1: "Các chủ đề xoay quanh cuộc sống hàng ngày", ecoBlogDesc2: "Bao gồm các chủ đề công chúng quan tâm", ecoFlowLabel: "Lựa chọn chủ đề & Sản xuất video", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "Sản xuất video về các xu hướng đổi mới từ blog", ecoYtDesc2: "Kết hợp và kết hợp những hiểu biết sâu sắc về lịch sử"
+                role: "Giám đốc điều hành", name: "Shin WonJong", heroTitle: "Nhà lãnh đạo tầm nhìn thúc đẩy đổi mới.", heroDesc: "Dẫn dắt thị trường toàn cầu bằng cách tạo ra giá trị mới và nắm bắt sự thay đổi với các nguyên tắc vững chắc.", connectBtn: "Liên hệ", aboutTitle: "Kinh nghiệm làm việc", newsTitle: "News & Press", viewAllBtn: "Xem tất cả", closeBtn: "Thu gọn", readArticle: "Read Article", reportsTitle: "Báo cáo thị trường toàn cầu", reportsDesc: "Báo cáo phân tích thị trường và ngành từ các chuyến công tác toàn cầu. Yêu cầu mật khẩu để truy cập.", profilesTitle: "Tài nguyên", profilesDesc: "Tải xuống tài liệu và tài nguyên chính thức của công ty. Yêu cầu mật khẩu.", thRegion: "Khu vực/Quốc gia", thTitle: "Tiêu đề báo cáo", thDate: "Ngày", thAction: "Hành động", thCategory: "Thể loại", thFiles: "Các tệp có sẵn", btnViewDownload: "Xem / Tải xuống", pwdModalTitle: "Quyền truy cập bị hạn chế", pwdModalDesc: "Vui lòng nhập mật khẩu để xem hoặc tải xuống báo cáo này.", btnCancel: "Hủy bỏ", btnConfirm: "Xác nhận", pwdError: "Mật khẩu không đúng. Vui lòng thử lại.", pwdSuccess: "Đã cấp quyền truy cập. Đang mở tệp...", contactTitle: "Tuyên bố liên lạc chính thức", contactDesc: "Vui lòng gửi câu hỏi chính thức của bạn hoặc xác minh hồ sơ mạng bên dưới.", formSubmit: "Gửi tuyên bố", modalTitle: "Đã nhận được bản gửi", modalDesc: "Tuyên bố đã được xử lý an toàn. Văn phòng chúng tôi sẽ xem xét và phản hồi phù hợp.", modalClose: "Đóng", labelName: "Họ và tên *", labelNationality: "Quốc tịch *", labelCompany: "Tên công ty *", labelPhone: "Số điện thoại", labelEmail: "Địa chỉ Email *", labelSns: "Mã định danh mạng xã hội / SNS ID (Tùy chọn)", labelMessage: "Tuyên bố yêu cầu / Tin nhắn *", connectTitle: "Sổ đăng ký & Kênh bên ngoài", connectDesc: "Truy cập mạng doanh nghiệp đã xác minh và thông tin xác thực tin nhắn kỹ thuật số.", linkedinSub: "Mạng lưới chuyên nghiệp", linkedinBtn: "Xác minh qua LinkedIn", qrTitle: "Cổng nhắn tin xã hội", blogSub: "Blog cá nhân", blogBtn: "Truy cập CEO Daily Brief", youtubeSub: "Kênh Video", youtubeBtn: "Xem trên YouTube", naverSub: "Blog Naver", naverBtn: "Truy cập Blog Naver", ecosystemTitle: "Kiến trúc kênh kỹ thuật số", ecosystemDesc: "Vai trò kênh và luồng mở rộng nội dung lấy shinwonjong.com làm trung tâm", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "Chức năng cổng thông tin truyền thông toàn diện", ecoBriefTitle: "CEO Daily Brief (Nhật ký cá nhân)", ecoBriefDesc1: "Cung cấp thông tin kinh tế & thời sự", ecoBriefDesc2: "Các bài xã luận gốc chuyên sâu", ecoBlogTitle: "Naver Blog (Blog đời sống)", ecoBlogDesc1: "Các chủ đề xoay quanh cuộc sống hàng ngày", ecoBlogDesc2: "Bao gồm các chủ đề công chúng quan tâm", ecoFlowLabel: "Lựa chọn chủ đề & Sản xuất video", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "Sản xuất video về các xu hướng đổi mới từ blog", ecoYtDesc2: "Kết hợp và kết hợp những hiểu biết sâu sắc về lịch sử"
             },
             ru: {
                 profileTitle: "Executive Profile",
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
-                role: "Генеральный директор", name: "Син Вонджон", heroTitle: "Дальновидный лидер, стимулирующий инновации.", heroDesc: "Лидерство на мировом рынке за счет создания новых ценностей и принятия изменений с непоколебимыми принципами.", connectBtn: "Связаться", aboutTitle: "Основные этапы карьеры", 
-                newsTitle: "News & Press", viewAllBtn: "Смотреть все", closeBtn: "Свернуть", readArticle: "Read Article", 
-                reportsTitle: "Отчеты о мировом рынке", reportsDesc: "Отчеты об анализе отрасли и рынка по итогам зарубежных командировок. Для доступа требуется пароль.", 
-                profilesTitle: "Ресурсы", profilesDesc: "Загрузите официальные брошюры и ресурсы компании. Требуется пароль.",
-                thRegion: "Регион/Страна", thTitle: "Название отчета", thDate: "Дата", thAction: "Действие", 
-                thCategory: "Категория", thFiles: "Доступные файлы", btnViewDownload: "Просмотр / Скачать", pwdModalTitle: "Ограниченный доступ", pwdModalDesc: "Пожалуйста, введите пароль для просмотра или загрузки этого отчета.", btnCancel: "Отмена", btnConfirm: "Подтвердить", pwdError: "Неверный пароль. Пожалуйста, попробуйте еще раз.", pwdSuccess: "Доступ разрешен. Открытие файла...",
-                contactTitle: "Официальное коммуникационное заявление", contactDesc: "Пожалуйста, отправьте ваши официальные запросы или верификацию сетевой записи ниже.", formSubmit: "Подать заявление", modalTitle: "Заявление получено", modalDesc: "Заявление было безопасно обработано. Наш офис рассмотрит его и ответит должным образом.", modalClose: "Закрыть", labelName: "Имя *", labelNationality: "Национальность *", labelCompany: "Название компании *", labelPhone: "Номер телефона", labelEmail: "Электронная почта *", labelSns: "Идентификатор соцсети / SNS ID (Необязательно)", labelMessage: "Текст запроса / Заявление *", connectTitle: "Внешние реестры и каналы", connectDesc: "Доступ к проверенным корпоративным сетям и учетным данным цифровых мессенджеров.", linkedinSub: "Профессиональная сеть", linkedinBtn: "Подтвердить через LinkedIn", qrTitle: "Шлюзы социальных мессенджеров",
-                blogSub: "Личный блог", blogBtn: "Посетить CEO Daily Brief", youtubeSub: "Видеоканал", youtubeBtn: "Смотреть на YouTube", naverSub: "Блог Naver", naverBtn: "Посетить блог Naver",
-                ecosystemTitle: "Архитектура цифровых каналов", ecosystemDesc: "Роли каналов и процесс расширения контента вокруг shinwonjong.com", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "Комплексная функция медиа-портала", ecoBriefTitle: "CEO Daily Brief (Личный журнал)", ecoBriefDesc1: "Предоставляет экономическую информацию", ecoBriefDesc2: "Оригинальные редакционные статьи", ecoBlogTitle: "Блог Naver (Повседневный блог)", ecoBlogDesc1: "Темы о повседневной жизни", ecoBlogDesc2: "Темы, интересные публике", ecoFlowLabel: "Выбор темы и видео", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "Создание видео об инновационных тенденциях из блога", ecoYtDesc2: "Включает исторические идеи"
+                role: "Генеральный директор", name: "Син Вонджон", heroTitle: "Дальновидный лидер, стимулирующий инновации.", heroDesc: "Лидерство на мировом рынке за счет создания новых ценностей и принятия изменений с непоколебимыми принципами.", connectBtn: "Связаться", aboutTitle: "Основные этапы карьеры", newsTitle: "News & Press", viewAllBtn: "Смотреть все", closeBtn: "Свернуть", readArticle: "Read Article", reportsTitle: "Отчеты о мировом рынке", reportsDesc: "Отчеты об анализе отрасли и рынка по итогам зарубежных командировок. Для доступа требуется пароль.", profilesTitle: "Ресурсы", profilesDesc: "Загрузите официальные брошюры и ресурсы компании. Требуется пароль.", thRegion: "Регион/Страна", thTitle: "Название отчета", thDate: "Дата", thAction: "Действие", thCategory: "Категория", thFiles: "Доступные файлы", btnViewDownload: "Просмотр / Скачать", pwdModalTitle: "Ограниченный доступ", pwdModalDesc: "Пожалуйста, введите пароль для просмотра или загрузки этого отчета.", btnCancel: "Отмена", btnConfirm: "Подтвердить", pwdError: "Неверный пароль. Пожалуйста, попробуйте еще раз.", pwdSuccess: "Доступ разрешен. Открытие файла...", contactTitle: "Официальное коммуникационное заявление", contactDesc: "Пожалуйста, отправьте ваши официальные запросы или верификацию сетевой записи ниже.", formSubmit: "Подать заявление", modalTitle: "Заявление получено", modalDesc: "Заявление было безопасно обработано. Наш офис рассмотрит его и ответит должным образом.", modalClose: "Закрыть", labelName: "Имя *", labelNationality: "Национальность *", labelCompany: "Название компании *", labelPhone: "Номер телефона", labelEmail: "Электронная почта *", labelSns: "Идентификатор соцсети / SNS ID (Необязательно)", labelMessage: "Текст запроса / Заявление *", connectTitle: "Внешние реестры и каналы", connectDesc: "Доступ к проверенным корпоративным сетям и учетным данным цифровых мессенджеров.", linkedinSub: "Профессиональная сеть", linkedinBtn: "Подтвердить через LinkedIn", qrTitle: "Шлюзы социальных мессенджеров", blogSub: "Личный блог", blogBtn: "Посетить CEO Daily Brief", youtubeSub: "Видеоканал", youtubeBtn: "Смотреть на YouTube", naverSub: "Блог Naver", naverBtn: "Посетить блог Naver", ecosystemTitle: "Архитектура цифровых каналов", ecosystemDesc: "Роли каналов и процесс расширения контента вокруг shinwonjong.com", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "Комплексная функция медиа-портала", ecoBriefTitle: "CEO Daily Brief (Личный журнал)", ecoBriefDesc1: "Предоставляет экономическую информацию", ecoBriefDesc2: "Оригинальные редакционные статьи", ecoBlogTitle: "Блог Naver (Повседневный блог)", ecoBlogDesc1: "Темы о повседневной жизни", ecoBlogDesc2: "Темы, интересные публике", ecoFlowLabel: "Выбор темы и видео", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "Создание видео об инновационных тенденциях из блога", ecoYtDesc2: "Включает исторические идеи"
             },
             th: {
                 profileTitle: "Executive Profile",
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed with an unparalleled pan-Asian distribution and marketing network, connecting premier medical societies, hospitals, and pharmacies in South Korea with key industry players—pharma, nutraceutical, medical device, and cosmetics firms—across China, Hong Kong, Japan, and Vietnam.",
-                role: "ประธานเจ้าหน้าที่บริหาร", name: "ชิน วอนจง", heroTitle: "ผู้นำที่มีวิสัยทัศน์ขับเคลื่อนนวัตกรรม.", heroDesc: "เป็นผู้นำตลาดระดับโลกด้วยการสร้างมูลค่าใหม่และยอมรับการเปลี่ยนแปลงด้วยหลักการที่แน่วแน่", connectBtn: "ติดต่อเรา", aboutTitle: "ประวัติการทำงาน", 
-                newsTitle: "News & Press", viewAllBtn: "ดูทั้งหมด", closeBtn: "ย่อ", readArticle: "Read Article", 
-                reportsTitle: "รายงานตลาดโลก", reportsDesc: "รายงานการวิเคราะห์อุตสาหกรรมและตลาดจากการเดินทางเพื่อธุรกิจทั่วโลก ต้องใช้รหัสผ่านในการเข้าถึง", 
-                profilesTitle: "ทรัพยากร", profilesDesc: "ดาวน์โหลดโบรชัวร์และทรัพยากรของบริษัทอย่างเป็นทางการ ต้องใช้รหัสผ่าน",
-                thRegion: "ภูมิภาค/ประเทศ", thTitle: "ชื่อรายงาน", thDate: "วันที่", thAction: "การดำเนินการ", 
-                thCategory: "หมวดหมู่", thFiles: "ไฟล์ที่มี", btnViewDownload: "ดู / ดาวน์โหลด", pwdModalTitle: "การเข้าถึงที่ถูกจำกัด", pwdModalDesc: "กรุณาป้อนรหัสผ่านเพื่อดูหรือดาวน์โหลดรายงานนี้", btnCancel: "ยกเลิก", btnConfirm: "ยืนยัน", pwdError: "รหัสผ่านไม่ถูกต้อง กรุณาลองอีกครั้ง", pwdSuccess: "อนุญาตให้เข้าถึง กำลังเปิดไฟล์...",
-                contactTitle: "แถลงการณ์ติดต่ออย่างเป็นทางการ", contactDesc: "กรุณาส่งคำถามอย่างเป็นทางการหรือการตรวจสอบบันทึกเครือข่ายด้านล่าง", formSubmit: "ส่งคำแถลง", modalTitle: "ได้รับข้อมูลเรียบร้อยแล้ว", modalDesc: "คำแถลงของคุณได้รับการประมวลผลอย่างปลอดภัยแล้ว สำนักงานของเราจะตรวจสอบและตอบกลับตามความเหมาะสม", modalClose: "ปิด", labelName: "ชื่อ *", labelNationality: "สัญชาติ *", labelCompany: "ชื่อบริษัท *", labelPhone: "หมายเลขโทรศัพท์", labelEmail: "อีเมล *", labelSns: "ตัวระบุโซเชียลมีเดีย / SNS ID (ไม่บังคับ)", labelMessage: "คำแถลงข้อซักถาม / ข้อความ *", connectTitle: "ทะเบียนและช่องทางภายนอก", connectDesc: "เข้าถึงเครือข่ายองค์กรที่ได้รับการตรวจสอบและข้อมูลประจำตัวของโปรแกรมส่งข้อความดิจิทัล", linkedinSub: "เครือข่ายมืออาชีพ", linkedinBtn: "เชื่อมต่อบน LinkedIn", qrTitle: "เกตเวย์ผู้ส่งสารทางโซเชียล",
-                blogSub: "บล็อกส่วนตัว", blogBtn: "เยี่ยมชม CEO Daily Brief", youtubeSub: "ช่องวิดีโอ", youtubeBtn: "รับชมบน YouTube", naverSub: "บล็อก Naver", naverBtn: "เยี่ยมชมบล็อก Naver",
-                ecosystemTitle: "สถาปัตยกรรมช่องทางดิจิทัล", ecosystemDesc: "บทบาทของช่องทางและการขยายเนื้อหาโดยมี shinwonjong.com เป็นศูนย์กลาง", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "ฟังก์ชันพอร์ทัลสื่อที่ครอบคลุม", ecoBriefTitle: "CEO Daily Brief (วารสารส่วนตัว)", ecoBriefDesc1: "ให้ข้อมูลเศรษฐกิจและสถานการณ์ปัจจุบัน", ecoBriefDesc2: "บทบรรณาธิการต้นฉบับเชิงลึก", ecoBlogTitle: "บล็อก Naver (บล็อกชีวิตประจำวัน)", ecoBlogDesc1: "หัวข้อต่างๆ เกี่ยวกับชีวิตประจำวัน", ecoBlogDesc2: "ครอบคลุมหัวข้อที่ประชาชนอยากรู้", ecoFlowLabel: "การเลือกหัวข้อและการผลิตวิดีโอ", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "การผลิตวิดีโอเกี่ยวกับเทรนด์นวัตกรรมจากบล็อก", ecoYtDesc2: "รวบรวมและผสมผสานข้อมูลเชิงลึกทางประวัติศาสตร์"
+                role: "ประธานเจ้าหน้าที่บริหาร", name: "ชิน วอนจง", heroTitle: "ผู้นำที่มีวิสัยทัศน์ขับเคลื่อนนวัตกรรม.", heroDesc: "เป็นผู้นำตลาดระดับโลกด้วยการสร้างมูลค่าใหม่และยอมรับการเปลี่ยนแปลงด้วยหลักการที่แน่วแน่", connectBtn: "ติดต่อเรา", aboutTitle: "ประวัติการทำงาน", newsTitle: "News & Press", viewAllBtn: "ดูทั้งหมด", closeBtn: "ย่อ", readArticle: "Read Article", reportsTitle: "รายงานตลาดโลก", reportsDesc: "รายงานการวิเคราะห์อุตสาหกรรมและตลาดจากการเดินทางเพื่อธุรกิจทั่วโลก ต้องใช้รหัสผ่านในการเข้าถึง", profilesTitle: "ทรัพยากร", profilesDesc: "ดาวน์โหลดโบรชัวร์และทรัพยากรของบริษัทอย่างเป็นทางการ ต้องใช้รหัสผ่าน", thRegion: "ภูมิภาค/ประเทศ", thTitle: "ชื่อรายงาน", thDate: "วันที่", thAction: "การดำเนินการ", thCategory: "หมวดหมู่", thFiles: "ไฟล์ที่มี", btnViewDownload: "ดู / ดาวน์โหลด", pwdModalTitle: "การเข้าถึงที่ถูกจำกัด", pwdModalDesc: "กรุณาป้อนรหัสผ่านเพื่อดูหรือดาวน์โหลดรายงานนี้", btnCancel: "ยกเลิก", btnConfirm: "ยืนยัน", pwdError: "รหัสผ่านไม่ถูกต้อง กรุณาลองอีกครั้ง", pwdSuccess: "อนุญาตให้เข้าถึง กำลังเปิดไฟล์...", contactTitle: "แถลงการณ์ติดต่ออย่างเป็นทางการ", contactDesc: "กรุณาส่งคำถามอย่างเป็นทางการหรือการตรวจสอบบันทึกเครือข่ายด้านล่าง", formSubmit: "ส่งคำแถลง", modalTitle: "ได้รับข้อมูลเรียบร้อยแล้ว", modalDesc: "คำแถลงของคุณได้รับการประมวลผลอย่างปลอดภัยแล้ว สำนักงานของเราจะตรวจสอบและตอบกลับตามความเหมาะสม", modalClose: "ปิด", labelName: "ชื่อ *", labelNationality: "สัญชาติ *", labelCompany: "ชื่อบริษัท *", labelPhone: "หมายเลขโทรศัพท์", labelEmail: "อีเมล *", labelSns: "ตัวระบุโซเชียลมีเดีย / SNS ID (ไม่บังคับ)", labelMessage: "คำแถลงข้อซักถาม / ข้อความ *", connectTitle: "ทะเบียนและช่องทางภายนอก", connectDesc: "เข้าถึงเครือข่ายองค์กรที่ได้รับการตรวจสอบและข้อมูลประจำตัวของโปรแกรมส่งข้อความดิจิทัล", linkedinSub: "เครือข่ายมืออาชีพ", linkedinBtn: "เชื่อมต่อบน LinkedIn", qrTitle: "เกตเวย์ผู้ส่งสารทางโซเชียล", blogSub: "บล็อกส่วนตัว", blogBtn: "เยี่ยมชม CEO Daily Brief", youtubeSub: "ช่องวิดีโอ", youtubeBtn: "รับชมบน YouTube", naverSub: "บล็อก Naver", naverBtn: "เยี่ยมชมบล็อก Naver", ecosystemTitle: "สถาปัตยกรรมช่องทางดิจิทัล", ecosystemDesc: "บทบาทของช่องทางและการขยายเนื้อหาโดยมี shinwonjong.com เป็นศูนย์กลาง", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "ฟังก์ชันพอร์ทัลสื่อที่ครอบคลุม", ecoBriefTitle: "CEO Daily Brief (วารสารส่วนตัว)", ecoBriefDesc1: "ให้ข้อมูลเศรษฐกิจและสถานการณ์ปัจจุบัน", ecoBriefDesc2: "บทบรรณาธิการต้นฉบับเชิงลึก", ecoBlogTitle: "บล็อก Naver (บล็อกชีวิตประจำวัน)", ecoBlogDesc1: "หัวข้อต่างๆ เกี่ยวกับชีวิตประจำวัน", ecoBlogDesc2: "ครอบคลุมหัวข้อที่ประชาชนอยากรู้", ecoFlowLabel: "การเลือกหัวข้อและการผลิตวิดีโอ", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "การผลิตวิดีโอเกี่ยวกับเทรนด์นวัตกรรมจากบล็อก", ecoYtDesc2: "รวบรวมและผสมผสานข้อมูลเชิงลึกทางประวัติศาสตร์"
             },
             id: {
                 profileTitle: "Executive Profile",
                 profileP1: "A visionary C-level executive with over 20 years of leadership in corporate strategy, M&A, and business development across the pharmaceutical, biotechnology, medical device, nutraceutical, and cosmetics sectors. A catalyst for exponential growth, having doubled corporate revenue within a single year as CEO of BioPlus International.",
                 profileP2: "Expert in orchestrating mid-to-long-term corporate strategies, venture investments, and enterprise-wide digital transformation (DX). Armed dengan jaringan distribusi dan pemasaran Asia yang tak tertandingi...",
-                role: "Chief Executive Officer", name: "Shin WonJong", heroTitle: "Pemimpin Visioner yang Mendorong Inovasi.", heroDesc: "Memimpin pasar global dengan menciptakan nilai baru dan merangkul perubahan dengan prinsip-prinsip yang tak tergoyahkan.", connectBtn: "Hubungi Kami", aboutTitle: "Sorotan Karir", 
-                newsTitle: "News & Press", viewAllBtn: "Lihat Semua", closeBtn: "Tutup", readArticle: "Read Article", 
-                reportsTitle: "Laporan Pasar Global", reportsDesc: "Laporan analisis industri dan pasar dari perjalanan bisnis global. Diperlukan kata sandi untuk akses.", 
-                profilesTitle: "Sumber Daya", profilesDesc: "Unduh brosur dan sumber daya perusahaan resmi. Diperlukan kata sandi.",
-                thRegion: "Wilayah/Negara", thTitle: "Judul Laporan", thDate: "Tanggal", thAction: "Aksi", 
-                thCategory: "Kategori", thFiles: "File Tersedia", btnViewDownload: "Lihat / Unduh", pwdModalTitle: "Akses Terbatas", pwdModalDesc: "Silakan masukkan kata sandi untuk melihat atau mengunduh laporan ini.", btnCancel: "Batal", btnConfirm: "Konfirmasi", pwdError: "Kata sandi salah. Silakan coba lagi.", pwdSuccess: "Akses Diberikan. Membuka file...",
-                contactTitle: "Pernyataan Komunikasi Resmi", contactDesc: "Silakan kirimkan pertanyaan resmi Anda atau verifikasi catatan jaringan di bawah ini.", formSubmit: "Kirim Pernyataan", modalTitle: "Pengajuan Diterima", modalDesc: "Pernyataan telah diproses dengan aman. Kantor kami akan meninjau dan menanggapinya dengan tepat.", modalClose: "Tutup", labelName: "Nama *", labelNationality: "Kewarganegaraan *", labelCompany: "Nama Perusahaan *", labelPhone: "Nomor Telepon", labelEmail: "Alamat Email *", labelSns: "Pengidentifikasi Media Sosial / ID SNS (Opsional)", labelMessage: "Pernyataan Pertanyaan / Pesan *", connectTitle: "Registrasi & Saluran Eksternal", connectDesc: "Akses jaringan perusahaan terverifikasi dan kredensial pesan digital.", linkedinSub: "Jaringan Profesional", linkedinBtn: "Verifikasi via LinkedIn", qrTitle: "Gerbang Pesan Sosial",
-                blogSub: "Blog Pribadi", blogBtn: "Kunjungi CEO Daily Brief", youtubeSub: "Saluran Video", youtubeBtn: "Tonton di YouTube", naverSub: "Blog Naver", naverBtn: "Kunjungi Blog Naver",
-                ecosystemTitle: "Arsitektur Saluran Digital", ecosystemDesc: "Peran Saluran dan Alur Perluasan Konten Berpusat pada shinwonjong.com", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "Fungsi Portal Media Komprehensif", ecoBriefTitle: "CEO Daily Brief (Jurnal Pribadi)", ecoBriefDesc1: "Menyediakan info ekonomi & urusan terkini", ecoBriefDesc2: "Menampilkan editorial asli yang mendalam", ecoBlogTitle: "Naver Blog (Blog Kehidupan Sehari-hari)", ecoBlogDesc1: "Berbagai topik seputar kehidupan sehari-hari", ecoBlogDesc2: "Membahas topik yang membuat penasaran publik", ecoFlowLabel: "Pemilihan Topik & Prod. Video", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "Produksi video tren inovatif dari blog", ecoYtDesc2: "Menggabungkan wawasan sejarah"
+                role: "Chief Executive Officer", name: "Shin WonJong", heroTitle: "Pemimpin Visioner yang Mendorong Inovasi.", heroDesc: "Memimpin pasar global dengan menciptakan nilai baru dan merangkul perubahan dengan prinsip-prinsip yang tak tergoyahkan.", connectBtn: "Hubungi Kami", aboutTitle: "Sorotan Karir", newsTitle: "News & Press", viewAllBtn: "Lihat Semua", closeBtn: "Tutup", readArticle: "Read Article", reportsTitle: "Laporan Pasar Global", reportsDesc: "Laporan analisis industri dan pasar dari perjalanan bisnis global. Diperlukan kata sandi untuk akses.", profilesTitle: "Sumber Daya", profilesDesc: "Unduh brosur dan sumber daya perusahaan resmi. Diperlukan kata sandi.", thRegion: "Wilayah/Negara", thTitle: "Judul Laporan", thDate: "Tanggal", thAction: "Aksi", thCategory: "Kategori", thFiles: "File Tersedia", btnViewDownload: "Lihat / Unduh", pwdModalTitle: "Akses Terbatas", pwdModalDesc: "Silakan masukkan kata sandi untuk melihat atau mengunduh laporan ini.", btnCancel: "Batal", btnConfirm: "Konfirmasi", pwdError: "Kata sandi salah. Silakan coba lagi.", pwdSuccess: "Akses Diberikan. Membuka file...", contactTitle: "Pernyataan Komunikasi Resmi", contactDesc: "Silakan kirimkan pertanyaan resmi Anda atau verifikasi catatan jaringan di bawah ini.", formSubmit: "Kirim Pernyataan", modalTitle: "Pengajuan Diterima", modalDesc: "Pernyataan telah diproses dengan aman. Kantor kami akan meninjau dan menanggapinya dengan tepat.", modalClose: "Tutup", labelName: "Nama *", labelNationality: "Kewarganegaraan *", labelCompany: "Nama Perusahaan *", labelPhone: "Nomor Telepon", labelEmail: "Alamat Email *", labelSns: "Pengidentifikasi Media Sosial / ID SNS (Opsional)", labelMessage: "Pernyataan Pertanyaan / Pesan *", connectTitle: "Registrasi & Saluran Eksternal", connectDesc: "Akses jaringan perusahaan terverifikasi dan kredensial pesan digital.", linkedinSub: "Jaringan Profesional", linkedinBtn: "Verifikasi via LinkedIn", qrTitle: "Gerbang Pesan Sosial", blogSub: "Blog Pribadi", blogBtn: "Kunjungi CEO Daily Brief", youtubeSub: "Saluran Video", youtubeBtn: "Tonton di YouTube", naverSub: "Blog Naver", naverBtn: "Kunjungi Blog Naver", ecosystemTitle: "Arsitektur Saluran Digital", ecosystemDesc: "Peran Saluran dan Alur Perluasan Konten Berpusat pada shinwonjong.com", ecoMainTitle: "shinwonjong.com", ecoMainDesc: "Fungsi Portal Media Komprehensif", ecoBriefTitle: "CEO Daily Brief (Jurnal Pribadi)", ecoBriefDesc1: "Menyediakan info ekonomi & urusan terkini", ecoBriefDesc2: "Menampilkan editorial asli yang mendalam", ecoBlogTitle: "Naver Blog (Blog Kehidupan Sehari-hari)", ecoBlogDesc1: "Berbagai topik seputar kehidupan sehari-hari", ecoBlogDesc2: "Membahas topik yang membuat penasaran publik", ecoFlowLabel: "Pemilihan Topik & Prod. Video", ecoYtTitle: "YouTube Vision Prism", ecoYtDesc1: "Produksi video tren inovatif dari blog", ecoYtDesc2: "Menggabungkan wawasan sejarah"
             }
         };
 
@@ -839,10 +793,6 @@
         languageSelect.value = 'en';
         changeLanguage('en');
 
-        // ==========================================
-        // ★ SUPABASE INTEGRATION LOGIC ★
-        // ==========================================
-        
         const SUPABASE_URL = 'https://metadqppbypzgiowkgzg.supabase.co'; 
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ldGFkcXBwYnlwemdpb3drZ3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2ODI3MTksImV4cCI6MjA5NTI1ODcxOX0.qehDot2UZEiys3nshDWUSyzjrA6rXgHD6QAz_nYAo3U';
         
@@ -851,14 +801,10 @@
             supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         }
 
-        // ==========================================
-        // 1. 프로필 및 경력사항 로직 (동적 렌더링)
-        // ==========================================
         async function loadProfileData() {
             if (!supabaseClient) return;
 
             try {
-                // 단일 profile 테이블 하나에서 모두 불러오기 (어드민과 동일 구조)
                 const { data, error } = await supabaseClient
                     .from('profile')
                     .select('*')
@@ -868,14 +814,12 @@
                 if (error && error.code !== 'PGRST116') throw error;
 
                 if (data) {
-                    // A. Executive Profile 렌더링
                     const profileContainer = document.getElementById('executiveProfileContainer');
                     profileContainer.innerHTML = ''; 
                     
                     if(data.p1) profileContainer.innerHTML += `<p>${data.p1}</p>`;
                     if(data.p2) profileContainer.innerHTML += `<p>${data.p2}</p>`;
 
-                    // B. Career Highlights 렌더링
                     const careerContainer = document.getElementById('careerHighlightsContainer');
                     const careers = data.careers || [];
                     
@@ -889,7 +833,6 @@
                             if (links.length > 0) {
                                 linksHtml = '<div class="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full mt-2">';
                                 links.forEach(link => {
-                                    // 기본값 처리
                                     const iconClass = link.icon || 'ph-globe';
                                     const isPrimary = link.isPrimary || link.is_dark;
 
@@ -912,7 +855,6 @@
                                 ? `<img src="${item.logo_url}" alt="${item.company} Logo" class="w-full h-full object-contain">`
                                 : `<div class="text-gray-300"><i class="ph-fill ph-buildings text-4xl"></i></div>`;
 
-                            // 첫 번째 경력(보통 현재 경력)은 배경색 bg-[#F8FAFC], 나머지는 bg-white
                             const bgClass = index === 0 ? 'bg-[#F8FAFC]' : 'bg-white';
 
                             careerContainer.insertAdjacentHTML('beforeend', `
@@ -940,9 +882,6 @@
             }
         }
 
-        // ==========================================
-        // 2. 뉴스 기사 로직
-        // ==========================================
         let carouselInterval;
         let allNewsData = []; 
         let isNewsExpanded = false; 
@@ -962,7 +901,7 @@
                 const { data, error } = await supabaseClient
                     .from('news')
                     .select('*')
-                    .order('sort_order', { ascending: true }) // Added sorting order from admin
+                    .order('sort_order', { ascending: true }) 
                     .order('created_at', { ascending: false });
 
                 if (error) throw error;
@@ -1137,10 +1076,6 @@
             track.style.transform = `translateX(${currentTranslate}%)`;
         }
 
-        // ==========================================
-        // 3. 회사소개서 및 글로벌 출장 보고서 로직
-        // ==========================================
-
         const brochureTableBody = document.getElementById('brochureTableBody');
         const reportTableBody = document.getElementById('reportTableBody');
         let currentPwdTarget = null; 
@@ -1164,7 +1099,7 @@
                 const { data, error } = await supabaseClient
                     .from('resources')
                     .select('*')
-                    .order('sort_order', { ascending: true }) // Added sorting order from admin
+                    .order('sort_order', { ascending: true }) 
                     .order('created_at', { ascending: false }); 
                 
                 if (error) throw error;
@@ -1244,7 +1179,7 @@
                 const { data, error } = await supabaseClient
                     .from('market_reports')
                     .select('*')
-                    .order('sort_order', { ascending: true }) // Added sorting order from admin
+                    .order('sort_order', { ascending: true }) 
                     .order('created_at', { ascending: false }); 
 
                 if (error) throw error;
@@ -1380,7 +1315,6 @@
             }
         });
 
-        // Data initialization
         if (supabaseClient) {
             loadProfileData(); 
             loadNewsFromSupabase();
@@ -1388,9 +1322,6 @@
             loadReportsFromSupabase();
         }
 
-        // ==========================================
-        // 4. Contact Form 및 기타 모달 로직
-        // ==========================================
         const contactForm = document.getElementById('contactForm');
         const successModal = document.getElementById('successModal');
         const modalContent = document.getElementById('modalContent');

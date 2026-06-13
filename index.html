@@ -903,6 +903,7 @@
                 const { data, error } = await supabaseClient
                     .from('news')
                     .select('*')
+                    .order('sort_order', { ascending: true }) // Added sorting order from admin
                     .order('created_at', { ascending: false });
 
                 if (error) throw error;
@@ -1102,7 +1103,7 @@
                 const { data, error } = await supabaseClient
                     .from('resources')
                     .select('*')
-                    .order('sort_order', { ascending: true }) 
+                    .order('sort_order', { ascending: true }) // Added sorting order from admin
                     .order('created_at', { ascending: false }); 
                 
                 if (error) throw error;
@@ -1182,7 +1183,7 @@
                 const { data, error } = await supabaseClient
                     .from('market_reports')
                     .select('*')
-                    .order('sort_order', { ascending: true }) 
+                    .order('sort_order', { ascending: true }) // Added sorting order from admin
                     .order('created_at', { ascending: false }); 
 
                 if (error) throw error;

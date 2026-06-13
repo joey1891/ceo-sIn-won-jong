@@ -233,6 +233,12 @@
                                 <option value="date_desc">발행일 최신순 (Date DESC)</option>
                                 <option value="date_asc">발행일 과거순 (Date ASC)</option>
                             </select>
+                            
+                            <!-- 수정된 부분: 순서 저장 버튼 -->
+                            <button onclick="saveNewsOrder()" id="btnSaveNewsOrder" class="hidden bg-green-600 text-white px-4 py-2.5 rounded font-semibold text-sm hover:bg-green-700 transition-colors shadow-sm items-center gap-2 uppercase tracking-wider whitespace-nowrap">
+                                <i class="ph-bold ph-floppy-disk"></i> Save Order
+                            </button>
+
                             <button onclick="openAddNewsModal()" class="bg-accent text-white px-5 py-2.5 rounded font-semibold text-sm hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase tracking-wider whitespace-nowrap">
                                 <i class="ph-bold ph-plus"></i> Add Article
                             </button>
@@ -872,6 +878,12 @@
 
         // --- 6. News 관리 로직 ---
         async function fetchNewsData() {
+            const btnSaveNewsOrder = document.getElementById('btnSaveNewsOrder');
+            if(btnSaveNewsOrder) {
+                btnSaveNewsOrder.classList.add('hidden');
+                btnSaveNewsOrder.classList.remove('inline-flex');
+            }
+
             const sortModeElement = document.getElementById('newsSortMode');
             const sortMode = sortModeElement ? sortModeElement.value : 'custom';
             
@@ -979,7 +991,8 @@
             });
         }
 
-        async function moveNews(index, direction) {
+        // 수정됨: DB 즉시 업데이트 제거, UI만 변경하고 'Save Order' 버튼 활성화
+        function moveNews(index, direction) {
             if (index + direction < 0 || index + direction >= globalNewsData.length) return;
             
             const newArray = [...globalNewsData];
@@ -987,25 +1000,16 @@
             newArray[index] = newArray[index + direction];
             newArray[index + direction] = temp;
             
-            document.getElementById('newsTableBody').innerHTML = `<tr><td colspan="4" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Updating order...</td></tr>`;
-            
-            try {
-                const updates = newArray.map((item, i) => {
-                    return supabaseClient.from('news').update({ sort_order: i }).eq('id', item.id);
-                });
-                const results = await Promise.all(updates);
-                
-                const errorResult = results.find(res => res.error);
-                if (errorResult) throw errorResult.error;
+            globalNewsData = newArray;
+            renderNewsTable(globalNewsData);
 
-                fetchNewsData();
-            } catch (err) {
-                alert('순서 변경 실패: 데이터베이스의 "news" 테이블에 "sort_order" (숫자형) 컬럼을 먼저 추가해주세요.\n' + err.message);
-                fetchNewsData();
-            }
+            const btnSave = document.getElementById('btnSaveNewsOrder');
+            btnSave.classList.remove('hidden');
+            btnSave.classList.add('inline-flex');
         }
 
-        async function moveNewsToExtreme(index, position) {
+        // 수정됨: DB 즉시 업데이트 제거, UI만 변경하고 'Save Order' 버튼 활성화
+        function moveNewsToExtreme(index, position) {
             if (position === 'top' && index === 0) return;
             if (position === 'bottom' && index === globalNewsData.length - 1) return;
 
@@ -1018,23 +1022,45 @@
                 newArray.push(item);
             }
 
-            document.getElementById('newsTableBody').innerHTML = `<tr><td colspan="4" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Updating order...</td></tr>`;
+            globalNewsData = newArray;
+            renderNewsTable(globalNewsData);
+
+            const btnSave = document.getElementById('btnSaveNewsOrder');
+            btnSave.classList.remove('hidden');
+            btnSave.classList.add('inline-flex');
+        }
+
+        // 추가됨: 변경된 순서를 DB에 일괄 저장하는 함수
+        async function saveNewsOrder() {
+            const btn = document.getElementById('btnSaveNewsOrder');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<i class="ph ph-spinner animate-spin"></i> Saving...`;
 
             try {
-                const updates = newArray.map((newsItem, i) => {
-                    return supabaseClient.from('news').update({ sort_order: i }).eq('id', newsItem.id);
+                const updates = globalNewsData.map((item, i) => {
+                    return supabaseClient.from('news').update({ sort_order: i }).eq('id', item.id);
                 });
                 const results = await Promise.all(updates);
                 
                 const errorResult = results.find(res => res.error);
                 if (errorResult) throw errorResult.error;
 
+                alert('뉴스 순서가 성공적으로 저장되었습니다.');
+                
+                // 저장 성공 시 버튼 다시 숨김
+                btn.classList.add('hidden');
+                btn.classList.remove('inline-flex');
+                
                 fetchNewsData(); 
             } catch (err) {
-                alert('순서 변경 실패: 데이터베이스의 "news" 테이블에 "sort_order" (숫자형) 컬럼을 먼저 추가해주세요.\n' + err.message);
-                fetchNewsData();
+                alert('순서 저장 실패: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
             }
         }
+
 
         // ---------- 수정한 fetchMetadata 함수 적용 ----------
         async function fetchMetadata() {

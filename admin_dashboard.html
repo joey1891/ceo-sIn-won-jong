@@ -39,7 +39,7 @@
             <form id="loginForm" class="space-y-6">
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-primary mb-2">Access Key</label>
-                    <input type="password" id="passwordInput" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Enter password">
+                    <input type="password" id="passwordInput" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Enter password (admin1234)">
                 </div>
                 <button type="submit" class="w-full bg-primary text-white py-3 font-semibold hover:bg-opacity-90 transition-colors rounded uppercase text-sm tracking-wider">
                     Authenticate
@@ -61,7 +61,7 @@
                     <span class="font-bold text-lg tracking-wider text-primary whitespace-nowrap">SHIN WONJONG EXECUTIVE PORTAL</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <a href="index.html" target="_blank" class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium whitespace-nowrap">
+                    <a href="#" target="_blank" class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium whitespace-nowrap">
                         <i class="ph-bold ph-house"></i> Home
                     </a>
                     <div class="h-4 w-px bg-gray-300"></div>
@@ -1036,6 +1036,7 @@
             }
         }
 
+        // ---------- 수정한 fetchMetadata 함수 적용 ----------
         async function fetchMetadata() {
             const urlInput = document.getElementById('newsUrl').value;
             const statusText = document.getElementById('fetchStatus');
@@ -1053,56 +1054,116 @@
             statusText.className = "text-[10px] text-blue-500 mt-1 block";
 
             try {
-                const apiUrl = `https://api.microlink.io/?url=${encodeURIComponent(urlInput)}`;
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+                // 새로운 우회 방식: microlink API의 헤더 우회 옵션 및 fallback proxy
+                let htmlText = "";
+                let success = false;
                 
-                if (data.status === 'success' && data.data) {
-                    const meta = data.data;
-                    document.getElementById('newsTitle').value = meta.title || '';
-                    if(meta.image && meta.image.url) document.getElementById('newsImageUrl').value = meta.image.url;
-                    if(meta.publisher) document.getElementById('newsPublisher').value = meta.publisher;
-                    
-                    let formattedDate = '';
-                    if (meta.date) {
-                        const parsedDate = new Date(meta.date);
-                        if (!isNaN(parsedDate.getTime())) {
-                            const yyyy = parsedDate.getFullYear();
-                            const mm = String(parsedDate.getMonth() + 1).padStart(2, '0');
-                            const dd = String(parsedDate.getDate()).padStart(2, '0');
-                            formattedDate = `${yyyy}-${mm}-${dd}`;
-                        }
-                    } 
-                    
-                    if (!formattedDate) {
-                        const now = new Date();
-                        const yyyy = now.getFullYear();
-                        const mm = String(now.getMonth() + 1).padStart(2, '0');
-                        const dd = String(now.getDate()).padStart(2, '0');
-                        formattedDate = `${yyyy}-${mm}-${dd}`;
-                    }
-                    
-                    document.getElementById('newsDate').value = formattedDate;
+                // 시도 1: Microlink API (가장 안정적인 기존 방식에 우회 파라미터 추가)
+                if (!success) {
+                    try {
+                        const r1 = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(urlInput)}&prerender=true&meta=true`);
+                        if (r1.ok) {
+                            const d1 = await r1.json();
+                            if (d1.status === 'success' && d1.data) {
+                                const meta = d1.data;
+                                document.getElementById('newsTitle').value = meta.title || '';
+                                if(meta.image && meta.image.url) document.getElementById('newsImageUrl').value = meta.image.url;
+                                if(meta.publisher) document.getElementById('newsPublisher').value = meta.publisher;
+                                
+                                let formattedDate = '';
+                                if (meta.date) {
+                                    const parsedDate = new Date(meta.date);
+                                    if (!isNaN(parsedDate.getTime())) {
+                                        const yyyy = parsedDate.getFullYear();
+                                        const mm = String(parsedDate.getMonth() + 1).padStart(2, '0');
+                                        const dd = String(parsedDate.getDate()).padStart(2, '0');
+                                        formattedDate = `${yyyy}-${mm}-${dd}`;
+                                    }
+                                } 
+                                
+                                if (!formattedDate) {
+                                    const now = new Date();
+                                    formattedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+                                }
+                                document.getElementById('newsDate').value = formattedDate;
 
-                    statusText.textContent = "정보를 성공적으로 불러왔습니다. 내용이 맞는지 확인해주세요.";
-                    statusText.className = "text-[10px] text-green-600 mt-1 block";
-                } else {
-                    throw new Error("No metadata received");
+                                statusText.textContent = "정보를 성공적으로 불러왔습니다.";
+                                statusText.className = "text-[10px] text-green-600 mt-1 block";
+                                return; // Microlink 성공 시 여기서 함수 종료
+                            }
+                        }
+                    } catch (e) {}
                 }
+
+                // 시도 2: AllOrigins RAW 데이터 방식 (User-Agent 우회 효과)
+                if (!success) {
+                    try {
+                        const r2 = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(urlInput)}`);
+                        if (r2.ok) { 
+                            htmlText = await r2.text(); 
+                            success = true; 
+                        }
+                    } catch (e) {}
+                }
+
+                if (!success || !htmlText) {
+                    throw new Error("모든 우회 방식이 차단되었습니다.");
+                }
+
+                // HTML 텍스트를 파싱합니다 (시도 2 성공 시).
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, "text/html");
+
+                // 메타 태그 추출 헬퍼
+                const getMeta = (prop, name) => {
+                    const el = doc.querySelector(`meta[property="${prop}"], meta[name="${name}"]`);
+                    return el ? el.getAttribute("content") : "";
+                };
+
+                const title = getMeta("og:title", "title") || doc.querySelector('title')?.innerText || "";
+                const image = getMeta("og:image", "twitter:image") || "";
+                let publisher = getMeta("og:site_name", "twitter:site") || getMeta("article:publisher", "publisher") || "";
+                
+                if (!publisher) {
+                    try { publisher = new URL(urlInput).hostname.replace('www.', ''); } catch(e) {}
+                }
+
+                let dateStr = getMeta("article:published_time", "pubdate") || getMeta("sailthru.date", "date");
+                let formattedDate = "";
+                
+                if (dateStr) {
+                    const parsedDate = new Date(dateStr);
+                    if (!isNaN(parsedDate.getTime())) {
+                        formattedDate = `${parsedDate.getFullYear()}-${String(parsedDate.getMonth() + 1).padStart(2, '0')}-${String(parsedDate.getDate()).padStart(2, '0')}`;
+                    }
+                }
+
+                if (!formattedDate) {
+                    const now = new Date();
+                    formattedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+                }
+
+                // UI 업데이트
+                if (title) document.getElementById('newsTitle').value = title;
+                if (image) document.getElementById('newsImageUrl').value = image;
+                if (publisher) document.getElementById('newsPublisher').value = publisher;
+                document.getElementById('newsDate').value = formattedDate;
+
+                statusText.textContent = "우회 서버를 통해 정보를 불러왔습니다.";
+                statusText.className = "text-[10px] text-green-600 mt-1 block";
+
             } catch (error) {
-                statusText.textContent = "보안 등의 이유로 정보를 자동으로 불러올 수 없습니다. 아래 항목을 직접 입력해주세요.";
+                statusText.textContent = "강력한 봇 방지 시스템으로 인해 차단되었습니다. 직접 입력해주세요.";
                 statusText.className = "text-[10px] text-red-500 mt-1 block";
                 
                 const now = new Date();
-                const yyyy = now.getFullYear();
-                const mm = String(now.getMonth() + 1).padStart(2, '0');
-                const dd = String(now.getDate()).padStart(2, '0');
-                document.getElementById('newsDate').value = `${yyyy}-${mm}-${dd}`;
+                document.getElementById('newsDate').value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
             } finally {
                 btnMeta.disabled = false;
                 btnMeta.innerHTML = '자동 입력';
             }
         }
+        // -----------------------------------------------------------
 
         document.getElementById('addNewsForm').addEventListener('submit', async (e) => {
             e.preventDefault();

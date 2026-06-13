@@ -221,14 +221,22 @@
 
                 <!-- NEWS MANAGEMENT TAB CONTENT -->
                 <div id="newsSection" class="hidden">
-                    <div class="flex justify-between items-center mb-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                         <div>
                             <h2 class="text-2xl font-bold text-primary tracking-tight">News Articles</h2>
                             <p class="text-sm text-gray-500 mt-1">Manage external press releases and news links.</p>
                         </div>
-                        <button onclick="openAddNewsModal()" class="bg-accent text-white px-5 py-2.5 rounded font-semibold text-sm hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase tracking-wider">
-                            <i class="ph-bold ph-plus"></i> Add Article
-                        </button>
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <!-- 정렬 필터 추가 -->
+                            <select id="newsSortMode" onchange="fetchNewsData()" class="p-2.5 border border-gray-300 rounded text-sm font-medium focus:outline-none focus:border-accent bg-white shadow-sm flex-1 sm:flex-none cursor-pointer">
+                                <option value="custom">사용자 지정 순서 (Custom)</option>
+                                <option value="date_desc">발행일 최신순 (Date DESC)</option>
+                                <option value="date_asc">발행일 과거순 (Date ASC)</option>
+                            </select>
+                            <button onclick="openAddNewsModal()" class="bg-accent text-white px-5 py-2.5 rounded font-semibold text-sm hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase tracking-wider whitespace-nowrap">
+                                <i class="ph-bold ph-plus"></i> Add Article
+                            </button>
+                        </div>
                     </div>
 
                     <div class="bg-white border border-gray-200 rounded shadow-sm overflow-hidden">
@@ -406,7 +414,6 @@
                         <input type="text" id="newsPublisher" required class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent" placeholder="e.g. Business Daily">
                     </div>
                     <div>
-                        <!-- input type을 date로 변경하여 정렬 기준을 명확히 함 -->
                         <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Date *</label>
                         <input type="date" id="newsDate" required class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent">
                     </div>
@@ -422,7 +429,7 @@
         </div>
     </div>
 
-    <!-- 모달: Reports 추가/수정 (다중 파일로 수정됨) -->
+    <!-- 모달: Reports 추가/수정 -->
     <div id="addReportModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
         <div class="bg-white p-8 max-w-lg w-full mx-4 rounded border border-gray-300 shadow-2xl transform transition-transform scale-95 opacity-0 duration-300 flex flex-col max-h-[90vh]" id="addReportModalContent">
             <div class="flex justify-between items-start mb-6 pb-4 border-b border-gray-200">
@@ -452,7 +459,6 @@
                     </div>
                 </div>
                 
-                <!-- 동적 파일 리스트 영역 (Market Reports) -->
                 <div class="mt-4 border-t border-gray-200 pt-4">
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-2">Attached Files (Languages)</label>
                     <div id="reportFilesContainer" class="space-y-2">
@@ -496,7 +502,6 @@
                     </div>
                 </div>
                 
-                <!-- 동적 파일 리스트 영역 (Resources) -->
                 <div class="mt-4 border-t border-gray-200 pt-4">
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-2">Attached Files (Languages)</label>
                     <div id="resFilesContainer" class="space-y-2">
@@ -518,7 +523,7 @@
         /**
          * SUPABASE DATABASE SCHEMA REQUIREMENTS:
          * 1. inquiries, visitors: Existing tables for Inquiry section.
-         * 2. news: id, url, title, publisher, date, image_url, sort_order, created_at (sort_order 컬럼 추가 필요)
+         * 2. news: id, url, title, publisher, date, image_url, sort_order, created_at
          * 3. market_reports: id, country, title, date, files (JSONB array), password, sort_order, created_at
          * 4. resources: id, title, date, password, files (JSONB array), sort_order, created_at
          */
@@ -867,16 +872,24 @@
 
         // --- 6. News 관리 로직 ---
         async function fetchNewsData() {
+            const sortModeElement = document.getElementById('newsSortMode');
+            const sortMode = sortModeElement ? sortModeElement.value : 'custom';
+            
+            let query = supabaseClient.from('news').select('*');
+
+            // 드롭다운 선택 값에 따른 정렬 기준 변경
+            if (sortMode === 'custom') {
+                query = query.order('sort_order', { ascending: true }).order('created_at', { ascending: false });
+            } else if (sortMode === 'date_desc') {
+                query = query.order('date', { ascending: false }).order('created_at', { ascending: false });
+            } else if (sortMode === 'date_asc') {
+                query = query.order('date', { ascending: true }).order('created_at', { ascending: true });
+            }
+
             try {
-                // 1. sort_order를 포함하여 데이터 로드 시도
-                let { data, error } = await supabaseClient
-                    .from('news')
-                    .select('*')
-                    .order('sort_order', { ascending: true }) 
-                    .order('date', { ascending: false })      
-                    .order('created_at', { ascending: false });
+                let { data, error } = await query;
                 
-                // 2. 만약 DB에 'sort_order' 컬럼이 없어서 에러가 발생한다면, date 기준으로만 다시 로드 (복원 로직)
+                // 만약 DB에 'sort_order' 컬럼이 없어서 에러가 발생한다면, date 기준으로만 다시 로드 (복원 로직)
                 if (error) {
                     if (error.code === '42P01') { 
                         document.getElementById('newsTableBody').innerHTML = `<tr><td colspan="4" class="py-8 text-center text-orange-500 text-sm"><i class="ph ph-warning text-2xl mb-2 inline-block"></i><br>'news' table is missing in Supabase.</td></tr>`;
@@ -908,10 +921,30 @@
                 tbody.innerHTML = `<tr><td colspan="4" class="py-8 text-center text-gray-500 text-sm">No news articles uploaded yet.</td></tr>`;
                 return;
             }
+
+            const sortModeElement = document.getElementById('newsSortMode');
+            const isCustomSort = sortModeElement ? sortModeElement.value === 'custom' : true;
+
             tbody.innerHTML = '';
             data.forEach((item, index) => {
                 const tr = document.createElement('tr');
                 tr.className = 'hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0';
+                
+                // Sorting buttons HTML (사용자 지정 순서일 때만 활성화)
+                let sortButtonsHtml = '';
+                if (isCustomSort) {
+                    sortButtonsHtml = `
+                        <div class="flex items-center justify-center gap-1 mr-4 border-r border-gray-200 pr-4">
+                            <button onclick="moveNewsToExtreme(${index}, 'top')" class="text-gray-500 hover:text-primary bg-gray-100 hover:bg-gray-200 p-1.5 rounded transition-colors ${index === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''} title="Move to Top"><i class="ph-bold ph-caret-double-up"></i></button>
+                            <button onclick="moveNews(${index}, -1)" class="text-gray-500 hover:text-primary bg-gray-100 hover:bg-gray-200 p-1.5 rounded transition-colors ${index === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''} title="Move Up"><i class="ph-bold ph-arrow-up"></i></button>
+                            <button onclick="moveNews(${index}, 1)" class="text-gray-500 hover:text-primary bg-gray-100 hover:bg-gray-200 p-1.5 rounded transition-colors ${index === data.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === data.length - 1 ? 'disabled' : ''} title="Move Down"><i class="ph-bold ph-arrow-down"></i></button>
+                            <button onclick="moveNewsToExtreme(${index}, 'bottom')" class="text-gray-500 hover:text-primary bg-gray-100 hover:bg-gray-200 p-1.5 rounded transition-colors ${index === data.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === data.length - 1 ? 'disabled' : ''} title="Move to Bottom"><i class="ph-bold ph-caret-double-down"></i></button>
+                        </div>
+                    `;
+                } else {
+                    sortButtonsHtml = `<div class="mr-4 border-r border-gray-200 pr-4 flex items-center justify-center"><span class="text-[10px] text-gray-400 font-bold tracking-widest bg-gray-50 px-2 py-1 rounded border border-gray-100" title="Change sorting mode to 'Custom' to enable manual reordering.">SORT DISABLED</span></div>`;
+                }
+
                 tr.innerHTML = `
                     <td class="py-4 px-6">
                         <div class="flex items-start gap-4">
@@ -930,24 +963,22 @@
                             Link <i class="ph-bold ph-arrow-up-right"></i>
                         </a>
                     </td>
-                    <td class="py-4 px-6 text-center whitespace-nowrap">
-                        <!-- 순서 변경 버튼 추가 -->
-                        <button onclick="moveNews(${index}, -1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-1 ${index === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''} title="Move Up"><i class="ph-bold ph-arrow-up"></i></button>
-                        <button onclick="moveNews(${index}, 1)" class="text-gray-600 hover:text-primary bg-gray-100 hover:bg-gray-200 p-2 rounded transition-colors mr-3 ${index === data.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === data.length - 1 ? 'disabled' : ''} title="Move Down"><i class="ph-bold ph-arrow-down"></i></button>
-
-                        <button onclick="editNews(${item.id})" class="text-blue-500 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 p-2 rounded transition-colors mr-2" title="Edit">
-                            <i class="ph-fill ph-pencil-simple"></i>
-                        </button>
-                        <button onclick="deleteNews(${item.id})" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-2 rounded transition-colors" title="Delete">
-                            <i class="ph-fill ph-trash"></i>
-                        </button>
+                    <td class="py-4 px-6 whitespace-nowrap">
+                        <div class="flex items-center justify-center">
+                            ${sortButtonsHtml}
+                            <button onclick="editNews(${item.id})" class="text-blue-500 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 p-2 rounded transition-colors mr-2" title="Edit">
+                                <i class="ph-fill ph-pencil-simple"></i>
+                            </button>
+                            <button onclick="deleteNews(${item.id})" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-2 rounded transition-colors" title="Delete">
+                                <i class="ph-fill ph-trash"></i>
+                            </button>
+                        </div>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        // 뉴스 순서 수동 변경 함수
         async function moveNews(index, direction) {
             if (index + direction < 0 || index + direction >= globalNewsData.length) return;
             
@@ -964,11 +995,41 @@
                 });
                 const results = await Promise.all(updates);
                 
-                // 개별 업데이트 결과 중 에러가 있는지 확인
                 const errorResult = results.find(res => res.error);
                 if (errorResult) throw errorResult.error;
 
                 fetchNewsData();
+            } catch (err) {
+                alert('순서 변경 실패: 데이터베이스의 "news" 테이블에 "sort_order" (숫자형) 컬럼을 먼저 추가해주세요.\n' + err.message);
+                fetchNewsData();
+            }
+        }
+
+        async function moveNewsToExtreme(index, position) {
+            if (position === 'top' && index === 0) return;
+            if (position === 'bottom' && index === globalNewsData.length - 1) return;
+
+            const newArray = [...globalNewsData];
+            const [item] = newArray.splice(index, 1);
+
+            if (position === 'top') {
+                newArray.unshift(item);
+            } else if (position === 'bottom') {
+                newArray.push(item);
+            }
+
+            document.getElementById('newsTableBody').innerHTML = `<tr><td colspan="4" class="py-8 text-center text-gray-500 text-sm"><i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>Updating order...</td></tr>`;
+
+            try {
+                const updates = newArray.map((newsItem, i) => {
+                    return supabaseClient.from('news').update({ sort_order: i }).eq('id', newsItem.id);
+                });
+                const results = await Promise.all(updates);
+                
+                const errorResult = results.find(res => res.error);
+                if (errorResult) throw errorResult.error;
+
+                fetchNewsData(); 
             } catch (err) {
                 alert('순서 변경 실패: 데이터베이스의 "news" 테이블에 "sort_order" (숫자형) 컬럼을 먼저 추가해주세요.\n' + err.message);
                 fetchNewsData();
@@ -1002,7 +1063,6 @@
                     if(meta.image && meta.image.url) document.getElementById('newsImageUrl').value = meta.image.url;
                     if(meta.publisher) document.getElementById('newsPublisher').value = meta.publisher;
                     
-                    // 발행일 추출 로직 (추출 실패 시 오늘 날짜로 폴백)
                     let formattedDate = '';
                     if (meta.date) {
                         const parsedDate = new Date(meta.date);
@@ -1033,7 +1093,6 @@
                 statusText.textContent = "보안 등의 이유로 정보를 자동으로 불러올 수 없습니다. 아래 항목을 직접 입력해주세요.";
                 statusText.className = "text-[10px] text-red-500 mt-1 block";
                 
-                // 에러 발생 시에도 오늘 날짜 기본 삽입
                 const now = new Date();
                 const yyyy = now.getFullYear();
                 const mm = String(now.getMonth() + 1).padStart(2, '0');
@@ -1065,11 +1124,9 @@
                     const { error } = await supabaseClient.from('news').update(newData).eq('id', editingNewsId);
                     if (error) throw error;
                 } else {
-                    // 신규 등록 시 sort_order: 0 포함 시도
                     const insertData = { ...newData, sort_order: 0 };
                     let result = await supabaseClient.from('news').insert([insertData]);
                     
-                    // 만약 sort_order 컬럼이 없어 에러가 발생하면, 해당 컬럼 제외하고 재시도
                     if (result.error) {
                         result = await supabaseClient.from('news').insert([newData]);
                         if (result.error) throw result.error;
@@ -1124,7 +1181,6 @@
             }
             tbody.innerHTML = '';
             data.forEach((item, index) => {
-                // 다중 파일 뱃지 렌더링
                 const filesArr = item.files || [];
                 const filesHtml = filesArr.map(f => `<span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-[10px] font-bold mr-1 border border-gray-200">${f.lang}</span>`).join('');
 
@@ -1174,7 +1230,6 @@
             }
         }
 
-        // Market Reports용 다중 파일 필드 추가/추출 함수
         function addReportFileField(lang = '', url = '') {
             const container = document.getElementById('reportFilesContainer');
             const div = document.createElement('div');
@@ -1254,7 +1309,7 @@
             }
         }
 
-        // --- 7. Resources 관리 로직 (순서 변경 추가) ---
+        // --- 7. Resources 관리 로직 ---
         async function fetchResourcesData() {
             try {
                 const { data, error } = await supabaseClient
@@ -1333,7 +1388,6 @@
             }
         }
 
-        // Resources용 동적 파일 필드 추가/추출 함수
         function addResFileField(lang = '', url = '') {
             const container = document.getElementById('resFilesContainer');
             const div = document.createElement('div');
@@ -1480,8 +1534,8 @@
         function openAddReportModal() {
             editingReportId = null;
             document.getElementById('addReportForm').reset();
-            document.getElementById('reportFilesContainer').innerHTML = ''; // 다중 파일 초기화
-            addReportFileField(); // 1개 빈 필드 생성
+            document.getElementById('reportFilesContainer').innerHTML = ''; 
+            addReportFileField(); 
 
             document.getElementById('reportModalTitle').textContent = 'Add Market Report';
             document.getElementById('btnSubmitReport').innerHTML = 'Save Report';
@@ -1504,7 +1558,6 @@
             document.getElementById('reportDate').value = report.date || '';
             document.getElementById('reportPassword').value = report.password || '';
 
-            // 다중 파일 컨테이너 복원
             const filesContainer = document.getElementById('reportFilesContainer');
             filesContainer.innerHTML = '';
             const files = report.files || [];

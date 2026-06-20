@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEO Shin WonJong</title>
-    <link rel="icon" href="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/SINWONJONG-%20HEALTHCARE%20(1).jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9TSU5XT05KT05HLSBIRUFMVEhDQVJFICgxKS5qcGciLCJpYXQiOjE3ODA4MzEyNzUsImV4cCI6MTc4MTY5NTI3NX0.hBhJAn2F7XATUIkmjC00yNT_mszIdJzILG8a7dZALPU" type="image/jpeg">
+    <link rel="icon" href="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/SINWONJONG-%20HEALTHCARE.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9TSU5XT05KT05HLSBIRUFMVEhDQVJFLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODE5NTE1MzcsImV4cCI6MjA5NzMxMTUzN30.LrhiSC-C853wxZQQFxeZS3F4AbiIXD3xsqggXUspN24" type="image/jpeg">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -849,8 +849,14 @@
                                 linksHtml += '</div>';
                             }
 
-                            const logoHtml = item.logo_url 
-                                ? `<img src="${item.logo_url}" alt="${item.company} Logo" class="w-full h-full object-contain">`
+                            let finalLogoUrl = item.logo_url;
+                            // 새로 전달받은 코스맥스 로고 URL 강제 맵핑 적용
+                            if (item.company && (item.company.toUpperCase().includes('COSMAX') || item.company.includes('코스맥스'))) {
+                                finalLogoUrl = "https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/COSMAX.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9DT1NNQVguanBnIiwic2NvcGUiOiJkb3dubG9hZCIsImlhdCI6MTc4MTk1MTUxMiwiZXhwIjoyMDk3MzExNTEyfQ.UE6kT12qtCem2jtEVYopw1njaZOwwAw1Qz67LD_04sg";
+                            }
+
+                            const logoHtml = finalLogoUrl 
+                                ? `<img src="${finalLogoUrl}" alt="${item.company} Logo" class="w-full h-full object-contain">`
                                 : `<div class="text-gray-300"><i class="ph-fill ph-buildings text-4xl"></i></div>`;
 
                             const bgClass = index === 0 ? 'bg-[#F8FAFC]' : 'bg-white';

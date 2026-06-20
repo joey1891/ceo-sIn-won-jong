@@ -517,6 +517,62 @@
 
     <!-- 5. Company Profiles Section -->
     <section id="profiles" class="py-24 bg-white relative border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-10">
+                <h2 data-i18n="profilesTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Resources</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
+                <p data-i18n="profilesDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Download official corporate brochures and resources. Password required.</p>
+                <button id="toggleResourcesBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
+                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
+                </button>
+            </div>
+            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
+                <table class="w-full text-left font-sans text-sm min-w-[600px]">
+                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
+                        <tr>
+                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Title</th>
+                            <th class="px-6 py-4 font-bold" data-i18n="thFiles">Available Files</th>
+                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="brochureTableBody" class="divide-y divide-gray-200">
+                        <tr>
+                            <td colspan="3" class="px-6 py-8 text-center text-gray-500">
+                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
+                                Loading resources...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Global Market Reports Section -->
+    <section id="reports" class="py-24 bg-slate-50 relative border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-10">
+                <h2 data-i18n="reportsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Global Market Reports</h2>
+                <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
+                <p data-i18n="reportsDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Industry and market analysis reports from global business trips. Password required for access.</p>
+                <button id="toggleReportsBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
+                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
+                </button>
+            </div>
+            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
+                <table class="w-full text-left font-sans text-sm min-w-[600px]">
+                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
+                        <tr>
+                            <th class="px-6 py-4 font-bold" data-i18n="thRegion">Region/Country</th>
+                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Report Title</th>
+                            <th class="px-6 py-4 font-bold w-40 text-center" data-i18n="thFiles">Available Files</th>
+                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTableBody" class="divide-y divide-gray-200">
+                        <tr>
+                            <td colspan="4" class="px-6 py-8 text-center text-gray-500">
+                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
                                 Loading reports...
                             </td>
                         </tr>

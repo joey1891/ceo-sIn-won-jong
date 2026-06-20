@@ -30,12 +30,8 @@
     </script>
     
     <style>
-        body {
-            scroll-behavior: smooth;
-        }
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
-        }
+        body { scroll-behavior: smooth; }
+        .fade-in { animation: fadeIn 0.8s ease-in-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -83,12 +79,8 @@
             box-sizing: border-box;
             user-select: none;
         }
-        .carousel-slide a {
-            -webkit-user-drag: none;
-        }
-        .carousel-slide img {
-            pointer-events: none;
-        }
+        .carousel-slide a { -webkit-user-drag: none; }
+        .carousel-slide img { pointer-events: none; }
     </style>
 </head>
 <body class="bg-[#F8FAFC] text-primary font-serif antialiased selection:bg-accent selection:text-white">
@@ -99,7 +91,13 @@
                 <div class="flex-shrink-0 flex items-center">
                     <span class="font-serif font-bold text-xl tracking-wider text-primary border-b-2 border-primary">SHIN WONJONG</span>
                 </div>
-                <div class="flex items-center space-x-5">
+                <div class="flex items-center space-x-4 sm:space-x-5">
+                    <!-- My Page Link -->
+                    <a href="mypage.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs font-sans font-medium text-gray-500 hover:text-primary transition-colors uppercase tracking-wider group" title="My Page">
+                        <i class="ph ph-user text-lg group-hover:text-accent transition-colors"></i>
+                        <span class="hidden sm:inline">My Page</span>
+                    </a>
+                    <!-- Admin Link -->
                     <a href="admin_dashboard.html" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs font-sans font-medium text-gray-500 hover:text-primary transition-colors uppercase tracking-wider group" title="Admin Portal">
                         <i class="ph ph-shield-check text-lg group-hover:text-accent transition-colors"></i>
                         <span class="hidden sm:inline">Admin</span>
@@ -214,7 +212,6 @@
             </div>
 
             <!-- 6 Columns Grid Configuration -->
-            <!-- 디자인 차별화: 연동된 항목은 파란빛 배경(bg-[#F0F7FF])과 파란색 아이콘 사용 -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 font-sans">
                 <!-- Row 1 -->
                 <a href="https://www.coworkcity.co.kr/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
@@ -274,12 +271,13 @@
                     <h3 class="text-[12px] font-bold text-gray-500 uppercase tracking-widest text-center leading-relaxed">Business Planning</h3>
                 </a>
 
-                <!-- 미연동 항목 -->
-                <a href="#feasibility" class="group flex flex-col items-center justify-center p-6 bg-gray-50 border border-gray-200 shadow-sm transition-all duration-300 h-full relative overflow-hidden z-10 opacity-80 hover:opacity-100 cursor-default">
-                    <div class="w-14 h-14 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-4 shrink-0">
+                <!-- 연동됨 항목: Feasibility Study -->
+                <a href="https://new-business-feasibility-study-mode.vercel.app/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
+                    <div class="w-14 h-14 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
                         <i class="ph-fill ph-magnifying-glass text-2xl"></i>
                     </div>
-                    <h3 class="text-[12px] font-bold text-gray-500 uppercase tracking-widest text-center leading-relaxed">Feasibility Study</h3>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Feasibility Study</h3>
                 </a>
 
                 <!-- 미연동 항목 -->
@@ -327,7 +325,7 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5 font-sans">
-                <!-- 연동됨 항목 -->
+                <!-- 연동됨 항목: Global B2C -->
                 <a href="https://exov-3.myshopify.com/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
                     <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
                     <div class="w-16 h-16 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-5 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
@@ -336,7 +334,7 @@
                     <h3 class="text-[13px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Global B2C<br>System</h3>
                 </a>
 
-                <!-- 연동됨 항목 -->
+                <!-- 연동됨 항목: B2B Domestic -->
                 <a href="https://price-list-three-woad.vercel.app/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
                     <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
                     <div class="w-16 h-16 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-5 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
@@ -345,7 +343,7 @@
                     <h3 class="text-[13px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">B2B Domestic<br>Distribution</h3>
                 </a>
 
-                <!-- 연동됨 항목 -->
+                <!-- 연동됨 항목: B2B Export -->
                 <a href="https://medifab-global-portal.vercel.app/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
                     <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
                     <div class="w-16 h-16 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-5 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
@@ -354,7 +352,7 @@
                     <h3 class="text-[13px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">B2B Export<br>System</h3>
                 </a>
 
-                <!-- 연동됨 항목 -->
+                <!-- 연동됨 항목: Group Purchasing -->
                 <a href="https://group-sales.vercel.app/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-8 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
                     <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
                     <div class="w-16 h-16 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-5 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
@@ -364,8 +362,8 @@
                 </a>
 
                 <!-- 미연동 항목 -->
-                <a href="#network-sales" class="group flex flex-col items-center justify-center p-8 bg-white border border-gray-200 shadow-sm transition-all duration-300 h-full relative overflow-hidden z-10 opacity-80 hover:opacity-100 cursor-default">
-                    <div class="w-16 h-16 bg-gray-50 border border-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-5 shrink-0">
+                <a href="#network-sales" class="group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 shadow-sm transition-all duration-300 h-full relative overflow-hidden z-10 opacity-80 hover:opacity-100 cursor-default">
+                    <div class="w-16 h-16 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-5 shrink-0">
                         <i class="ph-fill ph-share-network text-3xl"></i>
                     </div>
                     <h3 class="text-[13px] font-bold text-gray-500 uppercase tracking-widest text-center leading-relaxed">Network Sales<br>System</h3>

@@ -333,11 +333,11 @@
         </div>
     </section>
 
-    <!-- 4. Integrated Business Systems Section -->
+    <!-- 4. Integrated Sales Systems Section -->
     <section id="business-systems" class="py-24 bg-slate-50 relative border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 tracking-tight text-primary">Integrated Business Systems</h2>
+                <h2 class="text-3xl font-bold mb-4 tracking-tight text-primary">Integrated Sales Systems</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
                 <p class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Access our core operational platforms. Click each module to connect to the respective system.</p>
             </div>
@@ -390,64 +390,133 @@
         </div>
     </section>
 
-    <!-- 5. Company Profiles Section -->
-    <section id="profiles" class="py-24 bg-white relative border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
-            <div class="text-center mb-10">
-                <h2 data-i18n="profilesTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Resources</h2>
+    <!-- Integrated Marketing Systems Section -->
+    <section id="marketing-systems" class="py-24 bg-white relative border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 tracking-tight text-primary">Integrated Trend Analysis System</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
-                <p data-i18n="profilesDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Download official corporate brochures and resources. Password required.</p>
-                <button id="toggleResourcesBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
-                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
-                </button>
+                <p class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Access comprehensive marketing and trend analysis tools.</p>
             </div>
-            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
-                <table class="w-full text-left font-sans text-sm min-w-[600px]">
-                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
-                        <tr>
-                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Title</th>
-                            <th class="px-6 py-4 font-bold" data-i18n="thFiles">Available Files</th>
-                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody id="brochureTableBody" class="divide-y divide-gray-200">
-                        <tr>
-                            <td colspan="3" class="px-6 py-8 text-center text-gray-500">
-                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
-                                Loading resources...
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <!-- 6 Columns Grid Configuration -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5 font-sans">
+                
+                <!-- 구글트렌드분석 -->
+                <a href="https://trends.google.co.kr/trends/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
+                    <div class="w-14 h-14 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-google-logo text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Google Trend<br>Analysis</h3>
+                </a>
+
+                <!-- 네이버트렌드분석 -->
+                <a href="https://datalab.naver.com/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
+                    <div class="w-14 h-14 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-trend-up text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Naver Trend<br>Analysis</h3>
+                </a>
+
+                <!-- SNS분석 -->
+                <a href="https://some.co.kr/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
+                    <div class="w-14 h-14 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-users-three text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">SNS<br>Analysis</h3>
+                </a>
+
+                <!-- 유튜브분석 -->
+                <a href="https://vling.net/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
+                    <div class="w-14 h-14 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-youtube-logo text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">YouTube<br>Analysis</h3>
+                </a>
+
+                <!-- 스토어분석 -->
+                <a href="https://storelink.io/auth/sign-in" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
+                    <div class="w-14 h-14 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-storefront text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Store<br>Analysis</h3>
+                </a>
+
+                <!-- 아이템분석 -->
+                <a href="https://itemscout.io/" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center justify-center p-6 bg-[#F0F7FF] border border-blue-200 shadow-sm hover:-translate-y-1.5 hover:shadow-lg hover:border-accent transition-all duration-300 h-full relative overflow-hidden z-10">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-transparent group-hover:bg-accent transition-colors"></div>
+                    <div class="w-14 h-14 bg-white border border-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4 group-hover:text-white group-hover:bg-accent transition-all duration-300 shrink-0">
+                        <i class="ph-fill ph-package text-2xl"></i>
+                    </div>
+                    <h3 class="text-[12px] font-bold text-primary uppercase tracking-widest text-center leading-relaxed">Item<br>Analysis</h3>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- 6. Global Market Reports Section -->
-    <section id="reports" class="py-24 bg-slate-50 relative border-b border-gray-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
-            <div class="text-center mb-10">
-                <h2 data-i18n="reportsTitle" class="text-3xl font-bold mb-4 tracking-tight text-primary">Global Market Reports</h2>
+    <!-- Integrated Online Advertising System Section -->
+    <section id="advertising-systems" class="py-24 bg-slate-50 relative border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 tracking-tight text-primary">Integrated Online Advertising System</h2>
                 <div class="w-12 h-0.5 bg-primary mx-auto mb-6"></div>
-                <p data-i18n="reportsDesc" class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Industry and market analysis reports from global business trips. Password required for access.</p>
-                <button id="toggleReportsBtn" class="hidden inline-flex items-center gap-1 font-sans text-xs font-bold text-primary border border-primary px-5 py-2.5 hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
-                    <span data-i18n="viewAllBtn">View All</span> <i class="ph ph-list cursor-pointer"></i>
-                </button>
+                <p class="text-sm font-sans text-gray-600 max-w-2xl mx-auto mb-6">Access integrated platforms for digital advertising and campaign management.</p>
             </div>
-            <div class="overflow-x-auto bg-white border border-gray-200 shadow-sm rounded mt-10">
-                <table class="w-full text-left font-sans text-sm min-w-[600px]">
-                    <thead class="bg-[#F8FAFC] border-b border-gray-200 text-xs uppercase tracking-wider text-secondary">
-                        <tr>
-                            <th class="px-6 py-4 font-bold" data-i18n="thRegion">Region/Country</th>
-                            <th class="px-6 py-4 font-bold" data-i18n="thTitle">Report Title</th>
-                            <th class="px-6 py-4 font-bold w-40 text-center" data-i18n="thFiles">Available Files</th>
-                            <th class="px-6 py-4 font-bold w-32 text-center" data-i18n="thDate">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody id="reportTableBody" class="divide-y divide-gray-200">
-                        <tr>
-                            <td colspan="4" class="px-6 py-8 text-center text-gray-500">
-                                <i class="ph ph-spinner animate-spin text-2xl mb-2 inline-block"></i><br>
+
+            <!-- 5 Columns Grid Configuration -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5 font-sans">
+                
+                <!-- 구글광고 -->
+                <a href="#google-ads" class="group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 shadow-sm transition-all duration-300 h-full relative overflow-hidden z-10 opacity-80 hover:opacity-100 cursor-default">
+                    <div class="w-16 h-16 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-5 shrink-0">
+                        <i class="ph-fill ph-google-logo text-3xl"></i>
+                    </div>
+                    <h3 class="text-[13px] font-bold text-gray-500 uppercase tracking-widest text-center leading-relaxed">Google<br>Ads</h3>
+                </a>
+
+                <!-- 네이버광고 -->
+                <a href="#naver-ads" class="group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 shadow-sm transition-all duration-300 h-full relative overflow-hidden z-10 opacity-80 hover:opacity-100 cursor-default">
+                    <div class="w-16 h-16 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-5 shrink-0">
+                        <i class="ph-fill ph-megaphone text-3xl"></i>
+                    </div>
+                    <h3 class="text-[13px] font-bold text-gray-500 uppercase tracking-widest text-center leading-relaxed">Naver<br>Ads</h3>
+                </a>
+
+                <!-- 메타광고 -->
+                <a href="#meta-ads" class="group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 shadow-sm transition-all duration-300 h-full relative overflow-hidden z-10 opacity-80 hover:opacity-100 cursor-default">
+                    <div class="w-16 h-16 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-5 shrink-0">
+                        <i class="ph-fill ph-meta-logo text-3xl"></i>
+                    </div>
+                    <h3 class="text-[13px] font-bold text-gray-500 uppercase tracking-widest text-center leading-relaxed">Meta<br>Ads</h3>
+                </a>
+
+                <!-- 유튜브광고 -->
+                <a href="#youtube-ads" class="group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 shadow-sm transition-all duration-300 h-full relative overflow-hidden z-10 opacity-80 hover:opacity-100 cursor-default">
+                    <div class="w-16 h-16 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-5 shrink-0">
+                        <i class="ph-fill ph-youtube-logo text-3xl"></i>
+                    </div>
+                    <h3 class="text-[13px] font-bold text-gray-500 uppercase tracking-widest text-center leading-relaxed">YouTube<br>Ads</h3>
+                </a>
+
+                <!-- 틱톡광고 -->
+                <a href="#tiktok-ads" class="group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 shadow-sm transition-all duration-300 h-full relative overflow-hidden z-10 opacity-80 hover:opacity-100 cursor-default">
+                    <div class="w-16 h-16 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-400 mb-5 shrink-0">
+                        <i class="ph-fill ph-tiktok-logo text-3xl"></i>
+                    </div>
+                    <h3 class="text-[13px] font-bold text-gray-500 uppercase tracking-widest text-center leading-relaxed">TikTok<br>Ads</h3>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Company Profiles Section -->
+    <section id="profiles" class="py-24 bg-white relative border-b border-gray-200">
                                 Loading reports...
                             </td>
                         </tr>

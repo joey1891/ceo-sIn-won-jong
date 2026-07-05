@@ -797,8 +797,10 @@
                     .eq('id', 1);
 
                 if (error) {
-                    if(error.message.includes('does not exist')) {
-                        throw new Error('Supabase "profile" 테이블에 "is_resources_visible" (boolean) 컬럼을 먼저 추가해주세요.');
+                    if(error.message.includes('is_resources_visible') || error.message.includes('schema') || error.message.includes('does not exist')) {
+                        alert("[필수 설정 안내]\n이 기능을 사용하기 위해 Supabase 데이터베이스에 상태를 저장할 공간이 필요합니다.\n\n1. Supabase 대시보드에 접속합니다.\n2. 'profile' 테이블을 엽니다.\n3. 새 컬럼(Insert Column)을 아래와 같이 추가합니다.\n   - Name: is_resources_visible\n   - Type: boolean\n   - Default Value: false\n\n설정 완료 후 다시 버튼을 눌러주세요.");
+                        btn.innerHTML = originalHtml;
+                        return;
                     }
                     throw error;
                 }
@@ -945,19 +947,31 @@
             const updateData = { 
                 p1, 
                 p2, 
-                careers,
-                is_resources_visible: globalProfileData ? globalProfileData.is_resources_visible : false
+                careers
             };
+            
+            // Supabase에 컬럼이 아직 없어서 발생하는 오류를 방지하기 위해 값이 존재할 때만 전송
+            if (globalProfileData && typeof globalProfileData.is_resources_visible !== 'undefined') {
+                updateData.is_resources_visible = globalProfileData.is_resources_visible;
+            }
 
             try {
                 const { error } = await supabaseClient
                     .from('profile')
                     .upsert({ id: 1, ...updateData });
 
-                if (error) throw error;
+                if (error) {
+                     if (error.message.includes('is_resources_visible') || error.message.includes('schema cache')) {
+                         alert("[필수 설정 안내]\nSupabase의 'profile' 테이블에 'is_resources_visible' 컬럼(boolean)이 누락되어 있습니다.\n해당 컬럼을 먼저 추가해주세요.");
+                         throw new Error('Supabase 컬럼 누락');
+                     }
+                     throw error;
+                }
                 alert('Profile updated successfully!');
             } catch (err) {
-                alert(`Failed to save profile. \nError: ${err.message}`);
+                if (err.message !== 'Supabase 컬럼 누락') {
+                    alert(`Failed to save profile. \nError: ${err.message}`);
+                }
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = originalText;

@@ -39,7 +39,7 @@
             <form id="loginForm" class="space-y-6">
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-primary mb-2">Access Key</label>
-                    <input type="password" id="passwordInput" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Enter password (admin1234)">
+                    <input type="password" id="passwordInput" class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Enter password">
                 </div>
                 <button type="submit" class="w-full bg-primary text-white py-3 font-semibold hover:bg-opacity-90 transition-colors rounded uppercase text-sm tracking-wider">
                     Authenticate
@@ -61,12 +61,16 @@
                     <span class="font-bold text-lg tracking-wider text-primary whitespace-nowrap">SHIN WONJONG EXECUTIVE PORTAL</span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <a href="#" target="_blank" class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium whitespace-nowrap">
+                    <a href="https://shinwonjong.com/" class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium whitespace-nowrap">
                         <i class="ph-bold ph-house"></i> Home
                     </a>
                     <div class="h-4 w-px bg-gray-300"></div>
                     <button onclick="refreshCurrentTab()" class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium whitespace-nowrap">
                         <i class="ph-bold ph-arrows-clockwise"></i> Refresh
+                    </button>
+                    <div class="h-4 w-px bg-gray-300"></div>
+                    <button onclick="openChangePasswordModal()" class="text-gray-500 hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium whitespace-nowrap">
+                        <i class="ph-bold ph-lock-key"></i> Password
                     </button>
                     <div class="h-4 w-px bg-gray-300"></div>
                     <button onclick="logout()" class="text-red-600 hover:text-red-800 transition-colors flex items-center gap-1 text-sm font-medium whitespace-nowrap">
@@ -227,14 +231,12 @@
                             <p class="text-sm text-gray-500 mt-1">Manage external press releases and news links.</p>
                         </div>
                         <div class="flex items-center gap-3 w-full sm:w-auto">
-                            <!-- 정렬 필터 추가 -->
                             <select id="newsSortMode" onchange="fetchNewsData()" class="p-2.5 border border-gray-300 rounded text-sm font-medium focus:outline-none focus:border-accent bg-white shadow-sm flex-1 sm:flex-none cursor-pointer">
                                 <option value="custom">사용자 지정 순서 (Custom)</option>
                                 <option value="date_desc">발행일 최신순 (Date DESC)</option>
                                 <option value="date_asc">발행일 과거순 (Date ASC)</option>
                             </select>
                             
-                            <!-- 수정된 부분: 순서 저장 버튼 -->
                             <button onclick="saveNewsOrder()" id="btnSaveNewsOrder" class="hidden bg-green-600 text-white px-4 py-2.5 rounded font-semibold text-sm hover:bg-green-700 transition-colors shadow-sm items-center gap-2 uppercase tracking-wider whitespace-nowrap">
                                 <i class="ph-bold ph-floppy-disk"></i> Save Order
                             </button>
@@ -389,6 +391,36 @@
         </div>
     </div>
 
+    <!-- 비밀번호 변경 모달 추가 -->
+    <div id="changePasswordModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+        <div class="bg-white p-8 max-w-sm w-full mx-4 rounded border border-gray-300 shadow-2xl transform transition-transform scale-95 opacity-0 duration-300 flex flex-col" id="changePasswordModalContent">
+            <div class="flex justify-between items-start mb-6 pb-4 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-primary">Change Password</h3>
+                <button onclick="closeChangePasswordModal()" class="text-gray-400 hover:text-gray-700 transition-colors">
+                    <i class="ph ph-x text-2xl"></i>
+                </button>
+            </div>
+            <form id="changePasswordForm" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Current Password</label>
+                    <input type="password" id="currentPwInput" required class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">New Password</label>
+                    <input type="password" id="newPwInput" required class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-600 mb-1">Confirm New Password</label>
+                    <input type="password" id="confirmPwInput" required class="w-full p-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:border-accent">
+                </div>
+                <p id="pwErrorText" class="text-xs text-red-500 hidden"></p>
+                <button type="submit" class="w-full bg-accent text-white py-3 mt-2 font-semibold text-sm rounded hover:bg-opacity-90 transition-colors uppercase tracking-wider">
+                    Update Password
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- 기사 추가/수정 모달 (News) -->
     <div id="addNewsModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
         <div class="bg-white p-8 max-w-lg w-full mx-4 rounded border border-gray-300 shadow-2xl transform transition-transform scale-95 opacity-0 duration-300 flex flex-col" id="addNewsModalContent">
@@ -538,7 +570,8 @@
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ldGFkcXBwYnlwemdpb3drZ3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2ODI3MTksImV4cCI6MjA5NTI1ODcxOX0.qehDot2UZEiys3nshDWUSyzjrA6rXgHD6QAz_nYAo3U';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
-        const ADMIN_PASSWORD = 'admin1234'; 
+        // --- 1. 관리자 비밀번호 로직 변경 (Local Storage 연동) ---
+        let currentAdminPassword = localStorage.getItem('adminPassword') || 'admin1234'; 
         
         let globalInquiryData = [];
         let globalNewsData = [];
@@ -564,7 +597,7 @@
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const pw = document.getElementById('passwordInput').value;
-            if(pw === ADMIN_PASSWORD) {
+            if(pw === currentAdminPassword) {
                 sessionStorage.setItem('isAdminLoggedIn', 'true');
                 showDashboard();
             } else {
@@ -991,7 +1024,6 @@
             });
         }
 
-        // 수정됨: DB 즉시 업데이트 제거, UI만 변경하고 'Save Order' 버튼 활성화
         function moveNews(index, direction) {
             if (index + direction < 0 || index + direction >= globalNewsData.length) return;
             
@@ -1008,7 +1040,6 @@
             btnSave.classList.add('inline-flex');
         }
 
-        // 수정됨: DB 즉시 업데이트 제거, UI만 변경하고 'Save Order' 버튼 활성화
         function moveNewsToExtreme(index, position) {
             if (position === 'top' && index === 0) return;
             if (position === 'bottom' && index === globalNewsData.length - 1) return;
@@ -1030,7 +1061,6 @@
             btnSave.classList.add('inline-flex');
         }
 
-        // 추가됨: 변경된 순서를 DB에 일괄 저장하는 함수
         async function saveNewsOrder() {
             const btn = document.getElementById('btnSaveNewsOrder');
             const originalText = btn.innerHTML;
@@ -1048,7 +1078,6 @@
 
                 alert('뉴스 순서가 성공적으로 저장되었습니다.');
                 
-                // 저장 성공 시 버튼 다시 숨김
                 btn.classList.add('hidden');
                 btn.classList.remove('inline-flex');
                 
@@ -1062,7 +1091,6 @@
         }
 
 
-        // ---------- 수정한 fetchMetadata 함수 적용 ----------
         async function fetchMetadata() {
             const urlInput = document.getElementById('newsUrl').value;
             const statusText = document.getElementById('fetchStatus');
@@ -1080,11 +1108,9 @@
             statusText.className = "text-[10px] text-blue-500 mt-1 block";
 
             try {
-                // 새로운 우회 방식: microlink API의 헤더 우회 옵션 및 fallback proxy
                 let htmlText = "";
                 let success = false;
                 
-                // 시도 1: Microlink API (가장 안정적인 기존 방식에 우회 파라미터 추가)
                 if (!success) {
                     try {
                         const r1 = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(urlInput)}&prerender=true&meta=true`);
@@ -1115,13 +1141,12 @@
 
                                 statusText.textContent = "정보를 성공적으로 불러왔습니다.";
                                 statusText.className = "text-[10px] text-green-600 mt-1 block";
-                                return; // Microlink 성공 시 여기서 함수 종료
+                                return; 
                             }
                         }
                     } catch (e) {}
                 }
 
-                // 시도 2: AllOrigins RAW 데이터 방식 (User-Agent 우회 효과)
                 if (!success) {
                     try {
                         const r2 = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(urlInput)}`);
@@ -1136,11 +1161,9 @@
                     throw new Error("모든 우회 방식이 차단되었습니다.");
                 }
 
-                // HTML 텍스트를 파싱합니다 (시도 2 성공 시).
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlText, "text/html");
 
-                // 메타 태그 추출 헬퍼
                 const getMeta = (prop, name) => {
                     const el = doc.querySelector(`meta[property="${prop}"], meta[name="${name}"]`);
                     return el ? el.getAttribute("content") : "";
@@ -1169,7 +1192,6 @@
                     formattedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
                 }
 
-                // UI 업데이트
                 if (title) document.getElementById('newsTitle').value = title;
                 if (image) document.getElementById('newsImageUrl').value = image;
                 if (publisher) document.getElementById('newsPublisher').value = publisher;
@@ -1189,7 +1211,6 @@
                 btnMeta.innerHTML = '자동 입력';
             }
         }
-        // -----------------------------------------------------------
 
         document.getElementById('addNewsForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -1566,7 +1587,6 @@
             document.getElementById('newsModalTitle').textContent = 'Add News Article';
             document.getElementById('btnSubmitNews').innerHTML = 'Publish Article';
 
-            // 새 기사 추가 시 기본 날짜를 오늘로 설정
             const now = new Date();
             const yyyy = now.getFullYear();
             const mm = String(now.getMonth() + 1).padStart(2, '0');
@@ -1729,7 +1749,7 @@
             }, 300);
         }
 
-        // --- 기타: Inquiry 모달 및 검색 ---
+        // Inquiry Detail Modal & Search
         const detailModal = document.getElementById('detailModal');
         const detailModalContent = document.getElementById('detailModalContent');
         
@@ -1773,6 +1793,59 @@
                 return (visitor.name || '').toLowerCase().includes(term);
             });
             renderInquiryTable(filtered);
+        });
+
+        // 비밀번호 변경 모달 제어 및 폼 제출
+        const changePasswordModal = document.getElementById('changePasswordModal');
+        const changePasswordModalContent = document.getElementById('changePasswordModalContent');
+
+        function openChangePasswordModal() {
+            document.getElementById('changePasswordForm').reset();
+            document.getElementById('pwErrorText').classList.add('hidden');
+            changePasswordModal.classList.remove('hidden');
+            changePasswordModal.classList.add('flex');
+            setTimeout(() => {
+                changePasswordModalContent.classList.remove('scale-95', 'opacity-0');
+                changePasswordModalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeChangePasswordModal() {
+            changePasswordModalContent.classList.remove('scale-100', 'opacity-100');
+            changePasswordModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                changePasswordModal.classList.add('hidden');
+                changePasswordModal.classList.remove('flex');
+            }, 300);
+        }
+
+        document.getElementById('changePasswordForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const currentPw = document.getElementById('currentPwInput').value;
+            const newPw = document.getElementById('newPwInput').value;
+            const confirmPw = document.getElementById('confirmPwInput').value;
+            const errorText = document.getElementById('pwErrorText');
+
+            if(currentPw !== currentAdminPassword) {
+                errorText.textContent = "현재 비밀번호가 일치하지 않습니다.";
+                errorText.classList.remove('hidden');
+                return;
+            }
+            if(newPw !== confirmPw) {
+                errorText.textContent = "새 비밀번호가 일치하지 않습니다.";
+                errorText.classList.remove('hidden');
+                return;
+            }
+            if(newPw.length < 4) {
+                errorText.textContent = "비밀번호는 최소 4자 이상이어야 합니다.";
+                errorText.classList.remove('hidden');
+                return;
+            }
+
+            localStorage.setItem('adminPassword', newPw);
+            currentAdminPassword = newPw;
+            alert('비밀번호가 성공적으로 변경되었습니다. 다음 로그인부터 적용됩니다.');
+            closeChangePasswordModal();
         });
 
     </script>

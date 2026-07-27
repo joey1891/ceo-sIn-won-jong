@@ -624,7 +624,9 @@
                 <h3 data-i18n="qrTitle" class="text-sm font-sans font-bold uppercase tracking-widest text-primary mb-2">Social Messenger Gateways</h3>
                 <div class="w-8 h-0.5 bg-gray-400 mx-auto"></div>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto fade-in font-sans">
+            
+            <!-- UPDATE: Changed grid-cols-5 to grid-cols-6 and max-w-5xl to max-w-6xl to fit Zalo nicely -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-6xl mx-auto fade-in font-sans">
                 <!-- QR Codes -->
                 <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
                     <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
@@ -670,6 +672,16 @@
                         <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/WHATSAPP.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy9XSEFUU0FQUC5qcGciLCJpYXQiOjE3Nzk2ODQzMzQsImV4cCI6MjA5NTA0NDMzNH0.tqdfZeJ-L6u_4oPvmmb2jcbwLXFDLn33IIHHTyd2too" alt="WhatsApp QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
                     </div>
                     <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">WhatsApp</span>
+                </div>
+                <!-- ADDED: Zalo QR Code -->
+                <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center mb-4 text-primary shrink-0">
+                        <i class="ph-fill ph-chat-circle-text text-lg"></i>
+                    </div>
+                    <div class="w-full aspect-square bg-white rounded-none mb-4 p-2 border border-gray-300 flex items-center justify-center">
+                        <img src="https://metadqppbypzgiowkgzg.supabase.co/storage/v1/object/sign/SIN%20WONJONG/zalo.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zYjU3MDQxZS04NjZlLTQxOTYtODJiMy0yZjMzODZhNjBkYTAiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJTSU4gV09OSk9ORy96YWxvLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODUxMjMyNzMsImV4cCI6MjQxNTg0MzI3M30.jmDJKrCryQCUnhfebxHiscLyfks4OYdHz03YHgn5cSY" alt="Zalo QR" class="w-full h-full object-contain cursor-pointer hover:opacity-80 transition-opacity" onclick="openQrModal(this.src)">
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-primary mt-auto text-center">Zalo</span>
                 </div>
             </div>
         </div>

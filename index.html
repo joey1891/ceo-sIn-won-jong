@@ -625,7 +625,6 @@
                 <div class="w-8 h-0.5 bg-gray-400 mx-auto"></div>
             </div>
             
-            <!-- UPDATE: Changed grid-cols-5 to grid-cols-6 and max-w-5xl to max-w-6xl to fit Zalo nicely -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-6xl mx-auto fade-in font-sans">
                 <!-- QR Codes -->
                 <div class="bg-white border border-gray-200 p-6 flex flex-col items-center h-full group shadow-sm">
@@ -1003,8 +1002,46 @@
                         } else {
                             profilesSection.classList.add('hidden');
                         }
-                        updateSectionBackgrounds(); // 상태가 바뀔 때마다 배경색 재조정
                     }
+
+                    // New Menu Sections Visibility Logic
+                    const businessManagementSection = document.getElementById('business-management');
+                    if (businessManagementSection) {
+                        if (data.show_business_management === false) {
+                            businessManagementSection.classList.add('hidden');
+                        } else {
+                            businessManagementSection.classList.remove('hidden');
+                        }
+                    }
+
+                    const businessSystemsSection = document.getElementById('business-systems');
+                    if (businessSystemsSection) {
+                        if (data.show_integrated_sales === false) {
+                            businessSystemsSection.classList.add('hidden');
+                        } else {
+                            businessSystemsSection.classList.remove('hidden');
+                        }
+                    }
+
+                    const marketingSystemsSection = document.getElementById('marketing-systems');
+                    if (marketingSystemsSection) {
+                        if (data.show_trend_analysis === false) {
+                            marketingSystemsSection.classList.add('hidden');
+                        } else {
+                            marketingSystemsSection.classList.remove('hidden');
+                        }
+                    }
+
+                    const advertisingSystemsSection = document.getElementById('advertising-systems');
+                    if (advertisingSystemsSection) {
+                        if (data.show_online_advertising === false) {
+                            advertisingSystemsSection.classList.add('hidden');
+                        } else {
+                            advertisingSystemsSection.classList.remove('hidden');
+                        }
+                    }
+
+                    updateSectionBackgrounds(); // 화면 상태가 모두 변경된 후 배경색 일괄 재조정
 
                     if (careers.length > 0) {
                         careerContainer.innerHTML = ''; 

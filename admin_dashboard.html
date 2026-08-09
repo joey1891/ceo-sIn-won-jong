@@ -181,7 +181,7 @@
                     <div class="flex justify-between items-center mb-6">
                         <div>
                             <h2 class="text-2xl font-bold text-primary tracking-tight">Profile & Career Management</h2>
-                            <p class="text-sm text-gray-500 mt-1">Manage Executive Profile and dynamically ordered Career Highlights with Links.</p>
+                            <p class="text-sm text-gray-500 mt-1">Manage Executive Profile, Career Highlights, and UI Settings.</p>
                         </div>
                         <button onclick="saveProfileData()" id="btnSaveProfile" class="bg-accent text-white px-5 py-2.5 rounded font-semibold text-sm hover:bg-opacity-90 transition-colors shadow-sm inline-flex items-center gap-2 uppercase tracking-wider">
                             <i class="ph-bold ph-floppy-disk"></i> Save Changes
@@ -189,6 +189,44 @@
                     </div>
 
                     <div class="space-y-8">
+                        <!-- Menu Settings Edit -->
+                        <div class="bg-white border border-gray-200 rounded shadow-sm overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
+                                <h3 class="text-base font-bold text-primary uppercase tracking-wider">Main Page Menu Settings</h3>
+                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Toggle sections on/off</p>
+                            </div>
+                            <div class="p-6 bg-white">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="menuSettingsContainer">
+                                    <!-- Business Management Systems Toggle -->
+                                    <label class="flex items-center gap-3 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" id="toggleBusinessManagement" class="w-5 h-5 text-accent border-gray-300 rounded focus:ring-accent">
+                                        <span class="text-sm font-bold text-gray-700 leading-tight">Business Management<br>Systems</span>
+                                    </label>
+                                    
+                                    <!-- Integrated Sales Systems Toggle -->
+                                    <label class="flex items-center gap-3 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" id="toggleIntegratedSales" class="w-5 h-5 text-accent border-gray-300 rounded focus:ring-accent">
+                                        <span class="text-sm font-bold text-gray-700 leading-tight">Integrated Sales<br>Systems</span>
+                                    </label>
+
+                                    <!-- Integrated Trend Analysis System Toggle -->
+                                    <label class="flex items-center gap-3 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" id="toggleTrendAnalysis" class="w-5 h-5 text-accent border-gray-300 rounded focus:ring-accent">
+                                        <span class="text-sm font-bold text-gray-700 leading-tight">Integrated Trend<br>Analysis System</span>
+                                    </label>
+
+                                    <!-- Integrated Online Advertising System Toggle -->
+                                    <label class="flex items-center gap-3 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" id="toggleOnlineAdvertising" class="w-5 h-5 text-accent border-gray-300 rounded focus:ring-accent">
+                                        <span class="text-sm font-bold text-gray-700 leading-tight">Integrated Online<br>Advertising System</span>
+                                    </label>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-4">
+                                    <i class="ph-fill ph-info text-blue-500"></i> Check the box to <strong class="text-gray-700">SHOW</strong> the section. Uncheck to <strong class="text-gray-700">HIDE</strong> it.
+                                </p>
+                            </div>
+                        </div>
+
                         <!-- Executive Profile Edit -->
                         <div class="bg-white border border-gray-200 rounded shadow-sm overflow-hidden">
                             <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
@@ -569,6 +607,7 @@
          * 2. news: id, url, title, publisher, date, image_url, sort_order, created_at
          * 3. market_reports: id, country, title, date, files (JSONB array), password, sort_order, created_at
          * 4. resources: id, title, date, password, files (JSONB array), sort_order, created_at
+         * 5. profile: id, p1, p2, careers (JSONB array), is_resources_visible, show_business_management, show_integrated_sales, show_trend_analysis, show_online_advertising
          */
 
         const SUPABASE_URL = 'https://metadqppbypzgiowkgzg.supabase.co'; 
@@ -760,7 +799,16 @@
                     throw error;
                 }
                 
-                globalProfileData = data || { p1: '', p2: '', careers: [], is_resources_visible: false };
+                globalProfileData = data || { 
+                    p1: '', 
+                    p2: '', 
+                    careers: [], 
+                    is_resources_visible: false,
+                    show_business_management: true,
+                    show_integrated_sales: true,
+                    show_trend_analysis: true,
+                    show_online_advertising: true
+                };
                 renderProfileForm(globalProfileData);
                 updateResourceVisibilityUI();
             } catch (err) {
@@ -817,6 +865,12 @@
         function renderProfileForm(data) {
             document.getElementById('profileP1').value = data.p1 || '';
             document.getElementById('profileP2').value = data.p2 || '';
+            
+            // Set Menu Toggles
+            document.getElementById('toggleBusinessManagement').checked = data.show_business_management !== false;
+            document.getElementById('toggleIntegratedSales').checked = data.show_integrated_sales !== false;
+            document.getElementById('toggleTrendAnalysis').checked = data.show_trend_analysis !== false;
+            document.getElementById('toggleOnlineAdvertising').checked = data.show_online_advertising !== false;
 
             const container = document.getElementById('careerItemsContainer');
             container.innerHTML = '';
@@ -921,6 +975,12 @@
 
             const p1 = document.getElementById('profileP1').value;
             const p2 = document.getElementById('profileP2').value;
+            
+            // Get Menu Toggles
+            const show_business_management = document.getElementById('toggleBusinessManagement').checked;
+            const show_integrated_sales = document.getElementById('toggleIntegratedSales').checked;
+            const show_trend_analysis = document.getElementById('toggleTrendAnalysis').checked;
+            const show_online_advertising = document.getElementById('toggleOnlineAdvertising').checked;
 
             const careerElements = document.querySelectorAll('.career-item');
             const careers = [];
@@ -947,7 +1007,11 @@
             const updateData = { 
                 p1, 
                 p2, 
-                careers
+                careers,
+                show_business_management,
+                show_integrated_sales,
+                show_trend_analysis,
+                show_online_advertising
             };
             
             // Supabase에 컬럼이 아직 없어서 발생하는 오류를 방지하기 위해 값이 존재할 때만 전송
@@ -961,13 +1025,13 @@
                     .upsert({ id: 1, ...updateData });
 
                 if (error) {
-                     if (error.message.includes('is_resources_visible') || error.message.includes('schema cache')) {
-                         alert("[필수 설정 안내]\nSupabase의 'profile' 테이블에 'is_resources_visible' 컬럼(boolean)이 누락되어 있습니다.\n해당 컬럼을 먼저 추가해주세요.");
+                     if (error.message.includes('show_business_management') || error.message.includes('schema cache')) {
+                         alert("[필수 설정 안내]\nSupabase의 'profile' 테이블에 새로운 메뉴 설정 컬럼들이 누락되어 있습니다.\n다음 boolean 컬럼들을 추가해주세요:\n- show_business_management\n- show_integrated_sales\n- show_trend_analysis\n- show_online_advertising");
                          throw new Error('Supabase 컬럼 누락');
                      }
                      throw error;
                 }
-                alert('Profile updated successfully!');
+                alert('Profile and Menu Settings updated successfully!');
             } catch (err) {
                 if (err.message !== 'Supabase 컬럼 누락') {
                     alert(`Failed to save profile. \nError: ${err.message}`);

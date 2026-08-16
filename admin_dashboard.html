@@ -220,6 +220,30 @@
                                         <input type="checkbox" id="toggleOnlineAdvertising" class="w-5 h-5 text-accent border-gray-300 rounded focus:ring-accent">
                                         <span class="text-sm font-bold text-gray-700 leading-tight">Integrated Online<br>Advertising System</span>
                                     </label>
+
+                                    <!-- Official Communication Statement Toggle -->
+                                    <label class="flex items-center gap-3 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" id="toggleCommunication" class="w-5 h-5 text-accent border-gray-300 rounded focus:ring-accent">
+                                        <span class="text-sm font-bold text-gray-700 leading-tight">Official Communication<br>Statement</span>
+                                    </label>
+
+                                    <!-- Digital Channel Architecture Toggle -->
+                                    <label class="flex items-center gap-3 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" id="toggleDigitalChannel" class="w-5 h-5 text-accent border-gray-300 rounded focus:ring-accent">
+                                        <span class="text-sm font-bold text-gray-700 leading-tight">Digital Channel<br>Architecture</span>
+                                    </label>
+
+                                    <!-- Resources Toggle -->
+                                    <label class="flex items-center gap-3 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" id="toggleResources" class="w-5 h-5 text-accent border-gray-300 rounded focus:ring-accent">
+                                        <span class="text-sm font-bold text-gray-700 leading-tight">Resources</span>
+                                    </label>
+
+                                    <!-- Global Market Reports Toggle -->
+                                    <label class="flex items-center gap-3 p-4 border border-gray-200 rounded cursor-pointer hover:bg-gray-50 transition-colors">
+                                        <input type="checkbox" id="toggleMarketReports" class="w-5 h-5 text-accent border-gray-300 rounded focus:ring-accent">
+                                        <span class="text-sm font-bold text-gray-700 leading-tight">Global Market<br>Reports</span>
+                                    </label>
                                 </div>
                                 <p class="text-xs text-gray-500 mt-4">
                                     <i class="ph-fill ph-info text-blue-500"></i> Check the box to <strong class="text-gray-700">SHOW</strong> the section. Uncheck to <strong class="text-gray-700">HIDE</strong> it.
@@ -607,14 +631,13 @@
          * 2. news: id, url, title, publisher, date, image_url, sort_order, created_at
          * 3. market_reports: id, country, title, date, files (JSONB array), password, sort_order, created_at
          * 4. resources: id, title, date, password, files (JSONB array), sort_order, created_at
-         * 5. profile: id, p1, p2, careers (JSONB array), is_resources_visible, show_business_management, show_integrated_sales, show_trend_analysis, show_online_advertising
+         * 5. profile: id, p1, p2, careers (JSONB array), is_resources_visible, show_business_management, show_integrated_sales, show_trend_analysis, show_online_advertising, show_communication_statement, show_digital_channel, show_global_market_reports
          */
 
         const SUPABASE_URL = 'https://metadqppbypzgiowkgzg.supabase.co'; 
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ldGFkcXBwYnlwemdpb3drZ3pnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2ODI3MTksImV4cCI6MjA5NTI1ODcxOX0.qehDot2UZEiys3nshDWUSyzjrA6rXgHD6QAz_nYAo3U';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
-        // --- 1. 관리자 비밀번호 로직 변경 (Local Storage 연동) ---
         let currentAdminPassword = localStorage.getItem('adminPassword') || '245024'; 
         
         let globalInquiryData = [];
@@ -628,7 +651,7 @@
         let editingReportId = null;
         let editingResourceId = null;
 
-        // --- 2. 로그인 로직 ---
+        // --- 로그인 로직 ---
         const loginForm = document.getElementById('loginForm');
         const loginScreen = document.getElementById('loginScreen');
         const dashboardScreen = document.getElementById('dashboardScreen');
@@ -672,7 +695,7 @@
             fetchResourcesData();
         }
 
-        // --- 3. 탭 스위칭 로직 ---
+        // --- 탭 스위칭 로직 ---
         const tabs = ['inquiries', 'profile', 'news', 'reports', 'resources'];
         
         function switchTab(tabName) {
@@ -714,7 +737,7 @@
             }
         }
 
-        // --- 4. Inquiries 데이터 로드 ---
+        // --- Inquiries 데이터 로드 ---
         async function fetchInquiriesData() {
             try {
                 const { data, error } = await supabaseClient
@@ -782,7 +805,7 @@
             document.getElementById('statRecent').textContent = recentCount;
         }
 
-        // --- 5. Profile & Career 관리 로직 ---
+        // --- Profile & Menu 토글 관리 로직 ---
         async function fetchProfileData() {
             try {
                 const { data, error } = await supabaseClient
@@ -807,7 +830,10 @@
                     show_business_management: true,
                     show_integrated_sales: true,
                     show_trend_analysis: true,
-                    show_online_advertising: true
+                    show_online_advertising: true,
+                    show_communication_statement: true,
+                    show_digital_channel: true,
+                    show_global_market_reports: true
                 };
                 renderProfileForm(globalProfileData);
                 updateResourceVisibilityUI();
@@ -854,6 +880,11 @@
                 }
                 globalProfileData.is_resources_visible = newValue;
                 updateResourceVisibilityUI();
+                
+                // Resources UI 토글 체크박스 동기화
+                const resToggle = document.getElementById('toggleResources');
+                if(resToggle) resToggle.checked = newValue;
+
             } catch (err) {
                 alert('상태 업데이트 실패: ' + err.message);
                 btn.innerHTML = originalHtml;
@@ -871,6 +902,12 @@
             document.getElementById('toggleIntegratedSales').checked = data.show_integrated_sales !== false;
             document.getElementById('toggleTrendAnalysis').checked = data.show_trend_analysis !== false;
             document.getElementById('toggleOnlineAdvertising').checked = data.show_online_advertising !== false;
+            
+            // New Menu Toggles
+            document.getElementById('toggleCommunication').checked = data.show_communication_statement !== false;
+            document.getElementById('toggleDigitalChannel').checked = data.show_digital_channel !== false;
+            document.getElementById('toggleMarketReports').checked = data.show_global_market_reports !== false;
+            document.getElementById('toggleResources').checked = data.is_resources_visible === true;
 
             const container = document.getElementById('careerItemsContainer');
             container.innerHTML = '';
@@ -981,6 +1018,11 @@
             const show_integrated_sales = document.getElementById('toggleIntegratedSales').checked;
             const show_trend_analysis = document.getElementById('toggleTrendAnalysis').checked;
             const show_online_advertising = document.getElementById('toggleOnlineAdvertising').checked;
+            
+            const show_communication_statement = document.getElementById('toggleCommunication').checked;
+            const show_digital_channel = document.getElementById('toggleDigitalChannel').checked;
+            const show_global_market_reports = document.getElementById('toggleMarketReports').checked;
+            const is_resources_visible = document.getElementById('toggleResources').checked;
 
             const careerElements = document.querySelectorAll('.career-item');
             const careers = [];
@@ -1011,13 +1053,12 @@
                 show_business_management,
                 show_integrated_sales,
                 show_trend_analysis,
-                show_online_advertising
+                show_online_advertising,
+                show_communication_statement,
+                show_digital_channel,
+                show_global_market_reports,
+                is_resources_visible
             };
-            
-            // Supabase에 컬럼이 아직 없어서 발생하는 오류를 방지하기 위해 값이 존재할 때만 전송
-            if (globalProfileData && typeof globalProfileData.is_resources_visible !== 'undefined') {
-                updateData.is_resources_visible = globalProfileData.is_resources_visible;
-            }
 
             try {
                 const { error } = await supabaseClient
@@ -1026,11 +1067,15 @@
 
                 if (error) {
                      if (error.message.includes('show_business_management') || error.message.includes('schema cache')) {
-                         alert("[필수 설정 안내]\nSupabase의 'profile' 테이블에 새로운 메뉴 설정 컬럼들이 누락되어 있습니다.\n다음 boolean 컬럼들을 추가해주세요:\n- show_business_management\n- show_integrated_sales\n- show_trend_analysis\n- show_online_advertising");
+                         alert("[필수 설정 안내]\nSupabase의 'profile' 테이블에 새로운 메뉴 설정 컬럼들이 누락되어 있습니다.\n다음 boolean 컬럼들을 추가해주세요:\n- show_business_management\n- show_integrated_sales\n- show_trend_analysis\n- show_online_advertising\n- show_communication_statement\n- show_digital_channel\n- show_global_market_reports");
                          throw new Error('Supabase 컬럼 누락');
                      }
                      throw error;
                 }
+                
+                globalProfileData.is_resources_visible = is_resources_visible;
+                updateResourceVisibilityUI();
+
                 alert('Profile and Menu Settings updated successfully!');
             } catch (err) {
                 if (err.message !== 'Supabase 컬럼 누락') {
@@ -1042,7 +1087,7 @@
             }
         }
 
-        // --- 6. News 관리 로직 ---
+        // --- News 관리 로직 ---
         async function fetchNewsData() {
             const btnSaveNewsOrder = document.getElementById('btnSaveNewsOrder');
             if(btnSaveNewsOrder) {
@@ -1223,7 +1268,6 @@
             }
         }
 
-
         async function fetchMetadata() {
             const urlInput = document.getElementById('newsUrl').value;
             const statusText = document.getElementById('fetchStatus');
@@ -1391,7 +1435,7 @@
             }
         }
 
-        // --- 6. Market Reports 관리 로직 (다중 파일) ---
+        // --- Market Reports 관리 로직 ---
         async function fetchReportsData() {
             try {
                 const { data, error } = await supabaseClient
@@ -1498,7 +1542,6 @@
             return files;
         }
 
-
         document.getElementById('addReportForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const files = getReportFiles();
@@ -1550,7 +1593,7 @@
             }
         }
 
-        // --- 7. Resources 관리 로직 ---
+        // --- Resources 관리 로직 ---
         async function fetchResourcesData() {
             try {
                 const { data, error } = await supabaseClient
@@ -1706,8 +1749,7 @@
             }
         }
 
-
-        // --- 8. 모달 제어 로직들 ---
+        // --- 모달 제어 로직들 ---
         
         // News Modal
         const addNewsModal = document.getElementById('addNewsModal');

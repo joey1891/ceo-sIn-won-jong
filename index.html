@@ -1041,6 +1041,35 @@
                         }
                     }
 
+                    // --- 신규 추가된 3개 메뉴 제어 로직 연결 부분 ---
+                    const inquirySection = document.getElementById('inquiry'); 
+                    if (inquirySection) {
+                        if (data.show_communication_statement === false) {
+                            inquirySection.classList.add('hidden');
+                        } else {
+                            inquirySection.classList.remove('hidden');
+                        }
+                    }
+
+                    const ecosystemSection = document.getElementById('media-ecosystem'); 
+                    if (ecosystemSection) {
+                        if (data.show_digital_channel === false) {
+                            ecosystemSection.classList.add('hidden');
+                        } else {
+                            ecosystemSection.classList.remove('hidden');
+                        }
+                    }
+
+                    const reportsSection = document.getElementById('reports'); 
+                    if (reportsSection) {
+                        if (data.show_global_market_reports === false) {
+                            reportsSection.classList.add('hidden');
+                        } else {
+                            reportsSection.classList.remove('hidden');
+                        }
+                    }
+                    // ------------------------------------------
+
                     updateSectionBackgrounds(); // 화면 상태가 모두 변경된 후 배경색 일괄 재조정
 
                     if (careers.length > 0) {
